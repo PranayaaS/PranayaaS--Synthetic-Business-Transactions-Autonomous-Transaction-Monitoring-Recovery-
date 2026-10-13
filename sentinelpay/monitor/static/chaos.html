@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SentinelPay – Chaos Control Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="/static/vendor/fonts.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<!-- Local copies first (python vendor_assets.py), CDN fallback -->
+<script src="/static/vendor/tailwind.js"></script>
+<script>window.tailwind || document.write('<script src="https://cdn.tailwindcss.com"><\/script>')</script>
+<script src="/static/tw.js"></script>
+<link rel="stylesheet" href="/static/app.css">
+<script src="/static/app.js"></script>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen">
+<div id="sp-header"></div>
+<main class="w-full pt-16 pb-12 bg-background min-h-screen"><div class="flex flex-col w-full">
+<div class="px-space-lg py-space-xl flex flex-col gap-space-xl relative overflow-hidden">
+  <div class="absolute -top-32 left-1/4 w-[640px] h-[320px] bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute top-1/2 -right-24 w-[480px] h-[480px] bg-error/5 rounded-full blur-3xl pointer-events-none"></div>
+
+  <!-- Banner -->
+  <div class="bg-surface-container-low rounded-xl p-space-xl shadow-xl relative overflow-hidden">
+    <div class="absolute top-0 right-0 h-full w-96 bg-gradient-to-l from-primary/10 via-transparent to-transparent pointer-events-none"></div>
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg relative z-10">
+      <div class="flex flex-col gap-space-xs max-w-3xl">
+        <div class="flex flex-wrap items-center gap-space-sm mb-1">
+          <span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-warn/15 text-warn font-label-sm text-label-sm uppercase tracking-wider"><span class="w-1.5 h-1.5 rounded-full bg-warn animate-pulse"></span>Demo only · mock bank on port 8001 · no real money</span>
+          <span id="bank-chip" class="px-space-sm py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm">BANK: —</span>
+        </div>
+        <h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight flex items-center gap-space-sm flex-wrap">Chaos Control Deck <span class="text-on-surface-variant font-body-lg text-body-lg font-normal">/ Payment Resilience Sandbox</span></h1>
+        <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Inject real failure modes into the mock bank. Synthetic probes, the real-transaction pattern engine and RCA detect them; recovery only runs after a human approves it on the incident page.</p>
+      </div>
+      <div class="flex flex-col sm:flex-row items-stretch lg:items-end gap-space-md shrink-0 bg-surface-container rounded-lg p-space-md shadow-md">
+        <div class="flex flex-col justify-center">
+          <div class="flex items-center justify-between gap-space-md"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Injection guard</span><span id="arm-badge" class="font-label-sm text-label-sm px-space-xs py-0.5 rounded">—</span></div>
+          <div class="flex items-center gap-space-sm mt-1">
+            <button id="arm-btn" role="switch" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out focus:outline-none focus:ring-1 focus:ring-primary"><span id="arm-ball" class="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-surface shadow-md transition duration-200 ease-in-out mt-1"></span></button>
+            <div class="flex flex-col"><span class="font-headline-sm text-on-surface text-xs leading-none">Chaos armed</span><span class="font-body-sm text-on-surface-variant text-[11px]">Disarm to lock all injections</span></div>
+          </div>
+        </div>
+        <div class="h-8 w-px bg-surface-variant hidden sm:block self-center"></div>
+        <button id="trip-btn" title="Emergency: clear every injected fault" class="px-space-md py-2 rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md transition-all flex items-center gap-1.5 shadow-sm active:scale-95"><span class="material-symbols-outlined text-error text-[18px]">emergency_home</span><span>Trip switch</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- State tiles -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+    <div class="bg-surface-container-low rounded-lg p-space-md flex items-center justify-between shadow-sm"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Synthetic health index (1h)</span><span id="t-health" class="font-metric-display text-metric-display text-secondary tracking-tight">—</span></div><div class="w-10 h-10 rounded-lg bg-secondary-container/10 flex items-center justify-center text-secondary"><span class="material-symbols-outlined">speed</span></div></div>
+    <div class="bg-surface-container-low rounded-lg p-space-md flex items-center justify-between shadow-sm"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Simulated customer traffic</span><span id="t-tps" class="font-metric-display text-metric-display text-on-surface tracking-tight">—</span></div><div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary"><span class="material-symbols-outlined">swap_horiz</span></div></div>
+    <div class="bg-surface-container-low rounded-lg p-space-md flex items-center justify-between shadow-sm"><div class="flex flex-col min-w-0"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Active fault vector</span><span id="t-fault" class="font-metric-sub text-metric-sub text-on-surface-variant tracking-tight mt-1 truncate">—</span><span id="t-fault-since" class="text-[10px] font-mono text-outline"></span></div><div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant"><span class="material-symbols-outlined">hub</span></div></div>
+    <a href="/watchdog" class="bg-surface-container-low rounded-lg p-space-md flex items-center justify-between shadow-sm hover:bg-surface-container"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">RBI watchdog queue</span><span id="t-rbi" class="font-metric-display text-metric-display text-secondary tracking-tight">—</span></div><div class="w-10 h-10 rounded-lg bg-secondary-container/10 flex items-center justify-center text-secondary"><span class="material-symbols-outlined">gavel</span></div></a>
+  </div>
+
+  <!-- Fault matrix -->
+  <div class="flex flex-col gap-space-md">
+    <div class="flex items-center justify-between flex-wrap gap-2">
+      <div class="flex items-center gap-space-sm"><span class="font-label-lg text-label-lg uppercase tracking-wider text-primary flex items-center gap-1.5"><span class="material-symbols-outlined text-[18px]">pest_control</span>Fault injection matrix</span><span class="font-label-sm text-label-sm text-on-surface-variant font-mono">[SELECT ONE TO INJECT]</span></div>
+      <span class="font-label-sm text-label-sm text-on-surface-variant">8 scenarios · mirrored to real-transaction simulator</span>
+    </div>
+    <div id="matrix" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-lg"></div>
+  </div>
+
+  <!-- Master reset -->
+  <div class="bg-surface-container-low rounded-xl p-space-lg shadow-xl relative overflow-hidden">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-space-lg">
+      <div class="flex items-center gap-space-md"><div class="w-12 h-12 rounded-xl bg-primary-container/20 flex items-center justify-center text-primary shrink-0"><span class="material-symbols-outlined text-[28px]">autorenew</span></div>
+        <div class="flex flex-col"><h4 class="font-headline-sm text-headline-sm text-on-surface">Reset chaos (demo shortcut)</h4><p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Clears the injected fault in the mock bank. Open incidents are <b>not</b> auto-recovered: they close only through Approve/Dismiss, or auto-close once probes stay green.</p></div></div>
+      <button id="master-reset-btn" class="w-full md:w-auto px-space-xl py-3.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary-container text-sm tracking-wide transition-all duration-200 flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(6,182,212,0.35)] hover:shadow-[0_0_28px_rgba(6,182,212,0.6)] font-semibold active:scale-95 shrink-0"><span class="material-symbols-outlined text-[20px]">restart_alt</span><span>Reset all chaos injections</span></button>
+    </div>
+  </div>
+
+  <!-- Telemetry + terminal -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+    <div class="lg:col-span-5 bg-surface-container-low rounded-xl p-space-lg shadow-md flex flex-col gap-space-md">
+      <div class="flex items-center justify-between"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[20px]">monitor_heart</span><span class="font-headline-sm text-headline-sm text-on-surface text-sm">Synthetic Probe Response Matrix</span></div><span id="probe-state" class="font-label-sm text-label-sm text-secondary bg-secondary-container/10 px-2 py-0.5 rounded font-mono">PROBES LIVE</span></div>
+      <div class="bg-surface-container rounded-lg p-space-md flex flex-col gap-space-sm">
+        <div class="flex items-center justify-between font-label-sm text-label-sm"><span class="text-on-surface-variant">Core journey round-trip (E2E)</span><span id="spark-val" class="font-mono text-primary font-semibold">—</span></div>
+        <div class="w-full h-16 bg-surface-container-lowest rounded overflow-hidden relative px-2 pt-2">
+          <svg class="w-full h-full" viewBox="0 0 300 40" preserveAspectRatio="none"><defs><linearGradient id="sparkGrad" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#4cd7f6" stop-opacity="0.35"/><stop offset="100%" stop-color="#4cd7f6" stop-opacity="0"/></linearGradient></defs>
+            <line x1="0" x2="300" id="spark-th" stroke="#ffb4ab" stroke-dasharray="4 4" stroke-width="0.8"/>
+            <path id="spark-area" fill="url(#sparkGrad)"/><path id="spark-line" fill="none" stroke="#4cd7f6" stroke-width="2"/></svg>
+        </div>
+        <div class="flex items-center justify-between font-label-sm text-on-surface-variant font-mono text-[10px]"><span id="spark-from">-10m</span><span class="text-error">- - threshold</span><span class="text-primary">NOW</span></div>
+      </div>
+      <div id="probe-steps" class="flex flex-col gap-2"></div>
+      <button id="run-probe" class="py-2 rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-primary">play_arrow</span>Run probe cycle now</button>
+    </div>
+
+    <div class="lg:col-span-7 bg-surface-container-lowest rounded-xl shadow-xl flex flex-col overflow-hidden">
+      <div class="bg-surface-container px-space-md py-2.5 flex items-center justify-between">
+        <div class="flex items-center gap-space-sm"><div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-error/60"></span><span class="w-2.5 h-2.5 rounded-full bg-warn/60"></span><span class="w-2.5 h-2.5 rounded-full bg-secondary/60"></span></div><span class="font-label-sm text-label-sm text-on-surface font-mono ml-2">sentinel-engine@noc:~# tail -f events</span></div>
+        <div class="flex items-center gap-space-md font-label-sm text-label-sm text-on-surface-variant font-mono">
+          <div class="flex items-center gap-1"><span>Last E2E:</span><span id="term-lat" class="text-primary font-semibold">—</span></div>
+          <label class="hidden sm:flex items-center gap-1 cursor-pointer"><input id="term-follow" type="checkbox" checked class="accent-cyan-500">Follow</label>
+          <button id="clear-terminal-btn" class="text-on-surface-variant hover:text-on-surface text-[11px] uppercase tracking-wider">Clear</button>
+        </div>
+      </div>
+      <div class="bg-surface-container-high px-space-md py-1.5 flex flex-wrap items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+        <div class="flex items-center gap-2 font-mono text-[11px]"><span>STATUS:</span><span id="term-status" class="text-secondary font-semibold">IDLE / MONITORING</span></div>
+        <div class="flex items-center gap-3 font-mono text-[11px]"><span>RECOVERY: <span class="text-primary">HUMAN APPROVAL ONLY</span></span><span class="hidden md:inline">FALSE-ALARM GUARD: <span class="text-secondary">2 OF 3</span></span></div>
+      </div>
+      <div id="terminal-body" class="p-space-md h-96 overflow-y-auto font-mono text-[12px] leading-relaxed flex flex-col gap-1 text-on-surface bg-surface-container-lowest select-text"></div>
+    </div>
+  </div>
+</div></div></main>
+<div id="sp-footer"></div>
+<script>
+const SCEN = [
+  { mode: "gateway_down", n: "01", title: "Gateway Down", sub: "(Complete outage)", color: "error", tag: "HTTP 502 SEV-1", emoji: "💥", icon: "sensors_off",
+    desc: "/api/pay returns HTTP 502 'Payment gateway unavailable'. ~90% of real customer payments fail.",
+    expect: "Critical incident on Gateway payment · layer Payment gateway · fix: switch to backup gateway · draft customer notice." },
+  { mode: "gateway_timeout", n: "02", title: "Gateway Timeout", sub: "(8 s hang)", color: "warn", tag: "TIMEOUT 8S", emoji: "⏳", icon: "timer_off",
+    desc: "/api/pay hangs 8 s; probe times out at 6 s. Half of real payments become debited-but-not-credited.",
+    expect: "Payment gateway timeout incident · RBI watchdog fills with live reversal countdowns." },
+  { mode: "slow_gateway", n: "03", title: "Slow Gateway", sub: "(Latency ramp)", color: "warn", tag: "2.5 → 3.5 S", emoji: "🐢", icon: "speed",
+    desc: "Gateway latency ramps from 2.5 s to 3.5 s across calls, crossing the 3 s slow threshold.",
+    expect: "Amber early warning (rising 3 runs, >70% of threshold) before escalation to a slow-step incident." },
+  { mode: "intermittent", n: "04", title: "Intermittent 502s", sub: "(40% flaky)", color: "warn", tag: "FLAKY 40%", emoji: "🎲", icon: "shuffle",
+    desc: "40% of payment calls fail with 502. Retries sometimes pass – the classic 'works on refresh' problem.",
+    expect: "Intermittent incident even when the latest run passed · false-alarm guard visible in the log." },
+  { mode: "wrong_amount", n: "05", title: "Wrong Amount", sub: "(Receipt mismatch)", color: "orange", tag: "DATA INTEGRITY", emoji: "⚠️", icon: "receipt_long",
+    desc: "Receipt shows amount + ₹1. Payment succeeds, so only end-to-end data validation catches it.",
+    expect: "Incident on Verify receipt · 'Data integrity error in payment confirmation' · fix: rollback receipt service." },
+  { mode: "server_error", n: "06", title: "Server Error", sub: "(Login 500)", color: "error", tag: "HTTP 500", emoji: "🧯", icon: "dns",
+    desc: "POST /login returns HTTP 500 – customers cannot start any journey.",
+    expect: "Major incident on Login · layer Bank server · fix: restart payment service." },
+  { mode: "receiver_bank_down", n: "07", title: "Receiver Bank Down", sub: "(Bank X 503)", color: "purple", tag: "RB_UNAVAILABLE", emoji: "🏦", icon: "account_balance",
+    desc: "Transfers to Bank X fail with 503 RB_UNAVAILABLE; every other bank is fine.",
+    expect: "Pattern 'all to Bank X' → auto-created test 'Transfer to Bank X' · fix: pause Bank X + notify customers." },
+  { mode: "large_amount_fail", n: "08", title: "Fail Above ₹50,000", sub: "(Limit / risk rule)", color: "purple", tag: "TIERED ANOMALY", emoji: "🚨", icon: "query_stats",
+    desc: "Payments above ₹50,000 are rejected with 422 LIMIT_OR_RISK_CHECK; small payments pass, so base probes stay green.",
+    expect: "Pattern 'transfers above ₹50,000' (~1–2 min) → auto-created test 'Transfer above ₹50,000'." },
+];
+const COL = {
+  error: { bar: "from-error to-error/30", chip: "text-error bg-error/10", btn: "bg-error/15 hover:bg-error text-error hover:text-on-error", txt: "text-error" },
+  warn: { bar: "from-amber-500 to-amber-500/30", chip: "text-amber-400 bg-amber-500/10", btn: "bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-surface-container-lowest", txt: "text-amber-400" },
+  orange: { bar: "from-orange-500 to-orange-500/30", chip: "text-orange-400 bg-orange-500/10", btn: "bg-orange-500/15 hover:bg-orange-500 text-orange-300 hover:text-surface-container-lowest", txt: "text-orange-400" },
+  purple: { bar: "from-purple-500 to-rose-500", chip: "text-purple-300 bg-purple-500/15", btn: "bg-purple-500/20 hover:bg-purple-600 text-purple-200 hover:text-white", txt: "text-purple-300" },
+};
+let armed = SP.store.get("chaosArmed", true), chaos = null, lastEvent = 0;
+
+document.getElementById("matrix").innerHTML = SCEN.map((s) => {
+  const c = COL[s.color];
+  return `<div id="card-${s.mode}" class="bg-surface-container-low rounded-xl p-space-lg flex flex-col justify-between shadow-md hover:shadow-xl transition-all relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${c.bar} opacity-75"></div>
+    <div class="flex flex-col gap-space-sm">
+      <div class="flex items-start justify-between"><span class="font-label-sm text-label-sm ${c.chip} px-space-xs py-0.5 rounded tracking-wide font-mono">SCENARIO-${s.n}</span><span class="px-space-xs py-0.5 rounded text-[10px] font-label-sm text-on-surface-variant bg-surface-container-high uppercase">${s.tag}</span></div>
+      <h3 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-1.5 flex-wrap">${s.title} <span class="font-label-sm text-label-sm text-on-surface-variant font-normal">${s.sub}</span></h3>
+      <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed min-h-[48px]">${s.desc}</p>
+      <div class="bg-surface-container rounded-lg p-space-sm flex flex-col gap-1 mt-1"><span class="font-label-sm text-label-sm ${c.txt} uppercase flex items-center gap-1 font-semibold"><span class="material-symbols-outlined text-[14px]">${s.icon}</span>Expected detection</span><p class="font-body-sm text-on-surface-variant text-[11px] leading-snug">${s.expect}</p></div>
+    </div>
+    <div class="pt-space-md mt-space-md"><button data-mode="${s.mode}" class="chaos-inject-btn w-full py-2.5 px-space-md rounded-lg ${c.btn} font-label-md text-label-md transition-all duration-150 flex items-center justify-center gap-2 shadow-sm font-semibold active:scale-[0.98]"><span class="text-base">${s.emoji}</span><span data-lbl>Inject: ${s.title}</span></button></div></div>`;
+}).join("");
+
+function paintArm() {
+  const b = document.getElementById("arm-btn"), ball = document.getElementById("arm-ball"), badge = document.getElementById("arm-badge");
+  b.setAttribute("aria-checked", armed);
+  b.className = `relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full ${armed ? "bg-secondary" : "bg-surface-variant"} transition-colors duration-200 ease-in-out focus:outline-none focus:ring-1 focus:ring-primary`;
+  ball.style.marginLeft = armed ? "24px" : "4px";
+  badge.textContent = armed ? "ARMED" : "LOCKED";
+  badge.className = `font-label-sm text-label-sm px-space-xs py-0.5 rounded ${armed ? "text-secondary bg-secondary-container/20" : "text-amber-400 bg-amber-500/20"}`;
+  document.querySelectorAll(".chaos-inject-btn").forEach((x) => { x.disabled = !armed; x.classList.toggle("opacity-40", !armed); x.classList.toggle("cursor-not-allowed", !armed); });
+}
+document.getElementById("arm-btn").onclick = () => {
+  armed = !armed; SP.store.set("chaosArmed", armed); paintArm();
+  log(armed ? "warn" : "info", "GUARD", armed ? "Chaos injections armed for the sandbox." : "Chaos injections locked. Reset and trip switch remain available.");
+};
+paintArm();
+
+async function setMode(mode) {
+  try {
+    chaos = await SP.post(`/api/chaos/${mode}`);
+    paintChaos();
+    if (mode === "none") SP.toast("Chaos reset", "Mock bank restored to normal behaviour. Open incidents still need Approve/Dismiss or will auto-close when probes stay green.", "ok");
+    else SP.toast("Fault injected", `${chaos.description}. Watch the overview: detection usually takes 10–60 s.`, "warn");
+    pollEvents();
+  } catch (e) { SP.toast("Chaos command failed", e.message, "crit"); }
+}
+document.getElementById("matrix").addEventListener("click", (e) => {
+  const b = e.target.closest(".chaos-inject-btn"); if (!b || b.disabled) return;
+  setMode(b.dataset.mode);
+});
+document.getElementById("master-reset-btn").onclick = () => setMode("none");
+document.getElementById("trip-btn").onclick = async () => {
+  const ok = await SP.confirm("Trip the switch?", "Immediately clears every injected fault in the mock bank and locks further injections.", "Trip switch", { icon: "emergency_home", iconClass: "text-error" });
+  if (!ok) return;
+  armed = false; SP.store.set("chaosArmed", false); paintArm(); setMode("none");
+};
+document.getElementById("run-probe").onclick = (e) => SP.runProbe(e.currentTarget);
+
+function paintChaos() {
+  if (!chaos) return;
+  const s = SCEN.find((x) => x.mode === chaos.mode);
+  SCEN.forEach((x) => {
+    const card = document.getElementById("card-" + x.mode), on = x.mode === chaos.mode;
+    card.classList.toggle("ring-1", on); card.classList.toggle("ring-primary", on); card.classList.toggle("bg-surface-container-high", on);
+    card.querySelector("[data-lbl]").textContent = on ? `● ACTIVE: ${x.title}` : `Inject: ${x.title}`;
+  });
+  const f = document.getElementById("t-fault");
+  f.textContent = s ? `FA-${s.n}: ${s.title.toUpperCase()}` : "NOMINAL (NONE)";
+  f.className = `font-metric-sub text-metric-sub tracking-tight mt-1 truncate ${s ? COL[s.color].txt : "text-on-surface-variant"}`;
+  document.getElementById("t-fault-since").innerHTML = chaos.activated_at ? `since ${SP.ist(chaos.activated_at)} IST (<span data-ago="${chaos.activated_at}">${SP.ago(chaos.activated_at)}</span>)` : (chaos.paused_banks && chaos.paused_banks.length ? `paused: ${chaos.paused_banks.join(", ")}` : "");
+  const ts = document.getElementById("term-status");
+  ts.textContent = s ? `SIMULATING: ${chaos.description.toUpperCase()}` : "IDLE / NOMINAL";
+  ts.className = `font-semibold ${s ? COL[s.color].txt : "text-secondary"}`;
+}
+
+document.addEventListener("sp:status", (e) => {
+  const s = e.detail;
+  if (SP.autoSync() || !chaos) { chaos = s.chaos || { mode: "?", description: "bank unreachable" }; paintChaos(); }
+  const p = s.probe, pct = p.heartbeat_total ? 100 * p.heartbeat_ok / p.heartbeat_total : null;
+  const h = document.getElementById("t-health");
+  h.textContent = pct === null ? "—" : pct.toFixed(1) + "%";
+  h.className = `font-metric-display text-metric-display tracking-tight ${pct === null || pct > 97 ? "text-secondary" : pct > 85 ? "text-amber-400" : "text-error"}`;
+  document.getElementById("t-tps").innerHTML = `${s.traffic.tps} <span class="font-label-md text-label-md text-on-surface-variant">TXN/S</span>`;
+  const r = document.getElementById("t-rbi"); r.textContent = `${s.kpis.pending_reversals} PENDING`; r.className = `font-metric-display text-metric-display tracking-tight ${s.kpis.pending_reversals ? "text-amber-400" : "text-secondary"}`;
+  document.getElementById("bank-chip").textContent = s.bank_reachable ? "BANK: ONLINE · 127.0.0.1:8001" : "BANK: UNREACHABLE";
+  document.getElementById("probe-state").textContent = p.running ? "PROBE RUNNING" : `NEXT CYCLE ${p.next_cycle_in ?? "—"}s`;
+  const core = s.journeys.filter((j) => !j.auto_created).flatMap((j) => j.steps);
+  if (SP.changed("csteps", core)) document.getElementById("probe-steps").innerHTML = core.map((st) => {
+    const m = { pass: ["bg-secondary", "text-secondary", "OK"], slow: ["bg-amber-400 animate-pulse", "text-amber-400", "SLOW"], fail: ["bg-error animate-ping", "text-error", "FAIL"], skipped: ["bg-outline", "text-outline", "NOT RUN"] }[st.status] || ["bg-outline", "text-outline", "—"];
+    return `<div class="bg-surface-container rounded-lg p-2.5 flex items-center justify-between gap-2" title="${SP.esc(st.error || "")}"><div class="flex items-center gap-2 min-w-0"><span class="w-2 h-2 rounded-full ${m[0]} shrink-0"></span><span class="font-label-sm text-label-sm text-on-surface font-mono truncate">${SP.esc(SP.stepLabel(st.step))}</span></div>
+      <span class="font-label-sm text-label-sm ${m[1]} font-mono ${st.status === "fail" ? "font-bold" : ""} truncate max-w-[60%] text-right">${m[2]}${st.latency_ms !== null && st.status !== "skipped" ? ` (${SP.ms(st.latency_ms)})` : ""}${st.status === "fail" && st.error ? ": " + SP.esc(st.error.slice(0, 48)) : ""}</span></div>`;
+  }).join("");
+});
+
+async function loadSpark() {
+  const d = await SP.api("/api/latency?minutes=10");
+  const vals = d.e2e.slice(-30), th = d.threshold_ms;
+  const max = Math.max(th * 1.3, ...vals, 1);
+  const y = (v) => 38 - 34 * Math.min(v, max) / max;
+  document.getElementById("spark-th").setAttribute("y1", y(th)); document.getElementById("spark-th").setAttribute("y2", y(th));
+  if (vals.length > 1) {
+    const step = 300 / (vals.length - 1);
+    const pts = vals.map((v, i) => `${(i * step).toFixed(1)},${y(v).toFixed(1)}`);
+    document.getElementById("spark-line").setAttribute("d", "M" + pts.join(" L"));
+    document.getElementById("spark-area").setAttribute("d", "M" + pts.join(" L") + " L300,40 L0,40 Z");
+    const failing = d.failures.slice(-1)[0];
+    document.getElementById("spark-line").setAttribute("stroke", failing ? "#ffb4ab" : vals[vals.length - 1] > th ? "#f59e0b" : "#4cd7f6");
+  }
+  const last = vals[vals.length - 1], failing = d.failures.slice(-1)[0];
+  const sv = document.getElementById("spark-val");
+  sv.textContent = vals.length ? (failing ? `FAILED @ ${SP.stepLabel(failing)}` : `${SP.ms(last)} · ${last > th ? "SLOW" : "NOMINAL"}`) : "—";
+  sv.className = `font-mono font-semibold ${failing ? "text-error" : last > th ? "text-amber-400" : "text-primary"}`;
+  document.getElementById("term-lat").textContent = vals.length ? SP.ms(last) : "—";
+}
+
+// ---- terminal
+const term = document.getElementById("terminal-body");
+const LEVEL = { crit: ["text-error font-bold"], warn: ["text-amber-400 font-bold"], ok: ["text-secondary font-bold"], audit: ["text-orange-400 font-bold"], info: ["text-primary"] };
+function log(level, tag, message, ts) {
+  const line = document.createElement("div");
+  line.className = "flex flex-col sm:flex-row sm:items-baseline gap-x-2 sp-fade";
+  line.innerHTML = `<span class="text-outline shrink-0">[${SP.ist(ts || new Date().toISOString())}]</span><span class="${(LEVEL[level] || LEVEL.info)[0]} shrink-0">${SP.esc(tag)}:</span><span class="text-on-surface break-words">${SP.esc(message)}</span>`;
+  term.appendChild(line);
+  while (term.children.length > 400) term.firstChild.remove();
+  if (document.getElementById("term-follow").checked) term.scrollTop = term.scrollHeight;
+}
+async function pollEvents() {
+  try {
+    const rows = await SP.api(`/api/events?since=${lastEvent}`);
+    for (const e of rows) { lastEvent = Math.max(lastEvent, e.id); if (e.tag !== "SIMULATOR" || e.level !== "info") log(e.level, e.tag, e.message, e.ts); }
+  } catch (e) { /* monitor restarting */ }
+}
+document.getElementById("clear-terminal-btn").onclick = () => { term.innerHTML = ""; log("info", "TERM", "Screen cleared. Streaming new engine events…"); };
+log("info", "SYS", "Connected to SentinelPay engine event stream.");
+pollEvents(); setInterval(pollEvents, 2000);
+SP.poll(loadSpark, 4000);
+</script>
+</body></html>

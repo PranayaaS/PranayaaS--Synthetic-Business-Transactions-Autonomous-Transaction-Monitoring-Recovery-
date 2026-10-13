@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block nav %}<a href="/dashboard">Dashboard</a>{% endblock %}
+{% block body %}
+{% set ok = t.status == 'SUCCESS' %}
+<div class="card narrow center">
+  <div class="icon {{ 'ok' if ok else 'warn' }}">{{ '&#10004;'|safe if ok else '&#9203;'|safe }}</div>
+  <h1 style="margin-top:8px">Payment {{ 'successful' if ok else 'queued' }}</h1>
+  <div class="big">&#8377;<span id="receipt-amount">{{ t.amount }}</span></div>
+  <div class="muted">to {{ t.receiver_name or 'payee' }} &middot; {{ t.receiver_bank }}</div>
+  <div style="margin-top:14px">Status: <b id="receipt-status">{{ t.status }}</b></div>
+  <div class="muted small">Ref: <span id="receipt-ref">{{ t.txn_ref }}</span></div>
+  {% if t.note %}<div class="hint" style="background:#fffbeb;color:#92400e">{{ t.note }}</div>{% endif %}
+  <div style="margin-top:18px"><a href="/dashboard" class="muted">Back to dashboard</a></div>
+</div>
+{% endblock %}

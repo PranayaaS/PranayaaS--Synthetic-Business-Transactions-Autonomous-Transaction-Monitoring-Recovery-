@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-container-low":"#131b2e","secondary-container":"#04b4a2","primary":"#4cd7f6","primary-container":"#06b6d4","surface-tint":"#4cd7f6","on-tertiary":"#00354a","inverse-surface":"#dae2fd","surface-bright":"#31394d","primary-fixed":"#acedff","on-secondary-container":"#003f38","inverse-primary":"#00687a","on-primary-fixed":"#001f26","secondary-fixed":"#71f8e4","on-tertiary-fixed-variant":"#004c69","background":"#0b1326","on-secondary-fixed-variant":"#005048","on-secondary-fixed":"#00201c","on-secondary":"#003731","primary-fixed-dim":"#4cd7f6","on-surface":"#dae2fd","tertiary-fixed":"#c4e7ff","on-primary":"#003640","surface-dim":"#0b1326","surface-container":"#171f33","on-tertiary-fixed":"#001e2c","on-primary-fixed-variant":"#004e5c","on-background":"#dae2fd","outline":"#869397","surface-container-high":"#222a3d","secondary":"#4fdbc8","inverse-on-surface":"#283044","tertiary":"#7bd0ff","surface-variant":"#2d3449","on-primary-container":"#00424f","surface-container-lowest":"#060e20","surface-container-highest":"#2d3449","secondary-fixed-dim":"#4fdbc8","surface":"#0b1326","on-surface-variant":"#bcc9cd","tertiary-container":"#23b2ec","on-error":"#690005","outline-variant":"#3d494c","tertiary-fixed-dim":"#7bd0ff","on-error-container":"#ffdad6","error-container":"#93000a","on-tertiary-container":"#00415a","error":"#ffb4ab"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"gutter":"1rem","space-md":"0.75rem","space-lg":"1rem","margin":"1.5rem","space-sm":"0.5rem","space-xs":"0.25rem","space-xl":"1.5rem"},fontFamily:{"headline-xl":["Inter"],"headline-lg":["Inter"],"headline-md":["Inter"],"label-md":["JetBrains Mono"],"body-sm":["Inter"],"body-lg":["Inter"],"metric-sub":["JetBrains Mono"],"metric-display":["JetBrains Mono"],"label-lg":["JetBrains Mono"],"headline-sm":["Inter"],"body-md":["Inter"],"label-sm":["JetBrains Mono"]},fontSize:{"headline-xl":["2rem",{"lineHeight":"2.5rem","letterSpacing":"-0.025em","fontWeight":"600"}],"headline-lg":["1.5rem",{"lineHeight":"2rem","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-md":["1.25rem",{"lineHeight":"1.75rem","letterSpacing":"-0.015em","fontWeight":"600"}],"label-md":["0.75rem",{"lineHeight":"1rem","letterSpacing":"0em","fontWeight":"500"}],"body-sm":["0.75rem",{"lineHeight":"1rem","letterSpacing":"0.01em","fontWeight":"400"}],"body-lg":["1rem",{"lineHeight":"1.5rem","letterSpacing":"0em","fontWeight":"400"}],"metric-sub":["1.125rem",{"lineHeight":"1.375rem","letterSpacing":"-0.02em","fontWeight":"500"}],"metric-display":["1.75rem",{"lineHeight":"2rem","letterSpacing":"-0.03em","fontWeight":"600"}],"label-lg":["0.875rem",{"lineHeight":"1.25rem","letterSpacing":"-0.01em","fontWeight":"500"}],"headline-sm":["1.125rem",{"lineHeight":"1.5rem","letterSpacing":"-0.01em","fontWeight":"500"}],"body-md":["0.875rem",{"lineHeight":"1.25rem","letterSpacing":"0em","fontWeight":"400"}],"label-sm":["0.6875rem",{"lineHeight":"0.875rem","letterSpacing":"0.02em","fontWeight":"400"}]}}}};</script></link><style>html,body{min-height:1024px}</style></head><body class="bg-background text-on-surface font-body-md text-body-md antialiased selection:bg-primary selection:text-on-primary min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.5)]"><div class="h-16 w-full px-space-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md shrink-0"><img alt="SentinelPay Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1URK3EgA-xqmFZdBsRVkDKqGMbBreCErzToRxmQzc8bsnqYyNn8fEtI9ZfyexIihWFk33qkMw5ZSszEjP6f0pP6tYB3FIsBxd7vXjpNy5AzhlOTAMIBvBIHV8kKfoekiosagdWjQwmNp6C1aZC6yaXhH7ytKfn6ZSAweopZQTEL5p7AyAUKf38OsqSxrHcdNZXwpBp_WLM-PnkSTJlxvo2RQgXlXAoTGiQQrYUd5MOdvWcS40WrEC7ficw"/><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight uppercase">SentinelPay</span><span class="font-label-sm text-label-sm text-primary tracking-widest uppercase bg-surface-container-high px-space-xs py-0.5 rounded">CORE-NOC</span></div><div class="h-5 w-px bg-surface-container-high mx-space-xs hidden xl:block"></div><div class="hidden xl:flex items-center gap-space-xs"><div class="flex items-center gap-1.5 px-space-xs py-0.5 rounded-full bg-secondary-container/20"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-secondary font-medium tracking-wide uppercase">LIVE SYNTHETICS</span></div><span class="font-label-sm text-label-sm text-on-surface-variant font-mono">Updated 3s ago · Probes active</span></div></div><nav class="hidden lg:flex items-center gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container rounded-lg font-medium shadow-[0_0_12px_rgba(6,182,212,0.3)]"><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all whitespace-nowrap" data-path="overview-and-journeys" href="#">Overview &amp; Journeys</a><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all whitespace-nowrap" data-path="active-incidents" href="#">Active Incidents (1 Critical)</a><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all whitespace-nowrap" data-path="chaos-control-deck" href="#">Chaos Control Deck</a><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all whitespace-nowrap" data-path="auto-generated-synthetic-tests" href="#">Auto-Generated Synthetic Tests</a><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all whitespace-nowrap" data-path="rbi-watchdog" href="#">RBI Watchdog</a></nav><div class="flex items-center gap-space-md shrink-0"><div class="hidden md:flex flex-col items-end"><span class="font-label-sm text-label-sm text-secondary tracking-wide uppercase flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>PROD - Node Mumbai-1</span><span class="font-label-sm text-label-sm text-on-surface-variant">Latency 14ms · 99.98%</span></div><div class="flex items-center gap-space-xs"><button class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-error hover:bg-surface-container hover:text-error transition-colors relative" title="Critical Incident"><span class="material-symbols-outlined text-[18px]">warning</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-error animate-ping"></span></button><button class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Notifications"><span class="material-symbols-outlined text-[18px]">notifications</span></button></div><div class="flex items-center gap-space-xs pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="hidden 2xl:flex flex-col text-left"><span class="font-label-sm text-label-sm text-on-surface font-medium leading-none">R. Venkatesh</span><span class="font-label-sm text-label-sm text-on-surface-variant text-[10px] leading-tight">Operations Lead</span></div></div></div></div></header><main class="w-full pt-16 pb-10 bg-background min-h-screen"><div class="flex flex-col w-full">
+<div class="w-full px-space-lg py-space-md flex flex-col gap-space-lg">
+<!-- NOC Operations Real-Time Control & Telemetry Bar -->
+<section class="w-full bg-surface-container-low rounded-xl p-space-md shadow-md flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex flex-wrap items-center gap-space-lg min-w-0">
+<div class="flex items-center gap-space-sm bg-surface-container-lowest px-space-md py-1.5 rounded-lg shadow-sm">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+</span>
+<span class="font-label-md text-label-md text-primary font-semibold tracking-wider uppercase">LIVE MONITORING</span>
+<span class="text-outline-variant font-label-md text-label-md">·</span>
+<span class="font-label-md text-label-md text-on-surface-variant font-mono">12 PROBES RUNNING</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">update</span>
+<span class="font-body-sm text-body-sm">Last-checked:</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold font-mono">Just now (14:32:08 IST)</span>
+</div>
+<div class="hidden xl:flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant bg-surface-container-high px-space-sm py-1 rounded">
+<span class="material-symbols-outlined text-[14px] text-primary">lan</span>
+<span>GATEWAY: NPCI-PROD-SWITCH-04</span>
+<span class="text-outline-variant">|</span>
+<span class="text-secondary font-mono">LOSS: 0.00%</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<div class="flex items-center gap-2 bg-surface-container px-space-sm py-1 rounded-lg">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Auto-sync (3s)</span>
+<button aria-label="Toggle Auto Sync" class="w-8 h-4 rounded-full bg-primary relative transition-colors cursor-pointer" id="toggle-sync">
+<div class="w-3 h-3 rounded-full bg-surface-container-lowest absolute right-0.5 top-0.5 transition-transform"></div>
+</button>
+</div>
+<button class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-bright text-on-surface text-body-sm font-medium transition-all shadow-sm group" id="manual-refresh">
+<span class="material-symbols-outlined text-[16px] text-primary group-hover:rotate-180 transition-transform duration-500">sync</span>
+<span class="font-body-sm text-body-sm">Sync Probes</span>
+</button>
+<button class="flex items-center gap-1 px-space-md py-1.5 rounded-lg bg-error-container text-on-error-container font-body-sm text-body-sm font-semibold shadow-sm hover:brightness-110 transition-all">
+<span class="material-symbols-outlined text-[16px]">crisis_alert</span>
+<span>1 Degraded Corridors</span>
+</button>
+</div>
+</section>
+<!-- 4 High-Density Operational KPI Cards -->
+<section class="w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- KPI 1 -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between shadow-sm relative overflow-hidden group hover:bg-surface-container transition-colors">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-start justify-between mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Journeys Healthy</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-label-sm font-medium bg-error-container/40 text-error">
+            UPI Degraded
+          </span>
+</div>
+<div class="flex items-baseline gap-space-sm mb-1">
+<span class="font-metric-display text-metric-display text-on-surface font-mono">3 / 4</span>
+<span class="font-label-md text-label-md text-on-surface-variant font-mono">ACTIVE</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-body-sm text-body-sm">75% nominal SLA met</span>
+<div class="w-16 h-1.5 bg-surface-container-highest rounded-full overflow-hidden flex">
+<div class="w-3/4 bg-secondary h-full"></div>
+<div class="w-1/4 bg-error h-full"></div>
+</div>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between shadow-sm relative overflow-hidden group hover:bg-surface-container transition-colors">
+<div class="flex items-start justify-between mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Mean Time To Detect (MTTD)</span>
+<span class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[11px] font-label-sm font-medium bg-secondary-container/20 text-secondary">
+<span class="material-symbols-outlined text-[12px]">trending_down</span> 14% vs bench
+          </span>
+</div>
+<div class="flex items-baseline gap-space-sm mb-1">
+<span class="font-metric-display text-metric-display text-secondary font-mono">28 sec</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">p99 Synthetic</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-body-sm text-body-sm">Synthetic probe threshold: 15s</span>
+<span class="material-symbols-outlined text-[16px] text-secondary">radar</span>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between shadow-sm relative overflow-hidden group hover:bg-surface-container transition-colors">
+<div class="flex items-start justify-between mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Mean Time To Recovery</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-label-sm font-medium bg-surface-container-high text-primary">
+            Target &lt; 5 min
+          </span>
+</div>
+<div class="flex items-baseline gap-space-sm mb-1">
+<span class="font-metric-display text-metric-display text-on-surface font-mono">2m 10s</span>
+<span class="font-label-sm text-label-sm text-secondary">Optimal</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-body-sm text-body-sm">Automated failover workflows ready</span>
+<span class="material-symbols-outlined text-[16px] text-primary">bolt</span>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between shadow-sm relative overflow-hidden group hover:bg-surface-container transition-colors">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-error/10 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-start justify-between mb-2">
+<span class="font-label-sm text-label-sm text-error uppercase tracking-wider font-semibold">Active Business Impact</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-label-sm font-semibold bg-error/20 text-error animate-pulse">
+            CRITICAL
+          </span>
+</div>
+<div class="flex items-baseline gap-space-sm mb-1">
+<span class="font-metric-display text-metric-display text-error font-mono">₹4.2 Lakh</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">EXPOSURE</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-body-sm text-body-sm text-on-surface-variant">85 users · 41 pending reversals</span>
+<span class="material-symbols-outlined text-[16px] text-error">gavel</span>
+</div>
+</div>
+</section>
+<!-- Synthetic Customer Journey Health Grid (4 Corridors) -->
+<section class="w-full flex flex-col gap-space-sm">
+<div class="flex items-center justify-between px-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">Synthetic E2E Payment Journeys</span>
+<span class="font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant px-space-xs py-0.5 rounded font-mono">4 ACTIVE SCENARIOS</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">AUTOMATED CYCLE: 30s INTERVAL</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Journey 1: Login Journey -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between shadow-sm relative group hover:bg-surface-container transition-all">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">Login Journey</span>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-label-sm font-semibold bg-secondary-container/20 text-secondary uppercase">
+                HEALTHY
+              </span>
+</div>
+<div class="flex items-center justify-between mb-space-md text-on-surface-variant font-label-sm text-label-sm">
+<span>Probe cycle: 12s ago</span>
+<span class="text-secondary font-mono">99.98% ok</span>
+</div>
+<!-- Step Pipeline -->
+<div class="space-y-1.5 mb-space-md">
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant bg-surface-container-lowest px-2 py-1 rounded">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span> OTP Dispatch
+                </span>
+<span class="font-mono text-on-surface font-medium">180ms</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant bg-surface-container-lowest px-2 py-1 rounded">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span> MPIN Verify
+                </span>
+<span class="font-mono text-on-surface font-medium">320ms</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant bg-surface-container-lowest px-2 py-1 rounded">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span> Session Token
+                </span>
+<span class="font-mono text-on-surface font-medium">110ms</span>
+</div>
+</div>
+</div>
+<div class="pt-space-sm bg-surface-container-lowest px-2.5 py-1.5 rounded-lg flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">E2E Latency</span>
+<span class="font-label-lg text-label-lg text-primary font-mono font-semibold">610 ms</span>
+</div>
+</div>
+<!-- Journey 2: Fund Transfer -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between shadow-sm relative group hover:bg-surface-container transition-all">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">Fund Transfer (IMPS)</span>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-label-sm font-semibold bg-secondary-container/20 text-secondary uppercase">
+                HEALTHY
+              </span>
+</div>
+<div class="flex items-center justify-between mb-space-md text-on-surface-variant font-label-sm text-label-sm">
+<span>Probe cycle: 25s ago</span>
+<span class="text-secondary font-mono">99.92% ok</span>
+</div>
+<!-- Step Pipeline -->
+<div class="space-y-1.5 mb-space-md">
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant bg-surface-container-lowest px-2 py-1 rounded">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span> Beneficiary Lookup
+                </span>
+<span class="font-mono text-on-surface font-medium">240ms</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant bg-surface-container-lowest px-2 py-1 rounded">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span> Core Debit
+                </span>
+<span class="font-mono text-on-surface font-medium">410ms</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant bg-surface-container-lowest px-2 py-1 rounded">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span> CBS Ack
+                </span>
+<span class="font-mono text-on-surface font-medium">380ms</span>
+</div>
+</div>
+</div>
+<div class="pt-space-sm bg-surface-container-lowest px-2.5 py-1.5 rounded-lg flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">E2E Latency</span>
+<span class="font-label-lg text-label-lg text-primary font-mono font-semibold">1.03 s</span>
+</div>
+</div>
+<!-- Journey 3: UPI Payment (CRITICAL BREACH) -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between shadow-lg relative group bg-gradient-to-b from-surface-container-low via-surface-container-low to-error-container/20">
+<div class="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-error animate-ping"></div>
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">UPI Payment</span>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-label-sm font-semibold bg-error text-on-error uppercase shadow-sm">
+                CRITICAL
+              </span>
+</div>
+<div class="flex items-center justify-between mb-space-md text-on-surface-variant font-label-sm text-label-sm">
+<span>Probe cycle: 4s ago</span>
+<span class="text-error font-mono font-semibold">SLA BREACH</span>
+</div>
+<!-- Step Pipeline with failed step -->
+<div class="space-y-1.5 mb-space-md">
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant bg-surface-container-lowest px-2 py-1 rounded">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span> VPA Resolution
+                </span>
+<span class="font-mono text-on-surface font-medium">190ms</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant bg-surface-container-lowest px-2 py-1 rounded">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span> NPCI Switch
+                </span>
+<span class="font-mono text-on-surface font-medium">420ms</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-error bg-error-container/40 px-2 py-1 rounded shadow-inner">
+<span class="flex items-center gap-1.5 font-medium truncate">
+<span class="material-symbols-outlined text-[14px] text-error">warning</span> Recv Bank Auth
+                </span>
+<span class="font-mono text-error font-semibold whitespace-nowrap">&gt;4200ms ⚠️</span>
+</div>
+</div>
+</div>
+<div class="pt-space-sm bg-error-container/30 px-2.5 py-1.5 rounded-lg flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-error font-semibold uppercase">E2E Latency</span>
+<span class="font-label-lg text-label-lg text-error font-mono font-bold">4.81 s (FAILED)</span>
+</div>
+</div>
+<!-- Journey 4: Payment Confirmation -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between shadow-sm relative group hover:bg-surface-container transition-all">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">Payment Confirmation</span>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-label-sm font-semibold bg-secondary-container/20 text-secondary uppercase">
+                HEALTHY
+              </span>
+</div>
+<div class="flex items-center justify-between mb-space-md text-on-surface-variant font-label-sm text-label-sm">
+<span>Probe cycle: 18s ago</span>
+<span class="text-secondary font-mono">99.95% ok</span>
+</div>
+<!-- Step Pipeline -->
+<div class="space-y-1.5 mb-space-md">
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant bg-surface-container-lowest px-2 py-1 rounded">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span> Push Notification
+                </span>
+<span class="font-mono text-on-surface font-medium">210ms</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant bg-surface-container-lowest px-2 py-1 rounded">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span> SMS Dispatch
+                </span>
+<span class="font-mono text-on-surface font-medium">490ms</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant bg-surface-container-lowest px-2 py-1 rounded">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span> Ledger Receipt
+                </span>
+<span class="font-mono text-on-surface font-medium">150ms</span>
+</div>
+</div>
+</div>
+<div class="pt-space-sm bg-surface-container-lowest px-2.5 py-1.5 rounded-lg flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">E2E Latency</span>
+<span class="font-label-lg text-label-lg text-primary font-mono font-semibold">850 ms</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Central Section: 65% Latency Chart & Failure Layer / 35% RBI Watchdog -->
+<section class="w-full grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Left Column (approx 65% = 8 cols out of 12) -->
+<div class="lg:col-span-8 flex flex-col gap-space-lg">
+<!-- Synthetic vs Real Customer Telemetry Chart -->
+<div class="bg-surface-container-low rounded-xl p-space-md shadow-md flex flex-col gap-space-md relative overflow-hidden">
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Synthetic Probes vs Real Customer Latency</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Last 30 Minutes Telemetry Stream (P95 Sampled)</span>
+</div>
+<!-- Legend -->
+<div class="flex items-center gap-space-md text-label-sm font-label-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-0.5 bg-primary"></span>
+<span class="text-on-surface">Synthetic Probes (E2E)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-0.5 bg-tertiary"></span>
+<span class="text-on-surface-variant">Real Customer P95</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-0.5 bg-error border-b border-dashed border-error"></span>
+<span class="text-error font-medium">3.0s SLA Threshold</span>
+</div>
+</div>
+</div>
+<!-- SVG Visual Chart Area -->
+<div class="w-full h-64 bg-surface-container-lowest rounded-lg p-2.5 relative flex flex-col justify-between overflow-hidden shadow-inner">
+<!-- Spike callout indicator -->
+<div class="absolute top-4 right-1/4 z-20 flex flex-col items-center pointer-events-none">
+<div class="bg-error text-on-error font-label-sm text-label-sm px-2 py-0.5 rounded shadow-lg flex items-center gap-1 animate-bounce">
+<span class="material-symbols-outlined text-[13px]">warning</span> 14:26 Spike: 4.81s UPI Lag
+              </div>
+<div class="w-0.5 h-6 bg-error"></div>
+</div>
+<!-- Main Chart SVG -->
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 600 220">
+<defs>
+<lineargradient id="primaryArea" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#4cd7f6" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#4cd7f6" stop-opacity="0"></stop>
+</lineargradient>
+<lineargradient id="errorArea" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#ffb4ab" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#ffb4ab" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<!-- Subtle grid lines -->
+<line stroke="#222a3d" stroke-width="1" x1="0" x2="600" y1="40" y2="40"></line>
+<line stroke="#222a3d" stroke-width="1" x1="0" x2="600" y1="90" y2="90"></line>
+<line stroke="#222a3d" stroke-width="1" x1="0" x2="600" y1="140" y2="140"></line>
+<line stroke="#222a3d" stroke-width="1" x1="0" x2="600" y1="190" y2="190"></line>
+<!-- Y-Axis labels (inline) -->
+<text fill="#869397" font-family="JetBrains Mono" font-size="10" x="5" y="44">4.0s</text>
+<text fill="#869397" font-family="JetBrains Mono" font-size="10" x="5" y="94">3.0s</text>
+<text fill="#869397" font-family="JetBrains Mono" font-size="10" x="5" y="144">1.5s</text>
+<text fill="#869397" font-family="JetBrains Mono" font-size="10" x="5" y="194">0.5s</text>
+<!-- SLA Threshold line at 3.0s (y=90) -->
+<line stroke="#ffb4ab" stroke-dasharray="4 4" stroke-width="1.5" x1="30" x2="600" y1="90" y2="90"></line>
+<!-- Area under synthetic curve -->
+<polygon fill="url(#primaryArea)" points="30,170 80,165 140,160 210,168 280,158 350,162 420,155 480,32 530,38 580,150 580,200 30,200"></polygon>
+<!-- Real Customer Line (P95 Indigo/Tertiary) -->
+<polyline fill="none" points="30,178 80,174 140,170 210,172 280,168 350,170 420,162 480,55 530,62 580,158" stroke="#7bd0ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polyline>
+<!-- Synthetic Probes Line (Cyan) with sharp spike -->
+<polyline fill="none" points="30,170 80,165 140,160 210,168 280,158 350,162 420,155 480,32 530,38 580,150" stroke="#4cd7f6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></polyline>
+<!-- Interactive Data Nodes -->
+<circle class="cursor-pointer" cx="480" cy="32" fill="#ffb4ab" r="5" stroke="#93000a" stroke-width="2"></circle>
+<circle cx="530" cy="38" fill="#ffb4ab" r="4"></circle>
+<circle cx="350" cy="162" fill="#4cd7f6" r="3"></circle>
+<circle cx="210" cy="168" fill="#4cd7f6" r="3"></circle>
+</svg>
+<!-- Time markers on X-Axis -->
+<div class="w-full flex justify-between px-8 text-on-surface-variant font-label-sm text-label-sm font-mono pt-1">
+<span>14:05</span>
+<span>14:10</span>
+<span>14:15</span>
+<span>14:20</span>
+<span class="text-error font-semibold">14:25</span>
+<span>14:30</span>
+</div>
+</div>
+<!-- Quick Telemetry Metadata footer -->
+<div class="flex flex-wrap items-center justify-between text-body-sm text-on-surface-variant bg-surface-container px-space-md py-2 rounded-lg">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm uppercase text-secondary">Synthetic Probe Engine:</span>
+<span>Headless Chrome + NPCI Virtual Mock Terminal v4.2</span>
+</div>
+<div class="flex items-center gap-space-sm font-mono text-label-sm text-label-sm">
+<span>Avg Latency: <strong class="text-on-surface">820ms</strong></span>
+<span class="text-outline-variant">|</span>
+<span>P99: <strong class="text-error">4,810ms</strong></span>
+</div>
+</div>
+</div>
+<!-- Failure Layer Breakdown Diagnostics -->
+<div class="bg-surface-container-low rounded-xl p-space-md shadow-md flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">layers</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Failure Layer Diagnostics</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Trace ID: <strong class="text-primary font-mono">TRC-8921-NPCI</strong></span>
+</div>
+<!-- Alert Banner for Root Cause Identified -->
+<div class="bg-error-container/30 rounded-lg p-space-sm flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-error text-[20px]">error</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-error-container font-semibold">Root Cause Isolated: Receiver Bank Host (Bank X)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">34.2% timeout rate detected during final CBS authorization handshake. Gateway &amp; core CBS are normal.</span>
+</div>
+</div>
+<button class="px-space-md py-1 rounded bg-error text-on-error font-body-sm text-body-sm font-semibold hover:brightness-110 whitespace-nowrap shadow-sm">
+              Reroute UPI Rail
+            </button>
+</div>
+<!-- 4 Layers Progress & Telemetry Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Layer 1: Customer Network -->
+<div class="bg-surface-container rounded-lg p-space-sm flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-on-surface font-medium">1. Customer Network</span>
+</div>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-secondary-container/20 text-secondary uppercase font-semibold">Nominal</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden mb-2">
+<div class="bg-secondary h-full w-[99%]"></div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm font-mono">
+<span>Drop rate: 0.02%</span>
+<span>Avg RTT: 45ms</span>
+</div>
+</div>
+<!-- Layer 2: Bank Server / CBS -->
+<div class="bg-surface-container rounded-lg p-space-sm flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-on-surface font-medium">2. Bank Server / CBS</span>
+</div>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-secondary-container/20 text-secondary uppercase font-semibold">Nominal</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden mb-2">
+<div class="bg-secondary h-full w-[96%]"></div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm font-mono">
+<span>Error: 0.05%</span>
+<span>CPU load: 24%</span>
+</div>
+</div>
+<!-- Layer 3: Payment Gateway (Elevated) -->
+<div class="bg-surface-container rounded-lg p-space-sm flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-on-surface font-medium">3. Payment Gateway</span>
+</div>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container-high text-primary uppercase font-semibold">Elevated</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden mb-2">
+<div class="bg-primary h-full w-[82%]"></div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm font-mono">
+<span>Timeout: 1.8%</span>
+<span>Razorpay / NPCI</span>
+</div>
+</div>
+<!-- Layer 4: Receiver Bank (CRITICAL BREACH) -->
+<div class="bg-error-container/20 rounded-lg p-space-sm flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-error font-bold">4. Receiver Bank</span>
+</div>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-error text-on-error uppercase font-bold animate-pulse">Critical</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden mb-2">
+<div class="bg-error h-full w-[65%]"></div>
+</div>
+<div class="flex items-center justify-between text-error font-label-sm text-label-sm font-mono font-medium">
+<span>Timeout: 34.2%</span>
+<span>Target: Bank X CBS</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: RBI Deadline Watchdog (approx 35% = 4 cols out of 12) -->
+<div class="lg:col-span-4 flex flex-col gap-space-md">
+<div class="bg-surface-container-low rounded-xl p-space-md shadow-md flex flex-col gap-space-md relative overflow-hidden">
+<!-- RBI Compliance Header -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[22px]">verified_user</span>
+<div>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold block leading-tight">RBI Watchdog</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">DPSS.CO.OD.No.1025 Harmonisation Rule</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full text-[10px] font-label-sm bg-secondary-container/20 text-secondary font-mono font-bold">
+              T+1 CLOCK
+            </span>
+</div>
+<!-- Alert Context Box -->
+<div class="bg-surface-container rounded-lg p-space-sm flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-error text-[18px] shrink-0 mt-0.5">notification_important</span>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">14 Debited-Not-Credited (DNC)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Reversals must complete before penalty kicks in (₹100/day compensatory obligation).</span>
+</div>
+</div>
+<!-- At-Risk Urgency Cards -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between px-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Highest Urgency Queue</span>
+<span class="font-label-sm text-label-sm text-error font-mono">3 EXCEEDING SLA</span>
+</div>
+<!-- Urgent Txn 1 (Red Urgency) -->
+<div class="bg-surface-container rounded-lg p-space-sm shadow-sm flex flex-col gap-2 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-error"></div>
+<div class="flex items-center justify-between pl-1">
+<span class="font-label-sm text-label-sm text-on-surface font-mono font-bold">Txn #UPI-98214</span>
+<span class="font-metric-sub text-metric-sub text-error font-mono font-bold">₹74,500</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant pl-1">
+<span class="truncate">Customer: <strong class="text-on-surface">K. Sharma</strong></span>
+<span class="font-label-sm text-label-sm text-error bg-error/10 px-1 rounded font-mono">AUTO-REVERSE</span>
+</div>
+<div class="bg-surface-container-lowest rounded px-space-sm py-1 flex items-center justify-between pl-2">
+<div class="flex items-center gap-1 text-on-surface-variant text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[14px] text-error">alarm</span>
+<span>Time Left:</span>
+</div>
+<span class="font-label-md text-label-md text-error font-mono font-bold tracking-wider animate-pulse">00:14:22</span>
+</div>
+</div>
+<!-- Urgent Txn 2 (Amber Urgency) -->
+<div class="bg-surface-container rounded-lg p-space-sm shadow-sm flex flex-col gap-2 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex items-center justify-between pl-1">
+<span class="font-label-sm text-label-sm text-on-surface font-mono font-bold">Txn #IMPS-44321</span>
+<span class="font-metric-sub text-metric-sub text-on-surface font-mono font-semibold">₹1,20,000</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant pl-1">
+<span class="truncate">Customer: <strong class="text-on-surface">Apex Agri Coop</strong></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">IMPS PIPE</span>
+</div>
+<div class="bg-surface-container-lowest rounded px-space-sm py-1 flex items-center justify-between pl-2">
+<div class="flex items-center gap-1 text-on-surface-variant text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">schedule</span>
+<span>Time Left:</span>
+</div>
+<span class="font-label-md text-label-md text-primary font-mono font-medium tracking-wider">01:05:40</span>
+</div>
+</div>
+<!-- Urgent Txn 3 (Amber Urgency) -->
+<div class="bg-surface-container rounded-lg p-space-sm shadow-sm flex flex-col gap-2 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex items-center justify-between pl-1">
+<span class="font-label-sm text-label-sm text-on-surface font-mono font-bold">Txn #UPI-99104</span>
+<span class="font-metric-sub text-metric-sub text-on-surface font-mono font-semibold">₹12,800</span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant pl-1">
+<span class="truncate">Customer: <strong class="text-on-surface">V. Patel</strong></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">P2M MERCHANT</span>
+</div>
+<div class="bg-surface-container-lowest rounded px-space-sm py-1 flex items-center justify-between pl-2">
+<div class="flex items-center gap-1 text-on-surface-variant text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">schedule</span>
+<span>Time Left:</span>
+</div>
+<span class="font-label-md text-label-md text-primary font-mono font-medium tracking-wider">03:22:15</span>
+</div>
+</div>
+</div>
+<!-- Total At-Risk Summary & Action Button -->
+<div class="pt-space-sm flex flex-col gap-space-sm">
+<div class="bg-surface-container-lowest p-space-sm rounded-lg flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase block">Regulatory Risk</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-mono font-bold">₹4.2 Lakh</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-error uppercase block font-semibold">Penalty In</span></div></div></div></div></div></section></div></div></main><footer class="fixed bottom-0 left-0 w-full z-40 bg-surface-container-lowest/90 backdrop-blur-md shadow-[0_-1px_6px_rgba(0,0,0,0.4)]"><div class="h-8 w-full px-space-lg flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm"><div class="flex items-center gap-space-md"><div class="flex items-center gap-1.5 text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span><span>CLUSTER UPTIME: 99.98%</span></div><span class="text-outline-variant">|</span><div class="flex items-center gap-1.5 text-on-surface-variant"><span>PROBE HEARTBEAT:</span><span class="text-primary font-mono">STABLE (1,240/1,240 OK)</span></div><span class="text-outline-variant hidden sm:inline">|</span><div class="hidden sm:flex items-center gap-1.5 text-on-surface-variant"><span>ACTIVE QUEUE:</span><span class="text-on-surface font-mono">4,192 TPS</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-1 text-on-surface-variant hidden md:flex"><span class="material-symbols-outlined text-[14px] text-secondary">shield</span><span>RBI CIRCULAR DPSS.CO.OD AUDIT: COMPLIANT</span></div><span class="text-on-surface-variant font-mono">UTC+05:30 IST</span></div></div></footer></body></html>

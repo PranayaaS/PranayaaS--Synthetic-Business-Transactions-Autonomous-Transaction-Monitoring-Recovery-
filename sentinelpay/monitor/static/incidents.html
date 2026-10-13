@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SentinelPay – Incidents</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="/static/vendor/fonts.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<!-- Local copies first (python vendor_assets.py), CDN fallback -->
+<script src="/static/vendor/tailwind.js"></script>
+<script>window.tailwind || document.write('<script src="https://cdn.tailwindcss.com"><\/script>')</script>
+<script src="/static/tw.js"></script>
+<link rel="stylesheet" href="/static/app.css">
+<script src="/static/app.js"></script>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen">
+<div id="sp-header"></div>
+<main class="w-full pt-16 pb-12 min-h-screen">
+  <div class="w-full bg-surface-container-lowest px-space-lg py-space-md shadow-md">
+    <div class="max-w-[1720px] mx-auto flex flex-col xl:flex-row xl:items-center justify-between gap-space-md">
+      <div class="flex flex-col gap-1.5">
+        <div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant"><a href="/" class="hover:text-primary">Overview</a><span class="text-outline-variant">/</span><span class="text-primary font-mono font-medium">Incidents</span></div>
+        <h1 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">Incident Command</h1>
+        <p class="font-body-md text-body-md text-on-surface-variant">Every incident states its failing layer, business impact and a human-approved fix. Click a row for evidence and recovery.</p>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm shrink-0">
+        <div class="bg-surface-container-low rounded-lg px-space-md py-2"><div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Open</div><div id="m-open" class="font-metric-sub text-metric-sub font-mono text-error">—</div></div>
+        <div class="bg-surface-container-low rounded-lg px-space-md py-2"><div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Impact</div><div id="m-impact" class="font-metric-sub text-metric-sub font-mono text-on-surface">—</div></div>
+        <div class="bg-surface-container-low rounded-lg px-space-md py-2"><div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Avg MTTD</div><div id="m-mttd" class="font-metric-sub text-metric-sub font-mono text-secondary">—</div></div>
+        <div class="bg-surface-container-low rounded-lg px-space-md py-2"><div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Avg MTTR</div><div id="m-mttr" class="font-metric-sub text-metric-sub font-mono text-on-surface">—</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="px-space-lg py-space-lg max-w-[1720px] mx-auto flex flex-col gap-space-md">
+    <div class="flex flex-wrap items-center justify-between gap-space-sm">
+      <div id="tabs" class="flex flex-wrap gap-1 bg-surface-container-low p-1 rounded-lg">
+        <button data-f="open,recovering" class="px-space-md py-1.5 rounded text-body-sm">Active</button>
+        <button data-f="resolved" class="px-space-md py-1.5 rounded text-body-sm">Resolved</button>
+        <button data-f="" class="px-space-md py-1.5 rounded text-body-sm">All</button>
+      </div>
+      <div class="flex items-center gap-space-sm">
+        <div class="flex items-center gap-2 bg-surface-container-low rounded-lg px-space-sm py-1.5"><span class="material-symbols-outlined text-[16px] text-outline">search</span><input id="q" placeholder="Filter by cause, journey, layer…" class="bg-transparent text-body-sm text-on-surface placeholder:text-outline focus:outline-none w-56"></div>
+        <button id="run" class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-bright text-on-surface text-body-sm"><span class="material-symbols-outlined text-[16px] text-primary">sync</span>Run probe now</button>
+      </div>
+    </div>
+    <div class="bg-surface-container-low rounded-xl shadow-md overflow-x-auto">
+      <table class="w-full text-left text-body-sm">
+        <thead><tr class="bg-surface-container-lowest text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+          <th class="px-3 py-2">Severity</th><th class="px-3 py-2">Incident</th><th class="px-3 py-2">Layer</th><th class="px-3 py-2">Suggested fix</th>
+          <th class="px-3 py-2 text-right">Impact</th><th class="px-3 py-2">Status</th><th class="px-3 py-2 text-right">MTTD / MTTR</th><th class="px-3 py-2 text-right">Detected</th><th class="px-3 py-2"></th></tr></thead>
+        <tbody id="rows"><tr><td colspan="9" class="p-6"><div class="skeleton h-6"></div></td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</main>
+<div id="sp-footer"></div>
+<script>
+let filter = new URLSearchParams(location.search).get("status") ?? "open,recovering", data = [];
+function paintTabs() {
+  document.querySelectorAll("#tabs button").forEach((b) => {
+    const on = b.dataset.f === filter;
+    b.className = `px-space-md py-1.5 rounded text-body-sm ${on ? "bg-primary-container text-on-primary-container font-medium" : "text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high"}`;
+  });
+}
+document.querySelectorAll("#tabs button").forEach((b) => (b.onclick = () => { filter = b.dataset.f; paintTabs(); history.replaceState(null, "", "/incidents?status=" + filter); load(); }));
+document.getElementById("q").oninput = paint;
+document.getElementById("run").onclick = (e) => SP.runProbe(e.currentTarget);
+paintTabs();
+
+function paint() {
+  const q = document.getElementById("q").value.toLowerCase();
+  const rows = data.filter((i) => !q || [i.cause, i.journey, i.layer_label, i.failed_step, "#" + i.id].join(" ").toLowerCase().includes(q));
+  document.getElementById("rows").innerHTML = rows.map((i) => {
+    const fix = i.fix || {};
+    return `<tr class="row-hover border-b border-surface-variant/40 cursor-pointer" data-id="${i.id}">
+      <td class="px-3 py-2.5">${SP.sevPill(i.severity)}</td>
+      <td class="px-3 py-2.5"><div class="text-on-surface font-medium">#${i.id} · ${SP.esc(i.cause)}</div>
+        <div class="text-[11px] text-on-surface-variant">${SP.esc(i.journey)}${i.journey_auto ? ' <span class="text-primary">[auto-test]</span>' : ""} · ${SP.esc(SP.stepLabel(i.failed_step))}${i.pattern_summary ? " · " + SP.esc(i.pattern_summary) : ""}</div></td>
+      <td class="px-3 py-2.5 whitespace-nowrap text-on-surface-variant"><span class="material-symbols-outlined text-[14px] align-middle text-primary">${SP.layerIcon(i.layer)}</span> ${SP.esc(i.layer_label)}</td>
+      <td class="px-3 py-2.5 text-on-surface-variant">${i.status === "resolved" ? `<span class="text-outline">${SP.esc(i.resolution_note || "—")}</span>` : `${SP.esc(fix.label || "—")}${fix.total ? `<div class="text-[10px] font-mono text-secondary">Worked ${fix.worked} of ${fix.total} times</div>` : ""}`}</td>
+      <td class="px-3 py-2.5 text-right font-mono ${i.impact_amount ? "text-error" : "text-on-surface-variant"}">${SP.lakh(i.impact_amount)}<div class="text-[10px] text-outline">${i.impact_customers} customers</div></td>
+      <td class="px-3 py-2.5">${SP.statusPill(i.status)}</td>
+      <td class="px-3 py-2.5 text-right font-mono text-on-surface-variant whitespace-nowrap">${SP.dur(i.mttd_sec)} / ${SP.dur(i.mttr_sec)}</td>
+      <td class="px-3 py-2.5 text-right font-mono text-on-surface-variant whitespace-nowrap">${SP.ist(i.detected_at, true)}<div class="text-[10px] text-outline"><span data-ago="${i.detected_at}">${SP.ago(i.detected_at)}</span></div></td>
+      <td class="px-3 py-2.5 text-right whitespace-nowrap">${i.status === "resolved" ? `<button data-report="${i.id}" class="text-primary hover:underline text-[11px] font-mono">REPORT</button>` : `<span class="material-symbols-outlined text-[18px] text-outline">chevron_right</span>`}</td></tr>`;
+  }).join("") || `<tr><td colspan="9" class="text-center text-outline py-8"><span class="material-symbols-outlined text-secondary align-middle">task_alt</span> No ${filter ? "matching" : ""} incidents</td></tr>`;
+}
+document.getElementById("rows").addEventListener("click", (e) => {
+  const rep = e.target.closest("[data-report]");
+  if (rep) { e.stopPropagation(); SP.showReport(rep.dataset.report); return; }
+  const tr = e.target.closest("tr[data-id]"); if (tr) location.href = "/incident?id=" + tr.dataset.id;
+});
+async function load() { data = await SP.api("/api/incidents?status=" + encodeURIComponent(filter) + "&limit=200"); if (SP.changed("rows", [filter, data])) paint(); }
+SP.poll(load, 3000);
+document.addEventListener("sp:status", (e) => {
+  const k = e.detail.kpis;
+  document.getElementById("m-open").textContent = k.open_incidents;
+  document.getElementById("m-impact").textContent = SP.lakh(k.impact_amount);
+  document.getElementById("m-mttd").textContent = SP.dur(k.mttd_avg_sec);
+  document.getElementById("m-mttr").textContent = SP.mss(k.mttr_avg_sec);
+});
+</script>
+</body></html>

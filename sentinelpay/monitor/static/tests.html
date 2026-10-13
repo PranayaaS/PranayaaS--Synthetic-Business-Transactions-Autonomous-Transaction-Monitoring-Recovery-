@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SentinelPay – Auto-Generated Synthetic Tests</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="/static/vendor/fonts.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<!-- Local copies first (python vendor_assets.py), CDN fallback -->
+<script src="/static/vendor/tailwind.js"></script>
+<script>window.tailwind || document.write('<script src="https://cdn.tailwindcss.com"><\/script>')</script>
+<script src="/static/tw.js"></script>
+<link rel="stylesheet" href="/static/app.css">
+<script src="/static/app.js"></script>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen">
+<div id="sp-header"></div>
+<main class="w-full pt-16 pb-12 bg-background min-h-screen"><div class="px-space-lg py-space-md flex flex-col gap-space-lg max-w-[1720px] mx-auto">
+  <div class="flex flex-wrap items-center justify-between gap-2">
+    <div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant"><span>CORE-NOC</span><span class="text-outline-variant">/</span><span>SYNTHETIC OBSERVABILITY</span><span class="text-outline-variant">/</span><span class="text-primary">SELF-EXPANDING TESTS</span></div>
+    <div class="flex items-center gap-2"><div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-secondary-container/20"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-secondary uppercase">Pattern engine live</span></div><span id="pat-count" class="font-label-sm text-label-sm text-on-surface-variant font-mono"></span></div>
+  </div>
+
+  <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md">
+    <div class="max-w-3xl">
+      <div class="flex items-center gap-2 mb-1"><div class="w-1.5 h-4 bg-primary rounded-full"></div><span class="font-label-sm text-label-sm text-primary uppercase tracking-wider">Autonomous resilience vectors</span></div>
+      <h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Auto-Generated Synthetic Tests</h1>
+      <p class="font-body-md text-body-md text-on-surface-variant mt-1">When real customer failures form a new pattern (e.g. every failure is above ₹50,000, or all go to Bank X), SentinelPay creates a synthetic test for that exact case and adds it to the probe schedule automatically.</p>
+    </div>
+    <div class="flex items-center gap-space-sm shrink-0">
+      <button id="triggerSweepBtn" class="flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-primary-container hover:bg-primary text-on-primary-container font-semibold text-body-sm shadow-[0_0_12px_rgba(6,182,212,0.3)]"><span class="material-symbols-outlined text-[18px]">play_circle</span>Trigger suite sweep</button>
+      <button id="exportSuitesBtn" class="flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface text-body-sm"><span class="material-symbols-outlined text-[18px]">file_download</span>Export test suites</button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+    <div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-1"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Total probes active</span><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span></div><div class="flex items-baseline gap-2"><span id="m-total" class="font-metric-display text-metric-display font-mono text-on-surface">—</span><span class="font-label-md text-label-md text-on-surface-variant">journeys online</span></div><div id="m-total-sub" class="font-body-sm text-body-sm text-on-surface-variant">—</div></div>
+    <div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-1 relative overflow-hidden"><div class="absolute -right-6 -top-6 w-24 h-24 bg-primary/10 rounded-full blur-xl"></div><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Auto-created from patterns</span><span class="font-label-sm text-label-sm text-primary bg-primary/10 px-1.5 rounded">PATTERN-DERIVED</span></div><div class="flex items-baseline gap-2"><span id="m-auto" class="font-metric-display text-metric-display font-mono text-primary">—</span><span class="font-label-md text-label-md text-on-surface-variant">dynamic tests</span></div><div id="m-auto-sub" class="font-body-sm text-body-sm text-on-surface-variant">—</div></div>
+    <div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-1"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Probe run frequency</span><span class="material-symbols-outlined text-[16px] text-secondary">history</span></div><div class="flex items-baseline gap-2"><span id="m-freq" class="font-metric-display text-metric-display font-mono text-on-surface">—</span></div><div class="font-body-sm text-body-sm text-on-surface-variant">Retries: up to 2 · confirm on 2 of 3 fails</div></div>
+    <div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-1"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Flakiness score</span><span id="m-flaky-tag" class="font-label-sm text-label-sm px-1.5 rounded">—</span></div><div class="flex items-baseline gap-2"><span id="m-flaky" class="font-metric-display text-metric-display font-mono text-on-surface">—</span><span class="font-label-md text-label-md text-on-surface-variant">of journeys mixed</span></div><div class="font-body-sm text-body-sm text-on-surface-variant">Pass/fail mix in last 10 runs</div></div>
+  </div>
+
+  <div class="bg-surface-container-low rounded-xl p-space-sm flex flex-col lg:flex-row lg:items-center justify-between gap-space-sm">
+    <div class="flex flex-col md:flex-row md:items-center gap-space-sm flex-1 min-w-0">
+      <div class="flex items-center gap-2 bg-surface-container-lowest rounded-lg px-space-sm py-1.5 md:w-80"><span class="material-symbols-outlined text-[18px] text-outline">search</span><input id="testSearchInput" type="text" placeholder="Search by name, bank, pattern…" class="bg-transparent text-body-sm text-on-surface placeholder:text-outline focus:outline-none w-full"></div>
+      <div id="journeyFilterGroup" class="flex flex-wrap gap-1"></div>
+    </div>
+    <div class="flex items-center gap-space-sm">
+      <div class="flex items-center gap-1 text-body-sm text-on-surface-variant"><span>Status:</span>
+        <select id="statusFilterSelect" class="bg-surface-container-lowest border border-surface-variant rounded px-2 py-1 text-on-surface text-body-sm focus:outline-none focus:border-primary-container">
+          <option value="all">All states</option><option value="active" selected>Active only</option><option value="paused">Paused</option></select></div>
+      <div class="w-px h-6 bg-surface-variant"></div>
+      <div class="flex items-center gap-1">
+        <button id="viewList" title="Compact list view" class="w-8 h-8 rounded flex items-center justify-center"><span class="material-symbols-outlined text-[18px]">view_agenda</span></button>
+        <button id="viewGrid" title="Matrix view" class="w-8 h-8 rounded flex items-center justify-center"><span class="material-symbols-outlined text-[18px]">grid_view</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+    <div id="testsCardContainer" class="xl:col-span-8 grid gap-space-md"></div>
+    <div class="xl:col-span-4 xl:sticky xl:top-20">
+      <div id="inspectorPanel" class="bg-surface-container-low rounded-xl p-space-md shadow-md flex flex-col gap-space-md">
+        <div class="flex items-center justify-between"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[20px]">terminal</span><span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Configuration Inspector</span></div><span id="inspectorTargetId" class="font-label-sm text-label-sm font-mono text-primary bg-primary/10 px-2 py-0.5 rounded">—</span></div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">Live synthetic payload, latency history and the generated Playwright steps for the selected test.</p>
+        <div class="bg-surface-container rounded-lg p-space-sm flex flex-col gap-2">
+          <div class="flex items-center justify-between font-label-sm text-label-sm"><span class="text-on-surface-variant">E2E latency (last 10 runs)</span><span id="insp-avg" class="font-mono text-primary">—</span></div>
+          <div id="insp-bars" class="h-16 flex items-end gap-1"></div>
+        </div>
+        <div class="bg-surface-container-lowest rounded-lg overflow-hidden">
+          <div class="flex items-center justify-between px-space-sm py-1.5 bg-surface-container"><span class="flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant"><span class="material-symbols-outlined text-[14px]">data_object</span><span id="insp-file">SYNTHETIC_REQUEST_PAYLOAD.json</span></span>
+            <div class="flex items-center gap-2"><button id="tabPayload" class="text-[11px] font-mono">PAYLOAD</button><button id="tabScript" class="text-[11px] font-mono">SCRIPT</button>
+            <button id="copyBtn" title="Copy to clipboard" class="flex items-center gap-1 text-[11px] text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[14px]">content_copy</span>Copy</button></div></div>
+          <pre id="insp-code" class="p-space-sm text-[11px] font-mono text-on-surface-variant overflow-auto max-h-72 leading-relaxed"></pre>
+        </div>
+        <div id="insp-edit" class="bg-surface-container rounded-lg p-space-sm flex flex-col gap-2"></div>
+      </div>
+    </div>
+  </div>
+</div></main>
+<div id="sp-footer"></div>
+<script>
+let tests = [], interval = 30, selected = null, filter = "all", view = SP.store.get("testsView", "list"), tab = "payload";
+const BANKS = ["DDCCB", "Bank X", "Bank Y", "SBI"];
+const tid = (t) => (t.auto_created ? "AUTOTEST-" : "CORE-") + String(t.id).padStart(3, "0");
+
+function paintView() {
+  ["viewList", "viewGrid"].forEach((id) => { const on = (id === "viewList") === (view === "list"); document.getElementById(id).className = `w-8 h-8 rounded flex items-center justify-center ${on ? "bg-primary-container text-on-primary-container" : "text-on-surface-variant hover:bg-surface-container-high"}`; });
+  document.getElementById("testsCardContainer").className = `xl:col-span-8 grid gap-space-md ${view === "grid" ? "md:grid-cols-2" : "grid-cols-1"}`;
+}
+document.getElementById("viewList").onclick = () => { view = "list"; SP.store.set("testsView", view); paintView(); };
+document.getElementById("viewGrid").onclick = () => { view = "grid"; SP.store.set("testsView", view); paintView(); };
+document.getElementById("testSearchInput").oninput = renderCards;
+document.getElementById("statusFilterSelect").onchange = renderCards;
+document.getElementById("triggerSweepBtn").onclick = (e) => SP.runProbe(e.currentTarget);
+document.getElementById("exportSuitesBtn").onclick = () => { SP.download("/api/tests/export"); SP.toast("Export started", "sentinelpay-test-suites.json is downloading.", "info"); };
+document.getElementById("tabPayload").onclick = () => { tab = "payload"; renderInspector(); };
+document.getElementById("tabScript").onclick = () => { tab = "script"; renderInspector(); };
+document.getElementById("copyBtn").onclick = async () => {
+  const txt = document.getElementById("insp-code").textContent;
+  try { await navigator.clipboard.writeText(txt); SP.toast("Copied", "Copied to clipboard.", "ok"); }
+  catch (e) { const r = document.createRange(); r.selectNodeContents(document.getElementById("insp-code")); getSelection().removeAllRanges(); getSelection().addRange(r); SP.toast("Selected", "Clipboard blocked – text selected, press Ctrl+C.", "info"); }
+};
+paintView();
+
+function renderFilters() {
+  const n = { all: tests.length, core: tests.filter((t) => !t.auto_created).length, auto: tests.filter((t) => t.auto_created).length };
+  document.getElementById("journeyFilterGroup").innerHTML = [["all", "All"], ["auto", "Auto-created"], ["core", "Core journeys"]].map(([k, l]) =>
+    `<button data-filter="${k}" class="px-space-md py-1 rounded-full text-body-sm ${filter === k ? "bg-primary-container text-on-primary-container font-medium" : "bg-surface-container text-on-surface-variant hover:text-on-surface"}">${l} (${n[k]})</button>`).join("");
+}
+document.getElementById("journeyFilterGroup").addEventListener("click", (e) => { const b = e.target.closest("[data-filter]"); if (!b) return; filter = b.dataset.filter; renderFilters(); renderCards(); });
+
+function condition(t) { return t.auto_created ? `₹${Number(t.amount).toLocaleString("en-IN")} to ${t.receiver_bank}` : "₹500 to DDCCB (standard probe)"; }
+
+function renderCards() {
+  const q = document.getElementById("testSearchInput").value.toLowerCase(), st = document.getElementById("statusFilterSelect").value;
+  const rows = tests.filter((t) => (filter === "all" || (filter === "auto") === !!t.auto_created)
+    && (st === "all" || (st === "active") === !!t.active)
+    && (!q || [t.name, t.receiver_bank, t.created_from_pattern, t.pattern_summary, tid(t)].join(" ").toLowerCase().includes(q)));
+  document.getElementById("testsCardContainer").innerHTML = rows.map((t) => {
+    const fail = t.last_status === "fail", sel = selected === t.id;
+    return `<div data-id="${t.id}" class="bg-surface-container-low rounded-xl p-space-md shadow-sm hover:bg-surface-container transition-colors flex flex-col gap-space-sm ${sel ? "ring-1 ring-primary-container" : ""} ${t.active ? "" : "opacity-60"}">
+      <div class="flex items-start justify-between gap-2 flex-wrap">
+        <div class="flex items-center gap-2 flex-wrap"><span class="font-label-sm text-label-sm font-mono text-on-surface bg-surface-container-high px-1.5 py-0.5 rounded">${tid(t)}</span>
+          ${t.auto_created ? `<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-primary/10 text-primary font-label-sm text-label-sm"><span class="material-symbols-outlined text-[13px]">smart_toy</span>Auto-created</span>` : `<span class="font-label-sm text-label-sm text-on-surface-variant">Core journey</span>`}</div>
+        <div class="flex items-center gap-2"><span class="inline-flex items-center gap-1 font-label-sm text-label-sm ${t.active ? "text-secondary" : "text-outline"}"><span class="w-1.5 h-1.5 rounded-full ${t.active ? "bg-secondary animate-pulse" : "bg-outline"}"></span>${t.active ? "Active" : "Paused"}</span>
+          <span class="font-label-sm text-label-sm font-mono ${t.pass_rate === null ? "text-outline" : t.pass_rate >= 95 ? "text-secondary" : t.pass_rate >= 70 ? "text-warn" : "text-error"}">Success ${t.pass_rate === null ? "—" : t.pass_rate + "%"}</span></div>
+      </div>
+      <div><h2 data-inspect="${t.id}" class="font-headline-sm text-headline-sm text-on-surface font-semibold hover:text-primary cursor-pointer">${SP.esc(t.name)}</h2>
+        <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-body-sm text-on-surface-variant mt-1">
+          <span>Steps: <strong class="text-on-surface">${t.steps.map(SP.stepLabel).join(" → ")}</strong></span><span>·</span>
+          <span>Condition: <span class="font-mono text-primary">${SP.esc(condition(t))}</span></span></div>
+        ${t.auto_created ? `<div class="mt-1 text-[11px] text-on-surface-variant">Created ${SP.ist(t.created_at, true)} from pattern <span class="font-mono text-on-surface">${SP.esc(t.created_from_pattern || "—")}</span> – ${SP.esc((t.description || "").replace("Auto-created from pattern: ", "“") + "”")}</div>` : `<div class="mt-1 text-[11px] text-on-surface-variant">${SP.esc(t.description || "")}</div>`}
+      </div>
+      <div class="flex flex-wrap items-center justify-between gap-2 pt-space-sm border-t border-surface-variant/40">
+        <div class="flex flex-wrap items-center gap-3 font-label-sm text-label-sm text-on-surface-variant">
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-primary">timelapse</span>Cadence: <strong class="text-on-surface">Every ${interval}s</strong></span>
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px] ${fail ? "text-error" : "text-secondary"}">${fail ? "error" : "check_circle"}</span>Last: <strong class="${fail ? "text-error" : "text-on-surface"}">${t.last_run ? `<span data-ago="${t.last_run}">${SP.ago(t.last_run)}</span> · ${fail ? "Failed" : "Passed"} (${SP.ms(t.last_e2e_ms)})` : "not run yet"}</strong></span>
+          ${t.incidents ? `<a href="/incidents?status=" class="flex items-center gap-1 text-warn hover:underline"><span class="material-symbols-outlined text-[14px]">crisis_alert</span>${t.incidents} incident(s)</a>` : ""}
+        </div>
+        <div class="flex items-center gap-1">
+          <button data-inspect="${t.id}" data-tab="script" class="flex items-center gap-1 px-2 py-1 rounded text-[11px] text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface"><span class="material-symbols-outlined text-[15px]">code</span>View test script</button>
+          <button data-run="${t.id}" ${t.active ? "" : "disabled"} class="flex items-center gap-1 px-2 py-1 rounded text-[11px] bg-primary/10 text-primary hover:bg-primary/20 disabled:opacity-40"><span class="material-symbols-outlined text-[15px]">play_arrow</span>Run now</button>
+          <button data-inspect="${t.id}" data-edit="1" class="flex items-center gap-1 px-2 py-1 rounded text-[11px] text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface"><span class="material-symbols-outlined text-[15px]">edit_note</span>Edit payload</button>
+          <button data-toggle="${t.id}" title="${t.active ? "Pause this test" : "Resume this test"}" class="flex items-center gap-1 px-2 py-1 rounded text-[11px] text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface"><span class="material-symbols-outlined text-[15px]">${t.active ? "pause_circle" : "play_circle"}</span>${t.active ? "Pause" : "Resume"}</button>
+        </div>
+      </div></div>`;
+  }).join("") || `<div class="bg-surface-container-low rounded-xl p-6 text-center text-on-surface-variant"><span class="material-symbols-outlined text-primary text-[32px]">smart_toy</span><p class="mt-2">No ${filter === "auto" ? "auto-created " : ""}tests match.</p>${filter === "auto" ? `<p class="text-body-sm mt-1">Inject <a class="text-primary underline" href="/chaos">Receiver Bank Down or Fail Above ₹50,000</a> to watch one appear.</p>` : ""}</div>`;
+}
+
+document.getElementById("testsCardContainer").addEventListener("click", async (e) => {
+  const ins = e.target.closest("[data-inspect]"), run = e.target.closest("[data-run]"), tog = e.target.closest("[data-toggle]");
+  if (ins) { selected = +ins.dataset.inspect; if (ins.dataset.tab) tab = ins.dataset.tab; renderCards(); renderInspector(ins.dataset.edit === "1"); return; }
+  if (run) {
+    run.disabled = true; run.querySelector(".material-symbols-outlined").classList.add("sp-spin");
+    try { await SP.post(`/api/journeys/${run.dataset.run}/run`); SP.toast("Probe queued", "A probe cycle including this test is running now.", "info"); setTimeout(load, 4000); }
+    catch (err) { SP.toast("Run failed", err.message, "crit"); }
+    setTimeout(() => { run.disabled = false; run.querySelector(".material-symbols-outlined")?.classList.remove("sp-spin"); }, 3000);
+    return;
+  }
+  if (tog) {
+    const t = tests.find((x) => x.id === +tog.dataset.toggle);
+    try { await SP.api(`/api/journeys/${t.id}`, { method: "PATCH", body: { active: !t.active } }); SP.toast(t.active ? "Test paused" : "Test resumed", `${t.name} ${t.active ? "removed from" : "added back to"} the probe schedule.`, "info"); load(true); }
+    catch (err) { SP.toast("Update failed", err.message, "crit"); }
+  }
+});
+
+function script(t) {
+  return `# Generated Playwright journey – ${t.name}
+page.goto("${location.protocol}//${location.hostname}:8001/")
+page.fill("#username", "demo"); page.fill("#password", "demo123")
+page.click("#login-btn"); page.wait_for_url("**/dashboard")          # step: login
+page.click("#transfer-link"); page.wait_for_selector("#pay-btn")    # step: open_transfer
+page.fill("#receiver-name", "SentinelPay Probe")
+page.select_option("#receiver-bank", "${t.receiver_bank}")
+page.fill("#amount", "${t.amount}")                                   # step: submit_transfer
+with page.expect_response("**/api/pay", timeout=6000) as r:
+    page.click("#pay-btn")                                            # step: gateway_pay
+assert r.value.status == 200
+page.wait_for_url("**/receipt/**")
+assert page.inner_text("#receipt-amount") == "${t.amount}"            # step: verify_receipt
+assert page.inner_text("#receipt-status") in ("SUCCESS", "QUEUED")
+# status: fail on error/timeout/mismatch · slow if step > 3000 ms
+# false-alarm guard: retry up to 2x, incident only if 2 of 3 attempts fail`;
+}
+
+function renderInspector(focusEdit) {
+  const t = tests.find((x) => x.id === selected);
+  if (!t) return;
+  document.getElementById("inspectorTargetId").textContent = tid(t);
+  const rec = t.recent || [], max = Math.max(1, ...rec.map((r) => r.e2e));
+  document.getElementById("insp-bars").innerHTML = rec.map((r, i) => `<div class="flex-1 rounded-t ${r.fail ? "bg-error" : r.e2e > 3000 ? "bg-warn" : "bg-primary/60 hover:bg-primary"}" style="height:${Math.max(6, 100 * r.e2e / max)}%" title="Run ${i + 1}: ${r.e2e} ms${r.fail ? " (failed)" : ""} · ${SP.ist(r.ts)}"></div>`).join("") || `<span class="text-body-sm text-outline">No runs yet</span>`;
+  document.getElementById("insp-avg").textContent = rec.length ? "Avg " + SP.ms(Math.round(rec.reduce((a, r) => a + r.e2e, 0) / rec.length)) : "—";
+  ["tabPayload", "tabScript"].forEach((id) => { document.getElementById(id).className = `text-[11px] font-mono px-1.5 rounded ${(id === "tabScript") === (tab === "script") ? "bg-primary/15 text-primary" : "text-on-surface-variant hover:text-on-surface"}`; });
+  document.getElementById("insp-file").textContent = tab === "script" ? `${tid(t)}.journey.py` : "SYNTHETIC_REQUEST_PAYLOAD.json";
+  document.getElementById("insp-code").textContent = tab === "script" ? script(t) : JSON.stringify({
+    test_id: tid(t), journey: t.name, target: "POST /api/pay",
+    payload: { amount: t.amount, receiver_bank: t.receiver_bank, receiver_name: "SentinelPay Probe", synthetic: true },
+    steps: t.steps, created_from_pattern: t.created_from_pattern, auto_created: !!t.auto_created,
+    schedule: { every_sec: interval, step_timeout_ms: 6000, retries: 2, confirm_rule: "2 of 3 attempts fail" },
+  }, null, 2);
+  const ed = document.getElementById("insp-edit");
+  if (!t.auto_created) { ed.innerHTML = `<p class="text-body-sm text-on-surface-variant"><span class="material-symbols-outlined text-[14px] align-middle">lock</span> Core journeys always use the standard ₹500 payment to DDCCB. Auto-created tests can be edited.</p>`; return; }
+  ed.innerHTML = `<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Edit payload</span>
+    <div class="grid grid-cols-2 gap-2"><label class="text-body-sm text-on-surface-variant">Amount (₹)<input id="ed-amt" type="number" min="1" value="${t.amount}" class="mt-1 w-full bg-surface-container-lowest border border-surface-variant rounded px-2 py-1.5 text-on-surface font-mono focus:outline-none focus:border-primary-container"></label>
+    <label class="text-body-sm text-on-surface-variant">Receiver bank<select id="ed-bank" class="mt-1 w-full bg-surface-container-lowest border border-surface-variant rounded px-2 py-1.5 text-on-surface focus:outline-none focus:border-primary-container">${BANKS.map((b) => `<option ${b === t.receiver_bank ? "selected" : ""}>${b}</option>`).join("")}</select></label></div>
+    <button id="ed-save" class="py-1.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary-container font-semibold text-body-sm">Save payload</button>`;
+  document.getElementById("ed-save").onclick = async () => {
+    try { await SP.api(`/api/journeys/${t.id}`, { method: "PATCH", body: { amount: +document.getElementById("ed-amt").value, receiver_bank: document.getElementById("ed-bank").value } }); SP.toast("Payload saved", `${t.name} will use the new payload from the next cycle.`, "ok"); load(true); }
+    catch (e) { SP.toast("Save failed", e.message, "crit"); }
+  };
+  if (focusEdit) document.getElementById("ed-amt").focus();
+}
+
+async function load(force) {
+  const d = await SP.api("/api/tests");
+  tests = d.tests; interval = d.interval_sec;
+  const active = tests.filter((t) => t.active), auto = tests.filter((t) => t.auto_created);
+  document.getElementById("m-total").textContent = active.length;
+  document.getElementById("m-total-sub").textContent = `${active.filter((t) => !t.auto_created).length} core · ${active.filter((t) => t.auto_created).length} auto-created`;
+  document.getElementById("m-auto").textContent = auto.length;
+  document.getElementById("m-auto-sub").textContent = auto.length ? `Latest: ${auto[0].name}` : "None yet – waiting for a failure pattern";
+  document.getElementById("m-freq").textContent = `Every ${interval}s`;
+  const mixed = active.filter((t) => { const r = t.recent || []; return r.some((x) => x.fail) && r.some((x) => !x.fail); }).length;
+  const fl = active.length ? Math.round(100 * mixed / active.length) : 0;
+  document.getElementById("m-flaky").textContent = fl + "%";
+  const tag = document.getElementById("m-flaky-tag"); tag.textContent = fl === 0 ? "STABLE" : fl < 30 ? "WATCH" : "FLAKY";
+  tag.className = `font-label-sm text-label-sm px-1.5 rounded ${fl === 0 ? "bg-secondary-container/20 text-secondary" : fl < 30 ? "bg-warn/15 text-warn" : "bg-error/15 text-error"}`;
+  document.getElementById("pat-count").textContent = `${d.patterns.length} pattern(s) seen`;
+  if (selected === null && tests.length) selected = (auto[0] || tests[0]).id;
+  const editing = document.activeElement && document.activeElement.closest && document.activeElement.closest("#insp-edit");
+  if (force || SP.changed("tests", tests.map(({ pattern_summary, ...t }) => t))) { renderFilters(); renderCards(); if (!editing) renderInspector(); }
+}
+SP.poll(load, 4000);
+</script>
+</body></html>

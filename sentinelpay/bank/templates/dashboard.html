@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block nav %}<a href="/logout">Logout</a>{% endblock %}
+{% block body %}
+<h1 id="welcome" style="margin-bottom:16px">Welcome, Demo Member</h1>
+<div class="grid">
+  <div class="card">
+    <div class="muted">Savings Account &middot; XXXX4821</div>
+    <div class="bal" id="balance">&#8377;2,45,000.00</div>
+    <div class="muted small">Available balance</div>
+    <div style="margin-top:20px"><a id="transfer-link" href="/transfer" class="btn">&#10148; Transfer Money</a></div>
+  </div>
+  <div class="card">
+    <div style="font-weight:600;margin-bottom:8px">Recent transfers</div>
+    {% for t in recent %}
+      <div class="row"><span>{{ t.receiver_bank }}</span><span>&#8377;{{ "{:,}".format(t.amount) }} &middot; {{ t.status }}</span></div>
+    {% else %}<div class="muted">No transfers yet</div>{% endfor %}
+  </div>
+</div>
+{% endblock %}

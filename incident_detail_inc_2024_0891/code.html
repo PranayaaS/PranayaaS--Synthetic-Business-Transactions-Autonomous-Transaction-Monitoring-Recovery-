@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-container-low":"#131b2e","secondary-container":"#04b4a2","primary":"#4cd7f6","primary-container":"#06b6d4","surface-tint":"#4cd7f6","on-tertiary":"#00354a","inverse-surface":"#dae2fd","surface-bright":"#31394d","primary-fixed":"#acedff","on-secondary-container":"#003f38","inverse-primary":"#00687a","on-primary-fixed":"#001f26","secondary-fixed":"#71f8e4","on-tertiary-fixed-variant":"#004c69","background":"#0b1326","on-secondary-fixed-variant":"#005048","on-secondary-fixed":"#00201c","on-secondary":"#003731","primary-fixed-dim":"#4cd7f6","on-surface":"#dae2fd","tertiary-fixed":"#c4e7ff","on-primary":"#003640","surface-dim":"#0b1326","surface-container":"#171f33","on-tertiary-fixed":"#001e2c","on-primary-fixed-variant":"#004e5c","on-background":"#dae2fd","outline":"#869397","surface-container-high":"#222a3d","secondary":"#4fdbc8","inverse-on-surface":"#283044","tertiary":"#7bd0ff","surface-variant":"#2d3449","on-primary-container":"#00424f","surface-container-lowest":"#060e20","surface-container-highest":"#2d3449","secondary-fixed-dim":"#4fdbc8","surface":"#0b1326","on-surface-variant":"#bcc9cd","tertiary-container":"#23b2ec","on-error":"#690005","outline-variant":"#3d494c","tertiary-fixed-dim":"#7bd0ff","on-error-container":"#ffdad6","error-container":"#93000a","on-tertiary-container":"#00415a","error":"#ffb4ab"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"gutter":"1rem","space-md":"0.75rem","space-lg":"1rem","margin":"1.5rem","space-sm":"0.5rem","space-xs":"0.25rem","space-xl":"1.5rem"},fontFamily:{"headline-xl":["Inter"],"headline-lg":["Inter"],"headline-md":["Inter"],"label-md":["JetBrains Mono"],"body-sm":["Inter"],"body-lg":["Inter"],"metric-sub":["JetBrains Mono"],"metric-display":["JetBrains Mono"],"label-lg":["JetBrains Mono"],"headline-sm":["Inter"],"body-md":["Inter"],"label-sm":["JetBrains Mono"]},fontSize:{"headline-xl":["2rem",{"lineHeight":"2.5rem","letterSpacing":"-0.025em","fontWeight":"600"}],"headline-lg":["1.5rem",{"lineHeight":"2rem","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-md":["1.25rem",{"lineHeight":"1.75rem","letterSpacing":"-0.015em","fontWeight":"600"}],"label-md":["0.75rem",{"lineHeight":"1rem","letterSpacing":"0em","fontWeight":"500"}],"body-sm":["0.75rem",{"lineHeight":"1rem","letterSpacing":"0.01em","fontWeight":"400"}],"body-lg":["1rem",{"lineHeight":"1.5rem","letterSpacing":"0em","fontWeight":"400"}],"metric-sub":["1.125rem",{"lineHeight":"1.375rem","letterSpacing":"-0.02em","fontWeight":"500"}],"metric-display":["1.75rem",{"lineHeight":"2rem","letterSpacing":"-0.03em","fontWeight":"600"}],"label-lg":["0.875rem",{"lineHeight":"1.25rem","letterSpacing":"-0.01em","fontWeight":"500"}],"headline-sm":["1.125rem",{"lineHeight":"1.5rem","letterSpacing":"-0.01em","fontWeight":"500"}],"body-md":["0.875rem",{"lineHeight":"1.25rem","letterSpacing":"0em","fontWeight":"400"}],"label-sm":["0.6875rem",{"lineHeight":"0.875rem","letterSpacing":"0.02em","fontWeight":"400"}]}}}};</script></link><style>html,body{min-height:1024px}</style></head><body class="bg-background text-on-surface font-body-md text-body-md antialiased selection:bg-primary selection:text-on-primary min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.5)]"><div class="h-16 w-full px-space-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md shrink-0"><img alt="SentinelPay Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1URK3EgA-xqmFZdBsRVkDKqGMbBreCErzToRxmQzc8bsnqYyNn8fEtI9ZfyexIihWFk33qkMw5ZSszEjP6f0pP6tYB3FIsBxd7vXjpNy5AzhlOTAMIBvBIHV8kKfoekiosagdWjQwmNp6C1aZC6yaXhH7ytKfn6ZSAweopZQTEL5p7AyAUKf38OsqSxrHcdNZXwpBp_WLM-PnkSTJlxvo2RQgXlXAoTGiQQrYUd5MOdvWcS40WrEC7ficw"/><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight uppercase">SentinelPay</span><span class="font-label-sm text-label-sm text-primary tracking-widest uppercase bg-surface-container-high px-space-xs py-0.5 rounded">CORE-NOC</span></div><div class="h-5 w-px bg-surface-container-high mx-space-xs hidden xl:block"></div><div class="hidden xl:flex items-center gap-space-xs"><div class="flex items-center gap-1.5 px-space-xs py-0.5 rounded-full bg-secondary-container/20"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-secondary font-medium tracking-wide uppercase">LIVE SYNTHETICS</span></div><span class="font-label-sm text-label-sm text-on-surface-variant font-mono">Updated 3s ago · Probes active</span></div></div><nav class="hidden lg:flex items-center gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container rounded-lg font-medium shadow-[0_0_12px_rgba(6,182,212,0.3)]"><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all whitespace-nowrap" data-path="overview-and-journeys" href="#">Overview &amp; Journeys</a><a aria-current="page" class="px-space-md py-1.5 transition-all whitespace-nowrap bg-primary-container text-on-primary-container rounded-lg font-medium shadow-[0_0_12px_rgba(6,182,212,0.3)]" data-path="active-incidents" href="#">Active Incidents (1 Critical)</a><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all whitespace-nowrap" data-path="chaos-control-deck" href="#">Chaos Control Deck</a><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all whitespace-nowrap" data-path="auto-generated-synthetic-tests" href="#">Auto-Generated Synthetic Tests</a><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all whitespace-nowrap" data-path="rbi-watchdog" href="#">RBI Watchdog</a></nav><div class="flex items-center gap-space-md shrink-0"><div class="hidden md:flex flex-col items-end"><span class="font-label-sm text-label-sm text-secondary tracking-wide uppercase flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>PROD - Node Mumbai-1</span><span class="font-label-sm text-label-sm text-on-surface-variant">Latency 14ms · 99.98%</span></div><div class="flex items-center gap-space-xs"><button class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-error hover:bg-surface-container hover:text-error transition-colors relative" title="Critical Incident"><span class="material-symbols-outlined text-[18px]">warning</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-error animate-ping"></span></button><button class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Notifications"><span class="material-symbols-outlined text-[18px]">notifications</span></button></div><div class="flex items-center gap-space-xs pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="hidden 2xl:flex flex-col text-left"><span class="font-label-sm text-label-sm text-on-surface font-medium leading-none">R. Venkatesh</span><span class="font-label-sm text-label-sm text-on-surface-variant text-[10px] leading-tight">Operations Lead</span></div></div></div></div></header><main class="w-full pt-16 pb-10 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Command Triage Bar & Breadcrumb -->
+<div class="w-full bg-surface-container-lowest px-space-lg py-space-md shadow-md">
+<div class="max-w-[1720px] mx-auto flex flex-col xl:flex-row xl:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#">Incidents</a>
+<span class="text-outline-variant">/</span>
+<span class="text-primary font-mono font-medium">INC-2024-0891</span>
+<span class="text-outline-variant">•</span>
+<span class="text-on-surface-variant">Corridor: IN-MUM-CORE-02</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-md">
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">Payment Gateway Timeout on UPI Journey</h1>
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm font-semibold uppercase bg-error-container/40 text-error">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
+              SEVERITY: CRITICAL (P1)
+            </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm font-semibold uppercase bg-surface-container-high text-primary">
+<span class="material-symbols-outlined text-[13px]">radar</span>
+              STATUS: ACTIVE INVESTIGATION
+            </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm text-secondary bg-surface-container-high">
+<span class="material-symbols-outlined text-[13px] text-secondary">smart_toy</span>
+              Auto-Detected by Synthetic Probe #07
+            </span>
+</div>
+</div>
+</div>
+<!-- Live Heartbeat & SLA Clocks -->
+<div class="flex items-center gap-space-md shrink-0 bg-surface-container-low px-space-md py-2 rounded-xl">
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">RBI SLA Breached in</span>
+<span class="font-metric-sub text-metric-sub text-error font-mono tracking-tight font-semibold" id="countdown-timer">00:06:48</span>
+</div>
+<div class="h-8 w-px bg-surface-variant"></div>
+<div class="flex flex-col items-start">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Elapsed Time</span>
+<span class="font-label-lg text-label-lg text-on-surface font-mono font-medium">08m 14s</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Incident Critical Metadata Ribbon -->
+<div class="w-full bg-surface-container-low px-space-lg py-space-sm shadow-sm">
+<div class="max-w-[1720px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-space-md text-left">
+<div class="flex flex-col py-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Incident Origin</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="material-symbols-outlined text-[15px] text-primary">schedule</span>
+<span class="font-label-md text-label-md text-on-surface font-mono">14:24:12 IST <span class="text-on-surface-variant text-[11px] font-sans">(8 mins ago)</span></span>
+</div>
+</div>
+<div class="flex flex-col py-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Affected Journey</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="material-symbols-outlined text-[15px] text-secondary">account_balance_wallet</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">UPI Payment (P2M / Autopay)</span>
+</div>
+</div>
+<div class="flex flex-col py-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Failed Flow Step</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="material-symbols-outlined text-[15px] text-error">error</span>
+<span class="font-label-md text-label-md text-error font-medium truncate">Step 3: Receiver Bank Auth / Gateway Route</span>
+</div>
+</div>
+<div class="flex flex-col py-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Financial Blast Radius</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="material-symbols-outlined text-[15px] text-primary">currency_rupee</span>
+<span class="font-metric-sub text-metric-sub text-on-surface font-mono font-semibold">₹4.2 Lakh <span class="text-on-surface-variant text-body-sm font-sans font-normal">(85 accounts)</span></span>
+</div>
+</div>
+</div>
+</div>
+<!-- Operational Workspace: 2-Column Split (60% / 40%) -->
+<div class="w-full px-space-lg py-space-lg">
+<div class="max-w-[1720px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- LEFT COLUMN: Diagnostic Evidence, AI Reasoning & Pattern Matrix (60% -> 7 Cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg min-w-0">
+<!-- 1. Evidence Screenshot & Telemetry Proof Section -->
+<div class="bg-surface-container rounded-xl p-space-md shadow-md flex flex-col gap-space-md relative overflow-hidden">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">troubleshoot</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Synthetic Test Trace &amp; Gateway Packet Breakdown</h2>
+</div>
+<div class="flex items-center gap-2 font-label-sm text-label-sm text-on-surface-variant">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-mono">
+                Probe #07 [MUMBAI-DC-AWS]
+              </span>
+<span class="font-mono text-error font-semibold">HTTP 504</span>
+</div>
+</div>
+<!-- Split Visual: Synthetic Mobile Screen Capture + Raw Header Telemetry -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md bg-surface-container-lowest p-space-md rounded-lg">
+<!-- Mobile Banking Emulation Capture Card -->
+<div class="md:col-span-5 flex flex-col items-center justify-center p-3 rounded-lg bg-surface-container-high/60 relative group">
+<div class="w-full flex items-center justify-between pb-2 text-[10px] text-on-surface-variant font-mono">
+<span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-error"></span>SYNTH-CAPTURE-0891</span>
+<span>14:24:12.482</span>
+</div>
+<!-- Emulated Device Frame -->
+<div class="w-full max-w-[210px] bg-surface-container-lowest rounded-xl p-2.5 shadow-2xl relative overflow-hidden">
+<div class="flex justify-between items-center text-[9px] text-on-surface-variant mb-3 font-mono">
+<span>14:24</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-[10px]">wifi</span>
+<span class="material-symbols-outlined text-[10px]">battery_horiz_075</span>
+</div>
+</div>
+<div class="text-center py-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-high mx-auto flex items-center justify-center text-primary mb-1.5">
+<span class="material-symbols-outlined text-[16px]">account_balance</span>
+</div>
+<div class="font-label-sm text-[10px] text-on-surface font-semibold uppercase">Merchant Checkout</div>
+<div class="font-metric-sub text-metric-sub text-on-surface font-mono font-bold mt-0.5">₹65,000.00</div>
+<div class="text-[9px] text-on-surface-variant font-mono">UPI Ref: 412498001294</div>
+</div>
+<!-- Timed Out Modal overlay inside mobile screen -->
+<div class="mt-2 p-2 rounded-lg bg-surface-container-low text-center shadow-lg animate-pulse">
+<div class="w-6 h-6 rounded-full bg-error-container text-error mx-auto flex items-center justify-center mb-1">
+<span class="material-symbols-outlined text-[14px]">hourglass_disabled</span>
+</div>
+<p class="font-label-sm text-[10px] text-error font-semibold leading-tight">Payment Timed Out</p>
+<p class="text-[8px] text-on-surface-variant mt-0.5 leading-normal">Request Timed Out (Code 504 Gateway Timeout). Receiver bank not responding.</p>
+<div class="mt-2 w-full py-1 bg-surface-container-high rounded text-[8px] text-on-surface font-mono">RETRY WITH BACKUP</div>
+</div>
+</div>
+<!-- Live synthetic marker -->
+<div class="absolute bottom-2 right-2 px-1.5 py-0.5 bg-surface-container-lowest text-[9px] font-mono text-secondary rounded shadow">
+                FPS: 60 • Step 3/4
+              </div>
+</div>
+<!-- Raw Payload Trace & Latency Breakdown -->
+<div class="md:col-span-7 flex flex-col justify-between font-mono text-[11px] gap-2">
+<div class="flex items-center justify-between pb-1">
+<span class="text-secondary font-medium tracking-wider text-label-sm">TELEMETRY WATERFALL</span>
+<span class="text-error font-semibold text-label-sm">Total Duration: 4,820ms</span>
+</div>
+<!-- Latency Waterfall visualization -->
+<div class="space-y-1.5 py-1">
+<div class="space-y-0.5">
+<div class="flex justify-between text-[10px] text-on-surface-variant">
+<span>1. NPCI Orchestrator Ingress</span>
+<span class="text-secondary font-mono">18ms</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 4%"></div>
+</div>
+</div>
+<div class="space-y-0.5">
+<div class="flex justify-between text-[10px] text-on-surface-variant">
+<span>2. Core Router &amp; Fraud Scoring</span>
+<span class="text-secondary font-mono">42ms</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 8%"></div>
+</div>
+</div>
+<div class="space-y-0.5">
+<div class="flex justify-between text-[10px] text-on-surface-variant">
+<span class="text-error font-medium">3. Axis / NPCI Gateway Bridge to Receiver Bank X</span>
+<span class="text-error font-mono font-bold">4,760ms (DROPPED)</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-error h-full rounded-full" style="width: 98%"></div>
+</div>
+</div>
+</div>
+<!-- Raw HTTP Trace Console Output -->
+<div class="bg-surface-container-lowest p-2 rounded text-[10px] leading-tight text-on-surface-variant space-y-0.5 overflow-x-auto">
+<p class="text-primary">&gt; POST /v2/upi/route-transact HTTP/1.1</p>
+<p>&gt; Host: npci-bridge.axis-internal.net</p>
+<p>&gt; X-Correlation-ID: <span class="text-on-surface">f70b-9912-core-mumbai</span></p>
+<p>&gt; Timeout-Config: 3000ms [STRICT]</p>
+<p class="text-error">&lt; HTTP/1.1 504 GATEWAY TIMEOUT</p>
+<p class="text-error">&lt; X-Drop-Reason: SOCKET_TIMEOUT_WAITING_FOR_ACK_PACKET</p>
+<p>&lt; Remote-Switch: <span class="text-on-surface">SWITCH-MUM-PRIMARY-RECV-X</span></p>
+</div>
+<div class="flex items-center justify-between text-[10px] text-on-surface-variant pt-1">
+<span>Gateway Route: <span class="text-on-surface font-semibold">Axis / NPCI Bridge Primary</span></span>
+<span class="text-error">Threshold breached (+1,820ms)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. AI Root Cause Diagnostic Box (Glowing Cyan/Indigo Accent) -->
+<div class="relative rounded-xl p-space-md bg-surface-container-low shadow-xl overflow-hidden">
+<!-- Ambient glowing background glow overlay -->
+<div class="absolute -top-12 -right-12 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-12 -left-12 w-64 h-64 bg-tertiary-container/15 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center shadow-[0_0_12px_rgba(6,182,212,0.4)]">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-2">
+                    AI Root Cause Diagnostic Engine
+                    <span class="font-label-sm text-label-sm text-primary px-2 py-0.5 rounded-full bg-primary/10 font-mono">SENTINEL-LLM v4.2</span>
+</h3>
+</div>
+</div>
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-primary font-mono text-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+                94% Similarity Match
+              </div>
+</div>
+<!-- Root Cause Statement -->
+<div class="p-3 bg-surface-container rounded-lg">
+<div class="text-label-sm font-mono text-primary font-medium uppercase tracking-wider mb-1">Synthesized Root Cause</div>
+<div class="font-body-lg text-body-lg text-on-surface font-medium leading-snug">
+                Payment gateway timeout – 94% similarity to Incident <a class="text-primary underline hover:text-primary-fixed" href="#">#INC-2024-0742</a> (logged 3 days ago).
+              </div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 leading-relaxed">
+                Upstream gateway buffer saturation on <span class="text-on-surface font-medium">HDFC / Receiver Bank X switch</span>. Receiver bank switch silently dropped TCP ACK packets after the hard 3000ms SLA timeout envelope during batch clearing window peak.
+              </p>
+</div>
+<!-- Analytical telemetry signal metrics -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm mt-1">
+<div class="p-2.5 rounded-lg bg-surface-container-high flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Packet Drop Rate</span>
+<span class="font-metric-sub text-metric-sub text-error font-mono font-semibold mt-0.5">88.4%</span>
+<span class="text-[10px] text-on-surface-variant font-mono">Normal: &lt; 0.05%</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-high flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Switch Buffer Queue</span>
+<span class="font-metric-sub text-metric-sub text-error font-mono font-semibold mt-0.5">99.8%</span>
+<span class="text-[10px] text-on-surface-variant font-mono">Threshold: 80%</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-high flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Precedent Resolution</span>
+<span class="font-metric-sub text-metric-sub text-secondary font-mono font-semibold mt-0.5">Switched to Node-B</span>
+<span class="text-[10px] text-on-surface-variant font-mono">Cleared in 34s</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 3. Pattern Insight Box (High-Contrast Analytical Matrix) -->
+<div class="bg-surface-container rounded-xl p-space-md shadow-md flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-error-container text-error flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Anomalous Flow Signature Detected</h3>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-mono">
+              CLUSTER: REC-BANK-X-CORRIDOR
+            </span>
+</div>
+<div class="p-3 bg-surface-container-lowest rounded-lg">
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+<span class="font-semibold text-primary">Pattern detected:</span> 38 customers failed in the last 2 minutes, all routed to <strong class="text-on-surface font-semibold">Receiver Bank X</strong>, specifically transactions with ticket sizes <strong class="text-error font-mono">above ₹50,000</strong>.
+            </p>
+</div>
+<!-- Mini Breakdown Matrix Table -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm font-mono">
+<div class="p-space-sm bg-surface-container-high rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-sans">Failed Count</span>
+<span class="font-metric-display text-metric-display text-error font-semibold mt-1">38</span>
+<span class="text-[10px] text-error font-sans">100% of high-value corridor</span>
+</div>
+<div class="p-space-sm bg-surface-container-high rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-sans">Avg Ticket Size</span>
+<span class="font-metric-display text-metric-display text-on-surface font-semibold mt-1">₹68,400</span>
+<span class="text-[10px] text-on-surface-variant font-sans">Max: ₹1,00,000</span>
+</div>
+<div class="p-space-sm bg-surface-container-high rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-sans">Failure Signature</span>
+<span class="font-label-md text-label-md text-error font-semibold mt-1 leading-tight">TCP RESET / 504</span>
+<span class="text-[10px] text-on-surface-variant font-mono mt-1">UPI-Switch-Primary</span>
+</div>
+</div>
+<!-- Micro Sparkline / Flow Density Graph -->
+<div class="p-3 bg-surface-container-lowest rounded-lg flex flex-col gap-2">
+<div class="flex items-center justify-between text-label-sm font-mono text-on-surface-variant">
+<span>Traffic Velocity &amp; Failure Spikes (Last 10 Mins)</span>
+<span class="text-error font-medium">Spike Initiated @ 14:24 IST</span>
+</div>
+<div class="h-16 w-full flex items-end gap-1.5 pt-2">
+<div class="flex-1 bg-secondary/30 h-[20%] rounded-t hover:bg-secondary transition-all" title="14:15 - Normal"></div>
+<div class="flex-1 bg-secondary/30 h-[25%] rounded-t hover:bg-secondary transition-all" title="14:17 - Normal"></div>
+<div class="flex-1 bg-secondary/30 h-[22%] rounded-t hover:bg-secondary transition-all" title="14:19 - Normal"></div>
+<div class="flex-1 bg-secondary/30 h-[28%] rounded-t hover:bg-secondary transition-all" title="14:21 - Normal"></div>
+<div class="flex-1 bg-secondary/30 h-[30%] rounded-t hover:bg-secondary transition-all" title="14:23 - Warning"></div>
+<div class="flex-1 bg-error h-[85%] rounded-t animate-pulse hover:bg-error transition-all" title="14:24 - Spike: 18 Failures"></div>
+<div class="flex-1 bg-error h-[100%] rounded-t hover:bg-error transition-all" title="14:25 - Peak: 38 Failures"></div>
+<div class="flex-1 bg-error h-[95%] rounded-t hover:bg-error transition-all" title="14:26 - Sustained Failure"></div>
+</div>
+<div class="flex justify-between text-[10px] font-mono text-on-surface-variant">
+<span>14:15 IST (Baseline 0.01% ERR)</span>
+<span>14:20 IST</span>
+<span class="text-error">14:26 IST (Active Surge: 98.2% ERR)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Human-in-the-Loop Action, Timeline & On-Call (40% -> 5 Cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg min-w-0">
+<!-- 1. Suggested Automated Recovery Card (Human-in-the-Loop) -->
+<div class="bg-surface-container rounded-xl p-space-md shadow-xl flex flex-col gap-space-md relative overflow-hidden">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Recommended Recovery Action</h3>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider font-semibold">Human-in-the-Loop Orchestration</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-secondary-container/20 text-secondary font-medium">READY TO EXECUTE</span>
+</div>
+<!-- Recovery Description -->
+<div class="p-3 bg-surface-container-lowest rounded-lg flex flex-col gap-2">
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase font-mono tracking-wider">Target Intervention</div>
+<div class="font-headline-sm text-[1.05rem] text-on-surface font-semibold leading-snug">
+              Switch to Backup Gateway (Route: Razorpay Secondary / ICICI Switch Node-B)
+            </div>
+<div class="flex items-center gap-2 text-label-sm font-mono text-on-surface-variant mt-1">
+<span class="material-symbols-outlined text-[15px] text-secondary">verified</span>
+<span>Success history: <strong class="text-on-surface">Worked 4 of 5 times</strong> (80% resolution rate for identical signatures)</span>
+</div>
+<div class="flex items-center gap-2 text-label-sm font-mono text-secondary">
+<span class="material-symbols-outlined text-[15px]">timer</span>
+<span>Projected recovery: <strong class="text-on-surface">&lt; 45 seconds</strong> post-execution</span>
+</div>
+</div>
+<!-- Traffic Reroute Allocation Slider & Control -->
+<div class="p-3 bg-surface-container-high rounded-lg flex flex-col gap-2">
+<div class="flex items-center justify-between text-label-sm font-mono">
+<span class="text-on-surface font-medium">Traffic Diversion Volume:</span>
+<span class="text-primary font-bold text-headline-sm text-[1.1rem]" id="divert-val">100% Diversion</span>
+</div>
+<input class="w-full h-2 bg-surface-container-lowest rounded-lg appearance-none cursor-pointer accent-primary" id="diversion-range" max="100" min="10" oninput="document.getElementById('divert-val').textContent = this.value + '% Diversion'" step="10" type="range" value="100"/>
+<div class="flex justify-between text-[10px] font-mono text-on-surface-variant">
+<span>Canary (10%)</span>
+<span>Gradual (50%)</span>
+<span class="text-primary font-semibold">Full Failover (100%)</span>
+</div>
+</div>
+<!-- Dual Confirmation Security Action Button CTA -->
+<div class="flex flex-col gap-space-sm pt-1">
+<button class="w-full py-3.5 px-space-md rounded-lg bg-primary-container hover:bg-primary text-on-primary-container font-headline-sm text-[1rem] font-bold tracking-tight uppercase transition-all shadow-[0_0_16px_rgba(6,182,212,0.35)] hover:shadow-[0_0_24px_rgba(6,182,212,0.6)] flex items-center justify-center gap-2 group active:scale-[0.99]" id="approve-btn" onclick="executeRecovery()">
+<span class="material-symbols-outlined group-hover:rotate-12 transition-transform">bolt</span>
+<span>APPROVE RECOVERY ACTION</span>
+<span class="font-label-sm text-[10px] opacity-80 font-mono">(Lead Auth Req.)</span>
+</button>
+<!-- Secondary Actions Ribbon -->
+<div class="grid grid-cols-2 gap-space-sm">
+<button class="py-2 px-space-sm rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md font-medium transition-colors flex items-center justify-center gap-1.5 text-center" onclick="alert('Incident escalated directly to NPCI Priority Desk via secure hotline.')">
+<span class="material-symbols-outlined text-[16px] text-tertiary">contact_phone</span>
+                Escalate to NPCI Desk
+              </button>
+<button class="py-2 px-space-sm rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface-variant hover:text-on-surface font-label-md text-label-md font-medium transition-colors flex items-center justify-center gap-1.5 text-center" onclick="alert('Alert notifications snoozed for 10 minutes while triage proceeds.')">
+<span class="material-symbols-outlined text-[16px]">notifications_paused</span>
+                Silence Alert for 10m
+              </button>
+</div>
+</div>
+<div class="hidden p-3 rounded-lg bg-secondary-container/20 text-secondary text-label-md font-mono flex items-center gap-2" id="recovery-alert">
+<span class="material-symbols-outlined text-[18px] animate-spin">autorenew</span>
+            Routing failover triggered. Redirecting packets to ICICI Switch Node-B...
+          </div>
+</div>
+<!-- 2. Incident Lifecycle Timeline (Audit & Resolution Progression) -->
+<div class="bg-surface-container rounded-xl p-space-md shadow-md flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">history_toggle_off</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Incident Lifecycle Trace</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">MTTD: 28s</span>
+</div>
+<div class="relative pl-6 space-y-6 before:absolute before:left-2.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-surface-variant">
+<!-- Step 1: Detected -->
+<div class="relative">
+<div class="absolute -left-6 top-0 w-5 h-5 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Detected</span>
+<span class="font-label-sm text-label-sm text-secondary font-mono">14:24:12 IST</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                  Synthetic Probe #07 flagged critical 4.8s latency spike &amp; 504 Gateway Timeout.
+                </p>
+</div>
+</div>
+<!-- Step 2: Alerted -->
+<div class="relative">
+<div class="absolute -left-6 top-0 w-5 h-5 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Alerted</span>
+<span class="font-label-sm text-label-sm text-secondary font-mono">14:24:40 IST</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                  PagerDuty incident triggered; NOC Slack channel <span class="text-on-surface font-mono">#fintech-alerts</span> notified (MTTD 28s).
+                </p>
+</div>
+</div>
+<!-- Step 3: Approved / In Progress -->
+<div class="relative" id="timeline-step-3">
+<div class="absolute -left-6 top-0 w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center text-primary shadow-[0_0_8px_rgba(6,182,212,0.6)]">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary font-bold">Approved (Pending Auth)</span>
+<span class="font-label-sm text-label-sm text-primary font-mono">14:26:00 IST</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface font-medium mt-0.5">
+                  Awaiting Operations Lead Approval for secondary gateway cutover.
+                </p>
+</div>
+</div>
+<!-- Step 4: Resolved (Pending) -->
+<div class="relative opacity-50" id="timeline-step-4">
+<div class="absolute -left-6 top-0 w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[13px]">radio_button_unchecked</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant font-semibold">Resolved</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">PENDING</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                  Automated route switch verification &amp; post-recovery synthetic probe validation.
+                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- 3. Active Incident Response Stakeholders -->
+<div class="bg-surface-container rounded-xl p-space-md shadow-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Active Incident Stakeholders</span>
+<span class="flex items-center gap-1 font-label-sm text-label-sm text-secondary font-mono">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span> 2 On Call
+            </span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm mt-1">
+<div class="flex items-center gap-space-sm p-2 rounded-lg bg-surface-container-high">
+<div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold shrink-0">
+                RM
+              </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Rajesh M.</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">NOC Ops Lead</span>
+<span class="text-[10px] text-secondary font-mono mt-0.5 flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[11px]">verified</span> Active Approver
+                </span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm p-2 rounded-lg bg-surface-container-high">
+<div class="w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-on-secondary font-bold shrink-0">
+                KS
+              </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Kavita S.</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Core Banking SRE</span>
+<span class="text-[10px] text-on-surface-variant font-mono mt-0.5 flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[11px]">radio_button_checked</span> Bridge Connected
+                </span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1 text-[11px] font-mono text-on-surface-variant">
+<span>Incident War-Room #0891</span>
+<a class="text-primary hover:underline flex items-center gap-0.5" href="#">
+<span>Open Google Meet</span>
+<span class="material-symbols-outlined text-[13px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function executeRecovery() {
+    const btn = document.getElementById('approve-btn');
+    const alertBox = document.getElementById('recovery-alert');
+    const step3 = document.getElementById('timeline-step-3');
+    const step4 = document.getElementById('timeline-step-4');
+
+    if (confirm('AUTHORIZATION CHECK: Switch 100% UPI traffic to Razorpay Secondary / ICICI Switch Node-B? This action will immediately re-route pending payments.')) {
+      btn.disabled = true;
+      btn.classList.add('opacity-50', 'cursor-not-allowed');
+      btn.innerHTML = '<span class="material-symbols-outlined animate-spin">autorenew</span> RE-ROUTING IN PROGRESS...';
+      
+      alertBox.classList.remove('hidden');
+
+      setTimeout(() => {
+        alertBox.innerHTML = '<span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span> Failover Successful. Synthetic probes report 100% 200 OK on Node-B (Latency 112ms).';
+        btn.innerHTML = '<span class="material-symbols-outlined">done_all</span> RECOVERY COMPLETE (NODE-B ACTIVE)';
+        btn.classList.remove('bg-primary-container', 'text-on-primary-container');
+        btn.classList.add('bg-secondary-container', 'text-on-secondary-container');
+        
+        if (step3) {
+          step3.querySelector('.w-2\\.5').classList.remove('animate-ping', 'bg-primary');
+          step3.querySelector('.w-2\\.5').classList.add('bg-secondary');
+          step3.querySelector('.text-primary').textContent = 'Approved & Executed';
+        }
+
+        if (step4) {
+          step4.classList.remove('opacity-50');
+          step4.querySelector('.text-on-surface-variant').textContent = 'Resolved';
+          step4.querySelector('.text-on-surface-variant').classList.add('text-secondary');
+        }
+      }, 2500);
+    }
+  }
+
+  // SLA Clock Countdown simulation
+  let secondsRemaining = 408;
+  const timerElem = document.getElementById('countdown-timer');
+  if (timerElem) {
+    setInterval(() => {
+      if (secondsRemaining > 0) {
+        secondsRemaining--;
+        const mins = Math.floor(secondsRemaining / 60).toString().padStart(2, '0');
+        const</main><footer class="fixed bottom-0 left-0 w-full z-40 bg-surface-container-lowest/90 backdrop-blur-md shadow-[0_-1px_6px_rgba(0,0,0,0.4)]"><div class="h-8 w-full px-space-lg flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm"><div class="flex items-center gap-space-md"><div class="flex items-center gap-1.5 text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span><span>CLUSTER UPTIME: 99.98%</span></div><span class="text-outline-variant">|</span><div class="flex items-center gap-1.5 text-on-surface-variant"><span>PROBE HEARTBEAT:</span><span class="text-primary font-mono">STABLE (1,240/1,240 OK)</span></div><span class="text-outline-variant hidden sm:inline">|</span><div class="hidden sm:flex items-center gap-1.5 text-on-surface-variant"><span>ACTIVE QUEUE:</span><span class="text-on-surface font-mono">4,192 TPS</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-1 text-on-surface-variant hidden md:flex"><span class="material-symbols-outlined text-[14px] text-secondary">shield</span><span>RBI CIRCULAR DPSS.CO.OD AUDIT: COMPLIANT</span></div><span class="text-on-surface-variant font-mono">UTC+05:30 IST</span></div></div></footer></body></html></script></main></body></html>

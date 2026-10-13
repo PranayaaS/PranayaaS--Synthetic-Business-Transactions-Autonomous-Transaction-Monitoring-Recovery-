@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block nav %}<a href="/dashboard">Dashboard</a> <a href="/logout">Logout</a>{% endblock %}
+{% block body %}
+<div class="card narrow">
+  <h1>Fund Transfer</h1>
+  <form id="transfer-form" onsubmit="return false">
+    <label>Receiver name<input id="receiver-name"></label>
+    <label>Receiver bank
+      <select id="receiver-bank">
+        {% for b in banks %}<option value="{{ b }}">{{ b }}</option>{% endfor %}
+      </select></label>
+    <label>Amount (&#8377;)<input id="amount" type="number" min="1"></label>
+    <button id="pay-btn" type="button" class="btn block">Pay now</button>
+  </form>
+  <div id="pay-status" class="hidden muted" style="margin-top:12px">Processing payment...</div>
+  <div id="pay-error" class="hidden err"></div>
+</div>
+<script>
+document.getElementById('pay-btn').addEventListener('click', async () => {
+  const err = document.getElementById('pay-error'), st = document.getElementById('pay-status');
+  err.classList.add('hidden'); st.classList.remove('hidden');
+  const body = {
+    amount: parseInt(document.getElementById('amount').value || '0', 10),
+    receiver_bank: document.getElementById('receiver-bank').value,
+    receiver_name: document.getElementById('receiver-name').value,
+    ref: 'WEB' + Date.now()
+  };
+  try {
+    const r = await fetch('/api/pay', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body)});
+    const j = await r.json().catch(() => ({}));
+    if (r.ok && j.txn_ref) { location.href = '/receipt/' + j.txn_ref; return; }
+    st.classList.add('hidden');
+    err.textContent = 'Payment failed (HTTP ' + r.status + '): ' + (j.message || 'unknown error') + (j.error_code ? ' [' + j.error_code + ']' : '');
+    err.classList.remove('hidden');
+  } catch (e) {
+    st.classList.add('hidden'); err.textContent = 'Network error: ' + e; err.classList.remove('hidden');
+  }
+});
+</script>
+{% endblock %}

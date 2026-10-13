@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-container-low":"#131b2e","secondary-container":"#04b4a2","primary":"#4cd7f6","primary-container":"#06b6d4","surface-tint":"#4cd7f6","on-tertiary":"#00354a","inverse-surface":"#dae2fd","surface-bright":"#31394d","primary-fixed":"#acedff","on-secondary-container":"#003f38","inverse-primary":"#00687a","on-primary-fixed":"#001f26","secondary-fixed":"#71f8e4","on-tertiary-fixed-variant":"#004c69","background":"#0b1326","on-secondary-fixed-variant":"#005048","on-secondary-fixed":"#00201c","on-secondary":"#003731","primary-fixed-dim":"#4cd7f6","on-surface":"#dae2fd","tertiary-fixed":"#c4e7ff","on-primary":"#003640","surface-dim":"#0b1326","surface-container":"#171f33","on-tertiary-fixed":"#001e2c","on-primary-fixed-variant":"#004e5c","on-background":"#dae2fd","outline":"#869397","surface-container-high":"#222a3d","secondary":"#4fdbc8","inverse-on-surface":"#283044","tertiary":"#7bd0ff","surface-variant":"#2d3449","on-primary-container":"#00424f","surface-container-lowest":"#060e20","surface-container-highest":"#2d3449","secondary-fixed-dim":"#4fdbc8","surface":"#0b1326","on-surface-variant":"#bcc9cd","tertiary-container":"#23b2ec","on-error":"#690005","outline-variant":"#3d494c","tertiary-fixed-dim":"#7bd0ff","on-error-container":"#ffdad6","error-container":"#93000a","on-tertiary-container":"#00415a","error":"#ffb4ab"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"gutter":"1rem","space-md":"0.75rem","space-lg":"1rem","margin":"1.5rem","space-sm":"0.5rem","space-xs":"0.25rem","space-xl":"1.5rem"},fontFamily:{"headline-xl":["Inter"],"headline-lg":["Inter"],"headline-md":["Inter"],"label-md":["JetBrains Mono"],"body-sm":["Inter"],"body-lg":["Inter"],"metric-sub":["JetBrains Mono"],"metric-display":["JetBrains Mono"],"label-lg":["JetBrains Mono"],"headline-sm":["Inter"],"body-md":["Inter"],"label-sm":["JetBrains Mono"]},fontSize:{"headline-xl":["2rem",{"lineHeight":"2.5rem","letterSpacing":"-0.025em","fontWeight":"600"}],"headline-lg":["1.5rem",{"lineHeight":"2rem","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-md":["1.25rem",{"lineHeight":"1.75rem","letterSpacing":"-0.015em","fontWeight":"600"}],"label-md":["0.75rem",{"lineHeight":"1rem","letterSpacing":"0em","fontWeight":"500"}],"body-sm":["0.75rem",{"lineHeight":"1rem","letterSpacing":"0.01em","fontWeight":"400"}],"body-lg":["1rem",{"lineHeight":"1.5rem","letterSpacing":"0em","fontWeight":"400"}],"metric-sub":["1.125rem",{"lineHeight":"1.375rem","letterSpacing":"-0.02em","fontWeight":"500"}],"metric-display":["1.75rem",{"lineHeight":"2rem","letterSpacing":"-0.03em","fontWeight":"600"}],"label-lg":["0.875rem",{"lineHeight":"1.25rem","letterSpacing":"-0.01em","fontWeight":"500"}],"headline-sm":["1.125rem",{"lineHeight":"1.5rem","letterSpacing":"-0.01em","fontWeight":"500"}],"body-md":["0.875rem",{"lineHeight":"1.25rem","letterSpacing":"0em","fontWeight":"400"}],"label-sm":["0.6875rem",{"lineHeight":"0.875rem","letterSpacing":"0.02em","fontWeight":"400"}]}}}};</script></link><style>html,body{min-height:1024px}</style></head><body class="bg-background text-on-surface font-body-md text-body-md antialiased selection:bg-primary selection:text-on-primary min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.5)]"><div class="h-16 w-full px-space-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md shrink-0"><img alt="SentinelPay Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1URK3EgA-xqmFZdBsRVkDKqGMbBreCErzToRxmQzc8bsnqYyNn8fEtI9ZfyexIihWFk33qkMw5ZSszEjP6f0pP6tYB3FIsBxd7vXjpNy5AzhlOTAMIBvBIHV8kKfoekiosagdWjQwmNp6C1aZC6yaXhH7ytKfn6ZSAweopZQTEL5p7AyAUKf38OsqSxrHcdNZXwpBp_WLM-PnkSTJlxvo2RQgXlXAoTGiQQrYUd5MOdvWcS40WrEC7ficw"/><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight uppercase">SentinelPay</span><span class="font-label-sm text-label-sm text-primary tracking-widest uppercase bg-surface-container-high px-space-xs py-0.5 rounded">CORE-NOC</span></div><div class="h-5 w-px bg-surface-container-high mx-space-xs hidden xl:block"></div><div class="hidden xl:flex items-center gap-space-xs"><div class="flex items-center gap-1.5 px-space-xs py-0.5 rounded-full bg-secondary-container/20"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-secondary font-medium tracking-wide uppercase">LIVE SYNTHETICS</span></div><span class="font-label-sm text-label-sm text-on-surface-variant font-mono">Updated 3s ago · Probes active</span></div></div><nav class="hidden lg:flex items-center gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container rounded-lg font-medium shadow-[0_0_12px_rgba(6,182,212,0.3)]"><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all whitespace-nowrap" data-path="overview-and-journeys" href="#">Overview &amp; Journeys</a><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all whitespace-nowrap" data-path="active-incidents" href="#">Active Incidents (1 Critical)</a><a aria-current="page" class="px-space-md py-1.5 transition-all whitespace-nowrap bg-primary-container text-on-primary-container rounded-lg font-medium shadow-[0_0_12px_rgba(6,182,212,0.3)]" data-path="chaos-control-deck" href="#">Chaos Control Deck</a><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all whitespace-nowrap" data-path="auto-generated-synthetic-tests" href="#">Auto-Generated Synthetic Tests</a><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all whitespace-nowrap" data-path="rbi-watchdog" href="#">RBI Watchdog</a></nav><div class="flex items-center gap-space-md shrink-0"><div class="hidden md:flex flex-col items-end"><span class="font-label-sm text-label-sm text-secondary tracking-wide uppercase flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>PROD - Node Mumbai-1</span><span class="font-label-sm text-label-sm text-on-surface-variant">Latency 14ms · 99.98%</span></div><div class="flex items-center gap-space-xs"><button class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-error hover:bg-surface-container hover:text-error transition-colors relative" title="Critical Incident"><span class="material-symbols-outlined text-[18px]">warning</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-error animate-ping"></span></button><button class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Notifications"><span class="material-symbols-outlined text-[18px]">notifications</span></button></div><div class="flex items-center gap-space-xs pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="hidden 2xl:flex flex-col text-left"><span class="font-label-sm text-label-sm text-on-surface font-medium leading-none">R. Venkatesh</span><span class="font-label-sm text-label-sm text-on-surface-variant text-[10px] leading-tight">Operations Lead</span></div></div></div></div></header><main class="w-full pt-16 pb-10 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Operational Grid Wrapper with Depth Layering -->
+<div class="px-space-lg py-space-xl flex flex-col gap-space-xl relative overflow-hidden">
+<!-- Ambient Radial Glow Backdrop for Mission Critical Atmosphere -->
+<div class="absolute -top-32 left-1/4 w-[640px] h-[320px] bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-1/2 -right-24 w-[480px] h-[480px] bg-error/5 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Top Control Deck Banner -->
+<div class="bg-surface-container-low rounded-xl p-space-xl shadow-xl relative overflow-hidden">
+<div class="absolute top-0 right-0 h-full w-96 bg-gradient-to-l from-primary/10 via-transparent to-transparent pointer-events-none"></div>
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg relative z-10">
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<div class="flex flex-wrap items-center gap-space-sm mb-1">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-secondary-container/20 text-secondary font-label-sm text-label-sm uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+              SANDBOX / UAT REPLICA (Connected to Virtual Core Banking Switch)
+            </span>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm">
+              CLUSTER ID: BOM-UAT-042
+            </span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight flex items-center gap-space-sm">
+            Chaos Control Deck
+            <span class="text-on-surface-variant font-body-lg text-body-lg font-normal">/ Payment Resilience Sandbox</span>
+</h1>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Simulate real-world core banking and payment gateway failure modes to test synthetic probe alert precision, SLA tripwires, and automated runbook executions.
+          </p>
+</div>
+<!-- Safety Interlock & Master Safeguard Controls -->
+<div class="flex flex-col sm:flex-row items-stretch lg:items-end gap-space-md shrink-0 bg-surface-container rounded-lg p-space-md shadow-md">
+<div class="flex flex-col justify-center">
+<div class="flex items-center justify-between gap-space-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Operational Guardrail</span>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-container/20 px-space-xs py-0.5 rounded" id="interlock-status-badge">ENGAGED</span>
+</div>
+<div class="flex items-center gap-space-sm mt-1">
+<button aria-checked="true" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full bg-secondary transition-colors duration-200 ease-in-out focus:outline-none focus:ring-1 focus:ring-primary" id="safety-toggle-btn" role="switch">
+<span class="translate-x-6 pointer-events-none inline-block h-4 w-4 transform rounded-full bg-surface shadow-md ring-0 transition duration-200 ease-in-out mt-1 ml-0.5" id="safety-toggle-ball"></span>
+</button>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface text-xs leading-none">Safety Interlock</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px]">Zero-Production Isolation</span>
+</div>
+</div>
+</div>
+<div class="h-8 w-px bg-surface-variant hidden sm:block self-center"></div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-2 rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md transition-all flex items-center gap-1.5 shadow-sm active:scale-95" id="master-halt-btn">
+<span class="material-symbols-outlined text-error text-[18px]">emergency_home</span>
+<span>Trip Switch</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Active Sandbox State & Target Topology Bar -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-space-md">
+<div class="bg-surface-container-low rounded-lg p-space-md flex items-center justify-between shadow-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Synthetic Health Index</span>
+<span class="font-metric-display text-metric-display text-secondary tracking-tight" id="probe-health-metric">100.0%</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-secondary-container/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">speed</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-md flex items-center justify-between shadow-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Virtual Corridor TPS</span>
+<span class="font-metric-display text-metric-display text-on-surface tracking-tight">8,420 <span class="font-label-md text-label-md text-on-surface-variant">REQ/S</span></span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">swap_horiz</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-md flex items-center justify-between shadow-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Active Fault Vector</span>
+<span class="font-metric-sub text-metric-sub text-on-surface-variant tracking-tight mt-1" id="active-fault-badge">NOMINAL (NONE)</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">hub</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-md flex items-center justify-between shadow-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">RBI Circular DPSS Trip</span>
+<span class="font-metric-display text-metric-display text-secondary tracking-tight">ARMED</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-secondary-container/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">gavel</span>
+</div>
+</div>
+</div>
+<!-- Main Interactive Scenario Matrix -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-lg text-label-lg uppercase tracking-wider text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">pest_control</span>
+            Fault Injection Matrix
+          </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">[SELECT ONE TO INJECT TRANSIENT FAULT]</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">4 Presets Configured</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-lg">
+<!-- Scenario 1: Gateway Down (Complete Outage) -->
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col justify-between shadow-md hover:shadow-xl transition-all relative overflow-hidden group" id="card-scen-1">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-error to-error/30 opacity-75"></div>
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-start justify-between">
+<span class="font-label-sm text-label-sm text-error bg-error/10 px-space-xs py-0.5 rounded tracking-wide font-mono">SCENARIO-01</span>
+<span class="px-space-xs py-0.5 rounded text-[10px] font-label-sm text-on-surface-variant bg-surface-container-high uppercase">HTTP 503 SEV-1</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-1.5">
+              Gateway Down
+              <span class="font-label-sm text-label-sm text-on-surface-variant font-normal">(Complete Outage)</span>
+</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed min-h-[48px]">
+              Simulates total connection drops on primary UPI payment gateway with HTTP 503 Service Unavailable and drop-packet simulation.
+            </p>
+<!-- Impact Preview Card -->
+<div class="bg-surface-container rounded-lg p-space-sm flex flex-col gap-1 mt-1">
+<span class="font-label-sm text-label-sm text-error uppercase flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px]">sensors_off</span>
+                Impact Verification Preview
+              </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-snug">
+                Immediate failover test for synthetic probe #07; triggers P1 critical alert under &lt;1.5s SLA and auto-diverts to HDFC-Secondary switch.
+              </p>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<button class="chaos-inject-btn w-full py-2.5 px-space-md rounded-lg bg-error/15 hover:bg-error text-error hover:text-on-error font-label-md text-label-md transition-all duration-150 flex items-center justify-center gap-2 shadow-sm font-semibold active:scale-[0.98]" data-scenario="1">
+<span class="text-base">💥</span>
+<span>Inject: Gateway Down</span>
+</button>
+</div>
+</div>
+<!-- Scenario 2: Gateway Timeout (Latency Spike) -->
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col justify-between shadow-md hover:shadow-xl transition-all relative overflow-hidden group" id="card-scen-2">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-500 to-amber-500/30 opacity-75"></div>
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-start justify-between">
+<span class="font-label-sm text-label-sm text-amber-400 bg-amber-500/10 px-space-xs py-0.5 rounded tracking-wide font-mono">SCENARIO-02</span>
+<span class="px-space-xs py-0.5 rounded text-[10px] font-label-sm text-on-surface-variant bg-surface-container-high uppercase">SLA BREACH 4.5S</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-1.5">
+              Gateway Timeout
+              <span class="font-label-sm text-label-sm text-on-surface-variant font-normal">(Latency Spike)</span>
+</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed min-h-[48px]">
+              Injects 4,500ms artificial latency on Step 3 (Receiver Bank Auth) exceeding the 3.0s statutory regulatory ceiling.
+            </p>
+<!-- Impact Preview Card -->
+<div class="bg-surface-container rounded-lg p-space-sm flex flex-col gap-1 mt-1">
+<span class="font-label-sm text-label-sm text-amber-400 uppercase flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px]">timer_off</span>
+                Impact Verification Preview
+              </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-snug">
+                Tests threshold breach detection, latency line chart escalation alerts, and dynamic probe polling rate frequency step-up.
+              </p>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<button class="chaos-inject-btn w-full py-2.5 px-space-md rounded-lg bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-surface-container-lowest font-label-md text-label-md transition-all duration-150 flex items-center justify-center gap-2 shadow-sm font-semibold active:scale-[0.98]" data-scenario="2">
+<span class="text-base">⏳</span>
+<span>Inject: Gateway Timeout</span>
+</button>
+</div>
+</div>
+<!-- Scenario 3: Wrong Amount / Ledger Mismatch -->
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col justify-between shadow-md hover:shadow-xl transition-all relative overflow-hidden group" id="card-scen-3">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-orange-500/30 opacity-75"></div>
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-start justify-between">
+<span class="font-label-sm text-label-sm text-orange-400 bg-orange-500/10 px-space-xs py-0.5 rounded tracking-wide font-mono">SCENARIO-03</span>
+<span class="px-space-xs py-0.5 rounded text-[10px] font-label-sm text-on-surface-variant bg-surface-container-high uppercase">AUDIT DRIFT</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-1.5">
+              Wrong Amount
+              <span class="font-label-sm text-label-sm text-on-surface-variant font-normal">(Ledger Mismatch)</span>
+</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed min-h-[48px]">
+              Creates a debit-credit delta discrepancy between CBS account balance deduction and NPCI settlement token.
+            </p>
+<!-- Impact Preview Card -->
+<div class="bg-surface-container rounded-lg p-space-sm flex flex-col gap-1 mt-1">
+<span class="font-label-sm text-label-sm text-orange-400 uppercase flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px]">receipt_long</span>
+                Impact Verification Preview
+              </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-snug">
+                Evaluates RBI Watchdog discrepancy detection engine and verifies automated escrow hold on suspicious settlements.
+              </p>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<button class="chaos-inject-btn w-full py-2.5 px-space-md rounded-lg bg-orange-500/15 hover:bg-orange-500 text-orange-300 hover:text-surface-container-lowest font-label-md text-label-md transition-all duration-150 flex items-center justify-center gap-2 shadow-sm font-semibold active:scale-[0.98]" data-scenario="3">
+<span class="text-base">⚠️</span>
+<span>Inject: Wrong Amount</span>
+</button>
+</div>
+</div>
+<!-- Scenario 4: Fail Above ₹50,000 (High-Value Ticket Filter) -->
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col justify-between shadow-md hover:shadow-xl transition-all relative overflow-hidden group" id="card-scen-4">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-rose-500 opacity-75"></div>
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-start justify-between">
+<span class="font-label-sm text-label-sm text-purple-300 bg-purple-500/15 px-space-xs py-0.5 rounded tracking-wide font-mono">SCENARIO-04</span>
+<span class="px-space-xs py-0.5 rounded text-[10px] font-label-sm text-on-surface-variant bg-surface-container-high uppercase">TIERED ANOMALY</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-1.5">
+              Fail Above ₹50,000
+              <span class="font-label-sm text-label-sm text-on-surface-variant font-normal">(Ticket Filter)</span>
+</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed min-h-[48px]">
+              Selectively terminates transactions exceeding ₹50,000 threshold to test multi-variable pattern anomaly heuristics.
+            </p>
+<!-- Impact Preview Card -->
+<div class="bg-surface-container rounded-lg p-space-sm flex flex-col gap-1 mt-1">
+<span class="font-label-sm text-label-sm text-purple-300 uppercase flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px]">query_stats</span>
+                Impact Verification Preview
+              </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-snug">
+                Triggers Pattern Insight engine: “High-value UPI ticket degradation” and fires automated ticket isolation rules.
+              </p>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<button class="chaos-inject-btn w-full py-2.5 px-space-md rounded-lg bg-purple-500/20 hover:bg-purple-600 text-purple-200 hover:text-white font-label-md text-label-md transition-all duration-150 flex items-center justify-center gap-2 shadow-sm font-semibold active:scale-[0.98]" data-scenario="4">
+<span class="text-base">🚨</span>
+<span>Inject: Fail Above ₹50,000</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Master Reset Action Card (Full Width Prominent Restoration Deck) -->
+<div class="bg-surface-container-low rounded-xl p-space-lg shadow-xl relative overflow-hidden">
+<div class="flex flex-col md:flex-row items-center justify-between gap-space-lg">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary-container/20 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[28px]">autorenew</span>
+</div>
+<div class="flex flex-col">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Master System Remediation &amp; Rollback</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Clears all network delays, simulated database locks, synthetic errors, and restores 100% nominal corridor health instantly.
+            </p>
+</div>
+</div>
+<button class="w-full md:w-auto px-space-xl py-3.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary-container font-headline-sm text-headline-sm text-sm tracking-wide transition-all duration-200 flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(6,182,212,0.35)] hover:shadow-[0_0_28px_rgba(6,182,212,0.6)] font-semibold active:scale-95 shrink-0" id="master-reset-btn">
+<span class="material-symbols-outlined text-[20px]">restart_alt</span>
+<span>🔄 Reset All Chaos Injections &amp; Restore Nominal State</span>
+</button>
+</div>
+</div>
+<!-- Telemetry & Live Interactive Terminal -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Left Column: Synthetic Detection Timeline & Verification -->
+<div class="lg:col-span-5 bg-surface-container-low rounded-xl p-space-lg shadow-md flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">monitor_heart</span>
+<span class="font-headline-sm text-headline-sm text-on-surface text-sm">Synthetic Probe Response Matrix</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-container/10 px-2 py-0.5 rounded font-mono">PROBES LIVE</span>
+</div>
+<!-- Latency Chart Visualization (Inline SVG Metric Bar) -->
+<div class="bg-surface-container rounded-lg p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Active Corridor Roundtrip (E2E)</span>
+<span class="font-mono text-primary font-semibold" id="metric-latency-val">142ms · NOMINAL</span>
+</div>
+<div class="w-full h-16 bg-surface-container-lowest rounded overflow-hidden relative flex items-end px-2 pt-2 gap-1.5">
+<!-- Dynamic Telemetry SVG Sparkline -->
+<svg class="w-full h-full" id="telemetry-sparkline" preserveaspectratio="none" viewbox="0 0 300 40">
+<defs>
+<lineargradient id="sparkGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#4cd7f6" stop-opacity="0.35"></stop>
+<stop offset="100%" stop-color="#4cd7f6" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,35 Q30,34 60,33 T120,32 T180,34 T240,33 L300,34 L300,40 L0,40 Z" fill="url(#sparkGrad)" id="sparkline-area"></path>
+<path d="M0,35 Q30,34 60,33 T120,32 T180,34 T240,33 L300,34" fill="none" id="sparkline-line" stroke="#4cd7f6" stroke-width="2"></path>
+</svg>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant font-mono text-[10px]">
+<span>-60s</span>
+<span>-30s</span>
+<span>-15s</span>
+<span class="text-primary">NOW</span>
+</div>
+</div>
+<!-- Probe Check Details Checklist -->
+<div class="flex flex-col gap-2">
+<div class="bg-surface-container rounded-lg p-2.5 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary" id="probe-1-dot"></span>
+<span class="font-label-sm text-label-sm text-on-surface font-mono">Probe #07: UPI Payload Verification</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-mono" id="probe-1-status">OK (28ms)</span>
+</div>
+<div class="bg-surface-container rounded-lg p-2.5 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary" id="probe-2-dot"></span>
+<span class="font-label-sm text-label-sm text-on-surface font-mono">Probe #14: NPCI Token Handshake</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-mono" id="probe-2-status">OK (34ms)</span>
+</div>
+<div class="bg-surface-container rounded-lg p-2.5 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary" id="probe-3-dot"></span>
+<span class="font-label-sm text-label-sm text-on-surface font-mono">Probe #21: CBS Debit-Credit Delta</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-mono" id="probe-3-status">BALANCED (0.00 INR)</span>
+</div>
+<div class="bg-surface-container rounded-lg p-2.5 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary" id="probe-4-dot"></span>
+<span class="font-label-sm text-label-sm text-on-surface font-mono">Probe #29: High-Ticket Threshold Check</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-mono" id="probe-4-status">100% SUCCESS</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Terminal-Style Live Chaos Log Monitor -->
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-xl shadow-xl flex flex-col overflow-hidden">
+<!-- Terminal Header -->
+<div class="bg-surface-container px-space-md py-2.5 flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-error/60"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-amber-500/60"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-secondary/60"></span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-mono ml-2">chaos-daemon@sentinel-noc:~#</span>
+</div>
+<div class="flex items-center gap-space-md font-label-sm text-label-sm text-on-surface-variant font-mono">
+<div class="flex items-center gap-1">
+<span>Reaction:</span>
+<span class="text-primary font-semibold" id="telemetry-latency">1.2s</span>
+</div>
+<div class="hidden sm:flex items-center gap-1">
+<span>Mock Accts:</span>
+<span class="text-secondary font-semibold">500</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface text-[11px] uppercase tracking-wider" id="clear-terminal-btn">Clear</button>
+</div>
+</div>
+<!-- Terminal Status Bar -->
+<div class="bg-surface-container-high px-space-md py-1.5 flex flex-wrap items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-2 font-mono text-[11px]">
+<span>STATUS:</span>
+<span class="text-secondary font-semibold" id="terminal-status-metric">IDLE / MONITORING</span>
+</div>
+<div class="flex items-center gap-3 font-mono text-[11px]">
+<span>AUTO-ROLLBACK: <span class="text-primary">ARMED (120s TTL)</span></span>
+<span class="hidden md:inline">AUDIT CHAIN: <span class="text-secondary">ENABLED</span></span>
+</div>
+</div>
+<!-- Live Terminal Stream Output -->
+<div class="p-space-md h-80 overflow-y-auto font-mono text-[12px] leading-relaxed flex flex-col gap-1.5 text-on-surface bg-surface-container-lowest select-text" id="terminal-body">
+<div class="text-on-surface-variant"><span class="text-outline">[00:00:01]</span> <span class="text-secondary">SYS_INIT:</span> Chaos Control Daemon v4.12 loaded into BOM-UAT-042 sandbox partition.</div>
+<div class="text-on-surface-variant"><span class="text-outline">[00:00:02]</span> <span class="text-primary">NET_HOOK:</span> Attached eBPF traffic shapers to virtual payment gateway proxy at port 8443.</div>
+<div class="text-on-surface-variant"><span class="text-outline">[00:00:03]</span> <span class="text-secondary">CBS_MOCK:</span> Initialized 500 virtual sandbox ledger accounts with seed balance ₹50,00,000 each.</div>
+<div class="text-on-surface-variant"><span class="text-outline">[00:00:04]</span> <span class="text-primary">PROBE_SYNC:</span> 4 active synthetic probe runners listening for transaction heartbeat.</div>
+<div class="text-primary flex items-center gap-1" id="terminal-anchor">
+<span class="text-outline">[00:00:05]</span>
+<span class="animate-pulse font-bold">❯</span>
+<span>Awaiting manual chaos scenario injection... Interlock verified.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function initChaosDeck() {
+    let interlockEngaged = true;
+    let activeScenario = null;
+    let autoResetTimer = null;
+
+    const safetyToggleBtn = document.getElementById('safety-toggle-btn');
+    const safetyToggleBall = document.getElementById('safety-toggle-ball');
+    const interlockStatusBadge = document.getElementById('interlock-status-badge');
+    const terminalBody = document.getElementById('terminal-body');
+    const terminalStatusMetric = document.getElementById('terminal-status-metric');
+    const probeHealthMetric = document.getElementById('probe-health-metric');
+    const activeFaultBadge = document.getElementById('active-fault-badge');
+    const masterResetBtn = document.getElementById('master-reset-btn');
+    const masterHaltBtn = document.getElementById('master-halt-btn');
+    const clearTerminalBtn = document.getElementById('clear-terminal-btn');
+    const metricLatencyVal = document.getElementById('metric-latency-val');
+    const sparklineLine = document.getElementById('sparkline-line');
+    const sparklineArea = document.getElementById('sparkline-area');
+
+    const probe1Dot = document.getElementById('probe-1-dot');
+    const probe1Status = document.getElementById('probe-1-status');
+    const probe2Dot = document.getElementById('probe-2-dot');
+    const probe2Status = document.getElementById('probe-2-status');
+    const probe3Dot = document.getElementById('probe-3-dot');
+    const probe3Status = document.getElementById('probe-3-status');
+    const probe4Dot = document.getElementById('probe-4-dot');
+    const probe4Status = document.getElementById('probe-4-status');
+
+    function getTimestamp() {
+      const now = new Date();
+      return now.toTimeString().split(' ')[0];
+    }
+
+    function appendLog(level, message, detail = '') {
+      const line = document.createElement('div');
+      line.className = 'flex flex-col sm:flex-row sm:items-baseline gap-1 animate-fadeIn';
+      
+      let badgeClass = 'text-primary';
+      let tag = 'INFO';
+
+      if (level === 'CRITICAL' || level === 'ERROR') {
+        badgeClass = 'text-error font-bold';
+        tag = 'CRIT_ALERT';
+      } else if (level === 'WARN') {
+        badgeClass = 'text-amber-400 font-bold';
+        tag = 'WARN_BREACH';
+      } else if (level === 'RECOVERY') {
+        badgeClass = 'text-secondary font-bold';
+        tag = 'AUTO_HEAL';
+      } else if (level === 'AUDIT') {
+        badgeClass = 'text-orange-400 font-bold';
+        tag = 'RBI_AUDIT';
+      }
+
+      line.innerHTML = `
+        <span class="text-outline font-mono">[${getTimestamp()}]</span>
+        <span class="${badgeClass} font-mono shrink-0">${tag}:</span>
+        <span class="text-on-surface font-mono">${message}</span>
+        ${detail ? `<span class="text-on-surface-variant font-mono text-[11px] italic">(${detail})</span>` : ''}
+      `;
+
+      terminalBody.appendChild(line);
+      terminalBody.scrollTop = terminalBody.scrollHeight;
+    }
+
+    // Toggle Interlock Switch
+    safetyToggleBtn.addEventListener('click', () => {
+      interlockEngaged = !interlockEngaged;
+      if (interlockEngaged) {
+        safetyToggleBtn.classList.remove('bg-surface-variant');
+        safetyToggleBtn.classList.add('bg-secondary');
+        safetyToggleBall.classList.add('translate-x-6');
+        safetyToggleBall.classList.remove('translate-x-1');
+        interlockStatusBadge.textContent = 'ENGAGED';
+        interlockStatusBadge.className = 'font-label-sm text-label-sm text-secondary bg-secondary-container/20 px-space-xs py-0.5 rounded';
+        appendLog('INFO', 'Safety Interlock Engaged. Production firewall isolation confirmed.');
+      } else {
+        safetyToggleBtn.classList.add('bg-surface-variant');
+        safetyToggleBtn.classList.remove('bg-secondary');
+        safetyToggleBall.classList.remove('translate-x-6');
+        safetyToggleBall.classList.add('translate-x-1');
+        interlockStatusBadge.textContent = 'CAUTION / UNLOCKED';
+        interlockStatusBadge.className = 'font-label-sm text-label-sm text-amber-400 bg-amber-500/20 px-space-xs py-0.5 rounded';
+        appendLog('WARN', 'Safety Interlock Disengaged! High-order simulation modes enabled for current sandbox.');
+      }
+    });
+
+    // Scenario Injection Dispatcher
+    const scenarioButtons = document.querySelectorAll('.chaos-inject-btn');
+    scenarioButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const scenId = btn.getAttribute('data-scenario');
+        injectScenario(scenId);
+      });
+    });
+
+    function injectScenario(id) {
+      if (autoResetTimer) clearTimeout(autoResetTimer);
+      activeScenario = id;
+
+      // Reset card highlights
+      document.querySelectorAll('[id^="card-scen-"]').forEach(c => {
+        c.classList.remove('ring-1', 'ring-primary', 'bg-surface-container-high');
+      });
+
+      const currentCard = document.getElementById(`card-scen-${id}`);
+      if (currentCard) {
+        currentCard.classList.add('bg-surface-container-high');
+      }
+
+      if (id === '1') {
+        // SCENARIO 1: Gateway Down
+        terminalStatusMetric.textContent = 'SIMULATING: GATEWAY OUTAGE (HTTP 503)';
+        terminalStatusMetric.className = 'text-error font-semibold';
+        probeHealthMetric.textContent = '24.1%';
+        probeHealthMetric.className = 'font-metric-display text-metric-display text-error tracking-tight';
+        activeFaultBadge.textContent = 'FA-01: UPI 503 OUTAGE';
+        activeFaultBadge.className = 'font-metric-sub text-metric-sub text-error tracking-tight mt-1';
+        metricLatencyVal.innerHTML = '<span class="text-error">ERROR 503 (DROPPED)</span>';
+
+        // Sparkline collapse
+        sparklineLine.setAttribute('d', 'M0,35 Q40,34 80,32 T150,15 T210,38 L300,38');
+        sparklineLine.setAttribute('stroke', '#ffb4ab');
+
+        probe1Dot.className = 'w-2 h-2 rounded-full bg-error animate-ping';
+        probe1Status.textContent = 'FAIL: 503 Service Unavailable';
+        probe1Status.className = 'font-label-sm text-label-sm text-error font-mono font-bold';
+
+        probe2Dot.className = 'w-2 h-2 rounded-full bg-amber-400';
+        probe2Status.textContent = 'WARN: Connection refused (Retrying 1/3)';
+        probe2Status.className = 'font-label-sm text-label-sm text-amber-400 font-mono';
+
+        appendLog('CRITICAL', 'INJECTION ACTIVATED: Gateway Primary Dropped with HTTP 503.', 'Latency SLA Breached');
+        setTimeout(() => {
+          appendLog('CRITICAL', 'Synthetic Probe #07 tripped: P1 ALERT DISPATCHED TO NOC PAGER.', 'Detection Latency: 420ms');
+          appendLog('RECOVERY', 'Triggering Failover Playbook: Routing traffic to Secondary Switch (HDFC-Sec-Proxy).', 'Circuit Breaker Open');
+        }, 600);
+
+      } else if (id === '2') {
+        // SCENARIO 2: Gateway Timeout
+        terminalStatusMetric.textContent = 'SIMULATING: 4500ms LATENCY INJECTION';
+        terminalStatusMetric.className = 'text-amber-400 font-semibold';
+        probeHealthMetric.textContent = '62.8%';
+        probeHealthMetric.className = 'font-metric-display text-metric-display text-amber-400 tracking-tight';
+        activeFaultBadge.textContent = 'FA-02: LATENCY SPIKE 4.5S';
+        activeFaultBadge.className = 'font-metric-sub text-metric-sub text-amber-400 tracking-tight mt-1';
+        metricLatencyVal.innerHTML = '<span class="text-amber-400">4,520ms · SLA VIOLATION</span>';
+
+        // Spike sparkline
+        sparklineLine.setAttribute('d', 'M0,35 Q60,35 120,33 T180,8 T240,5 L300,6');
+        sparklineLine.setAttribute('stroke', '#f59e0b');
+
+        probe2Dot.className = 'w-2 h-2 rounded-full bg-amber-400 animate-pulse';
+        probe2Status.textContent = 'WARN: Latency 4,520ms (Max SLA: 3,000ms)';
+        probe2Status.className = 'font-label-sm text-label-sm text-amber-400 font-mono font-bold';
+
+        appendLog('WARN', 'INJECTION ACTIVATED: 4,500ms synthetic delay on Receiver Bank Auth step.');
+        setTimeout(() => {
+          appendLog('WARN', 'Latency tripwire tripped. Synthetic Probe #14 marked DEGRADED (Threshold >3.0s breached).');
+          appendLog('INFO', 'Stepping up probe sample rate from 10s to 1s continuous monitoring.');
+        }, 500);
+
+      } else if (id === '3') {
+        // SCENARIO 3: Wrong Amount / Ledger Mismatch
+        terminalStatusMetric.textContent = 'SIMULATING: CBS / NPCI LEDGER DESYNC';
+        terminalStatusMetric.className = 'text-orange-400 font-semibold';
+        probeHealthMetric.textContent = '81.4%';
+        probeHealthMetric.className = 'font-metric-display text-metric-display text-orange-400 tracking-tight';
+        activeFaultBadge.textContent = 'FA-03: LEDGER DELTA MISMATCH';
+        activeFaultBadge.className = 'font-metric-sub text-metric-sub text-orange-400 tracking-tight mt-1';
+
+        probe3Dot.className = 'w-2 h-2 rounded-full bg-orange-400 animate-ping';
+        probe3Status.textContent = 'DISCREPANCY: +₹1,240.00 DRIFT';
+        probe3Status.className = 'font-label-sm text-label-sm text-orange-400 font-mono font-bold';
+
+        appendLog('AUDIT', 'INJECTION ACTIVATED: Artificial debit/credit delta ₹1,240.00 introduced into batch ledger.');
+        setTimeout(() => {
+          appendLog('AUDIT', 'RBI Watchdog DPSS Engine flagged ledger variance on CBS node #02.');
+          appendLog('RECOVERY', 'Automated Escrow Hold engaged: Settlement account frozen pending reconciliation replay.');
+        }, 700);
+
+      } else if (id === '4') {
+        // SCENARIO 4: Fail Above ₹50,000
+        terminalStatusMetric.textContent = 'SIMULATING: HIGH-VALUE FILTER DROP';
+        terminalStatusMetric.className = 'text-purple-300 font-semibold';
+        probeHealthMetric.textContent = '74.0%';
+        probeHealthMetric.className = 'font-metric-display text-metric-display text-purple-300 tracking-tight';
+        activeFaultBadge.textContent = 'FA-04: TICKET FILTER >₹50K';
+        activeFaultBadge.className = 'font-metric-sub text-metric-sub text-purple-300 tracking-tight mt-1';
+
+        probe4Dot.className = 'w-2 h-2 rounded-full bg-purple-400 animate-pulse';
+        probe4Status.textContent = 'ANOMALY: High-Ticket Drops (>₹50,000)';
+        probe4Status.className = 'font-label-sm text-label-sm text-purple-300 font-mono font-bold';
+
+        appendLog('WARN', 'INJECTION ACTIVATED: Selective drop rule applied to all payloads where Amount > ₹50,000.');
+        setTimeout(() => {
+          appendLog('INFO', 'Pattern Heuristic Engine evaluated 140 synthetic tickets.');
+          appendLog('WARN', 'Anomaly Rule matched: "100% of transactions above ₹50,000 failing". Firing proactive runbook.');
+        }, 800);
+      }
+    }
+
+    // Master Reset Button
+    masterResetBtn.addEventListener('click', restoreNominalState);
+    masterHaltBtn.addEventListener('click', restoreNominalState);
+
+    function restoreNominalState() {
+      activeScenario = null;
+      if (autoResetTimer) clearTimeout(autoResetTimer);
+
+      document.querySelectorAll('[id^="card-scen-"]').forEach(c => {
+        c.classList.remove('bg-surface-container-high');
+      });
+
+      // Restore metrics to 100% nominal
+      probeHealthMetric.textContent = '100.0%';
+      probeHealthMetric.className = 'font-metric-display text-metric-display text-secondary tracking-tight';
+      
+      activeFaultBadge.textContent = 'NOMINAL (NONE)';
+      activeFaultBadge.className = 'font-metric-sub text-metric-sub text-on-surface-variant tracking-tight mt-1';
+      
+      terminalStatusMetric.textContent = 'IDLE / NOMINAL (RECOVERED)';
+      terminalStatusMetric.className = 'text-secondary font-semibold';
+
+      metricLatencyVal.innerHTML = '<span>142ms · NOMINAL</span>';
+
+      sparklineLine.setAttribute('d', 'M0,35 Q30,34 60,33 T120,32 T180,34 T240,33 L300,34');
+      sparklineLine.setAttribute('stroke', '#4cd7f6');
+
+      probe1Dot.className = 'w-2 h-2 rounded-full bg-secondary';
+      probe1Status.textContent = 'OK (28ms)';
+      probe1Status.className = 'font-label-sm text-label-sm text-secondary font-mono';
+
+      probe2Dot.className = 'w-2 h-2 rounded-full bg-secondary';
+      probe2Status.textContent = 'OK (34ms)';
+      probe2Status.className = 'font-label-sm text-label-sm text-secondary font-mono';
+
+      probe3Dot.className = 'w-2 h-2 rounded-full bg-secondary';
+      probe3Status.textContent = 'BALANCED (0.00 INR)';
+      probe3Status.className = 'font-label-sm text-label-sm text-secondary font-mono';
+
+      probe4Dot.className = 'w-2 h-2 rounded-full bg-secondary';
+      probe4Status.textContent = '100% SUCCESS';
+      probe4Status.className = 'font-label-sm text-label-sm text-secondary font-mono';
+
+      appendLog('RECOVERY', 'MASTER RESTORE: All simulated latencies, faults, and drops flushed.');
+      appendLog('INFO', 'Virtual UPI</main><footer class="fixed bottom-0 left-0 w-full z-40 bg-surface-container-lowest/90 backdrop-blur-md shadow-[0_-1px_6px_rgba(0,0,0,0.4)]"><div class="h-8 w-full px-space-lg flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm"><div class="flex items-center gap-space-md"><div class="flex items-center gap-1.5 text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span><span>CLUSTER UPTIME: 99.98%</span></div><span class="text-outline-variant">|</span><div class="flex items-center gap-1.5 text-on-surface-variant"><span>PROBE HEARTBEAT:</span><span class="text-primary font-mono">STABLE (1,240/1,240 OK)</span></div><span class="text-outline-variant hidden sm:inline">|</span><div class="hidden sm:flex items-center gap-1.5 text-on-surface-variant"><span>ACTIVE QUEUE:</span><span class="text-on-surface font-mono">4,192 TPS</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-1 text-on-surface-variant hidden md:flex"><span class="material-symbols-outlined text-[14px] text-secondary">shield</span><span>RBI CIRCULAR DPSS.CO.OD AUDIT: COMPLIANT</span></div><span class="text-on-surface-variant font-mono">UTC+05:30 IST</span></div></div></footer></body></html></script></main></body></html>

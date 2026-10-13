@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-container-low":"#131b2e","secondary-container":"#04b4a2","primary":"#4cd7f6","primary-container":"#06b6d4","surface-tint":"#4cd7f6","on-tertiary":"#00354a","inverse-surface":"#dae2fd","surface-bright":"#31394d","primary-fixed":"#acedff","on-secondary-container":"#003f38","inverse-primary":"#00687a","on-primary-fixed":"#001f26","secondary-fixed":"#71f8e4","on-tertiary-fixed-variant":"#004c69","background":"#0b1326","on-secondary-fixed-variant":"#005048","on-secondary-fixed":"#00201c","on-secondary":"#003731","primary-fixed-dim":"#4cd7f6","on-surface":"#dae2fd","tertiary-fixed":"#c4e7ff","on-primary":"#003640","surface-dim":"#0b1326","surface-container":"#171f33","on-tertiary-fixed":"#001e2c","on-primary-fixed-variant":"#004e5c","on-background":"#dae2fd","outline":"#869397","surface-container-high":"#222a3d","secondary":"#4fdbc8","inverse-on-surface":"#283044","tertiary":"#7bd0ff","surface-variant":"#2d3449","on-primary-container":"#00424f","surface-container-lowest":"#060e20","surface-container-highest":"#2d3449","secondary-fixed-dim":"#4fdbc8","surface":"#0b1326","on-surface-variant":"#bcc9cd","tertiary-container":"#23b2ec","on-error":"#690005","outline-variant":"#3d494c","tertiary-fixed-dim":"#7bd0ff","on-error-container":"#ffdad6","error-container":"#93000a","on-tertiary-container":"#00415a","error":"#ffb4ab"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"gutter":"1rem","space-md":"0.75rem","space-lg":"1rem","margin":"1.5rem","space-sm":"0.5rem","space-xs":"0.25rem","space-xl":"1.5rem"},fontFamily:{"headline-xl":["Inter"],"headline-lg":["Inter"],"headline-md":["Inter"],"label-md":["JetBrains Mono"],"body-sm":["Inter"],"body-lg":["Inter"],"metric-sub":["JetBrains Mono"],"metric-display":["JetBrains Mono"],"label-lg":["JetBrains Mono"],"headline-sm":["Inter"],"body-md":["Inter"],"label-sm":["JetBrains Mono"]},fontSize:{"headline-xl":["2rem",{"lineHeight":"2.5rem","letterSpacing":"-0.025em","fontWeight":"600"}],"headline-lg":["1.5rem",{"lineHeight":"2rem","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-md":["1.25rem",{"lineHeight":"1.75rem","letterSpacing":"-0.015em","fontWeight":"600"}],"label-md":["0.75rem",{"lineHeight":"1rem","letterSpacing":"0em","fontWeight":"500"}],"body-sm":["0.75rem",{"lineHeight":"1rem","letterSpacing":"0.01em","fontWeight":"400"}],"body-lg":["1rem",{"lineHeight":"1.5rem","letterSpacing":"0em","fontWeight":"400"}],"metric-sub":["1.125rem",{"lineHeight":"1.375rem","letterSpacing":"-0.02em","fontWeight":"500"}],"metric-display":["1.75rem",{"lineHeight":"2rem","letterSpacing":"-0.03em","fontWeight":"600"}],"label-lg":["0.875rem",{"lineHeight":"1.25rem","letterSpacing":"-0.01em","fontWeight":"500"}],"headline-sm":["1.125rem",{"lineHeight":"1.5rem","letterSpacing":"-0.01em","fontWeight":"500"}],"body-md":["0.875rem",{"lineHeight":"1.25rem","letterSpacing":"0em","fontWeight":"400"}],"label-sm":["0.6875rem",{"lineHeight":"0.875rem","letterSpacing":"0.02em","fontWeight":"400"}]}}}};</script></link><style>html,body{min-height:1024px}</style></head><body class="bg-background text-on-surface font-body-md text-body-md antialiased selection:bg-primary selection:text-on-primary min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.5)]"><div class="h-16 w-full px-space-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md shrink-0"><img alt="SentinelPay Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1URK3EgA-xqmFZdBsRVkDKqGMbBreCErzToRxmQzc8bsnqYyNn8fEtI9ZfyexIihWFk33qkMw5ZSszEjP6f0pP6tYB3FIsBxd7vXjpNy5AzhlOTAMIBvBIHV8kKfoekiosagdWjQwmNp6C1aZC6yaXhH7ytKfn6ZSAweopZQTEL5p7AyAUKf38OsqSxrHcdNZXwpBp_WLM-PnkSTJlxvo2RQgXlXAoTGiQQrYUd5MOdvWcS40WrEC7ficw"/><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight uppercase">SentinelPay</span><span class="font-label-sm text-label-sm text-primary tracking-widest uppercase bg-surface-container-high px-space-xs py-0.5 rounded">CORE-NOC</span></div><div class="h-5 w-px bg-surface-container-high mx-space-xs hidden xl:block"></div><div class="hidden xl:flex items-center gap-space-xs"><div class="flex items-center gap-1.5 px-space-xs py-0.5 rounded-full bg-secondary-container/20"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-secondary font-medium tracking-wide uppercase">LIVE SYNTHETICS</span></div><span class="font-label-sm text-label-sm text-on-surface-variant font-mono">Updated 3s ago · Probes active</span></div></div><nav class="hidden lg:flex items-center gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container rounded-lg font-medium shadow-[0_0_12px_rgba(6,182,212,0.3)]"><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all whitespace-nowrap" data-path="overview-and-journeys" href="#">Overview &amp; Journeys</a><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all whitespace-nowrap" data-path="active-incidents" href="#">Active Incidents (1 Critical)</a><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all whitespace-nowrap" data-path="chaos-control-deck" href="#">Chaos Control Deck</a><a aria-current="page" class="px-space-md py-1.5 transition-all whitespace-nowrap bg-primary-container text-on-primary-container rounded-lg font-medium shadow-[0_0_12px_rgba(6,182,212,0.3)]" data-path="auto-generated-synthetic-tests" href="#">Auto-Generated Synthetic Tests</a><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-body-sm text-body-sm transition-all whitespace-nowrap" data-path="rbi-watchdog" href="#">RBI Watchdog</a></nav><div class="flex items-center gap-space-md shrink-0"><div class="hidden md:flex flex-col items-end"><span class="font-label-sm text-label-sm text-secondary tracking-wide uppercase flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>PROD - Node Mumbai-1</span><span class="font-label-sm text-label-sm text-on-surface-variant">Latency 14ms · 99.98%</span></div><div class="flex items-center gap-space-xs"><button class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-error hover:bg-surface-container hover:text-error transition-colors relative" title="Critical Incident"><span class="material-symbols-outlined text-[18px]">warning</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-error animate-ping"></span></button><button class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Notifications"><span class="material-symbols-outlined text-[18px]">notifications</span></button></div><div class="flex items-center gap-space-xs pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="hidden 2xl:flex flex-col text-left"><span class="font-label-sm text-label-sm text-on-surface font-medium leading-none">R. Venkatesh</span><span class="font-label-sm text-label-sm text-on-surface-variant text-[10px] leading-tight">Operations Lead</span></div></div></div></div></header><main class="w-full pt-16 pb-10 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Context Breadcrumb and Operational Bar -->
+<div class="w-full px-space-lg py-space-md flex flex-wrap items-center justify-between gap-space-md bg-surface-container-lowest">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="hover:text-primary transition-colors cursor-pointer">CORE-NOC</span>
+<span class="text-outline-variant">/</span>
+<span class="hover:text-primary transition-colors cursor-pointer">SYNTHETIC OBSERVABILITY</span>
+<span class="text-outline-variant">/</span>
+<span class="text-primary font-medium tracking-wide">AUTO-GENERATED ENGINE</span>
+</div>
+<div class="flex items-center gap-space-md font-label-sm text-label-sm">
+<div class="flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-surface-container-high text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+<span>ML HEURISTIC MODEL v4.11-PROD</span>
+</div>
+<span class="text-on-surface-variant font-mono">RETRAINED 42m AGO</span>
+</div>
+</div>
+<!-- Primary Page Header -->
+<div class="w-full px-space-lg pt-space-xl pb-space-lg bg-surface-container-low flex flex-col xl:flex-row xl:items-end justify-between gap-space-lg">
+<div class="max-w-4xl space-y-space-xs">
+<div class="flex items-center gap-space-sm">
+<div class="w-2.5 h-2.5 rounded bg-primary-container shadow-[0_0_10px_rgba(6,182,212,0.6)]"></div>
+<span class="font-label-sm text-label-sm text-primary tracking-widest uppercase">AUTONOMOUS RESILIENCE VECTORS</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Auto-Generated Synthetic Tests</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl leading-relaxed">
+        Adaptive synthetic probes dynamically generated by SentinelPay’s Machine Learning pattern engine following real failure signatures and edge-case telemetry.
+      </p>
+</div>
+<!-- Global CTA and Quick Telemetry -->
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="px-space-md py-2 rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-bright transition-all font-body-sm text-body-sm flex items-center gap-1.5 active:scale-95" id="triggerSweepBtn">
+<span class="material-symbols-outlined text-[16px] text-primary">play_circle</span>
+<span>Trigger Suite Sweep</span>
+</button>
+<button class="px-space-md py-2 rounded-lg bg-primary text-on-primary font-body-sm text-body-sm hover:shadow-[0_0_16px_rgba(76,215,246,0.4)] transition-all flex items-center gap-1.5 active:scale-95 font-medium" id="exportSuitesBtn">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span>Export Test Suites</span>
+</button>
+</div>
+</div>
+<!-- Metric Summary Strip (Bento-style Telemetry Row) -->
+<div class="w-full px-space-lg py-space-lg grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter bg-surface-container-lowest">
+<!-- Metric 1: Total Probes Active -->
+<div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col justify-between group">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Total Probes Active</span>
+<span class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_rgba(79,219,200,0.8)] animate-ping"></span>
+</div>
+<div class="my-space-sm flex items-baseline gap-space-xs">
+<span class="font-metric-display text-metric-display text-on-surface tracking-tight">32</span>
+<span class="font-label-md text-label-md text-secondary">Probes Online</span>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Across 6 Payment Corridors</span>
+<span class="text-secondary font-mono">100% Target Cover</span>
+</div>
+</div>
+<!-- Metric 2: Auto-Created from Incidents -->
+<div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col justify-between group relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-20 h-20 rounded-full bg-tertiary-container/10 blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Auto-Created From Incidents</span>
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-tertiary-container/20 text-tertiary font-mono">ML-DERIVED</span>
+</div>
+<div class="my-space-sm flex items-baseline gap-space-xs">
+<span class="font-metric-display text-metric-display text-primary tracking-tight">14</span>
+<span class="font-label-md text-label-md text-on-surface">Dynamic Tests</span>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Avg Generation Latency</span>
+<span class="text-primary font-mono">&lt; 4.2 mins post-RCA</span>
+</div>
+</div>
+<!-- Metric 3: Probe Run Frequency -->
+<div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col justify-between group">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Probe Run Frequency</span>
+<span class="material-symbols-outlined text-primary text-[18px]">history</span>
+</div>
+<div class="my-space-sm flex items-baseline gap-space-xs">
+<span class="font-metric-display text-metric-display text-on-surface tracking-tight">Every 15s</span>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Synthetic Load Injected</span>
+<span class="text-on-surface font-mono">128.4 req/min</span>
+</div>
+</div>
+<!-- Metric 4: Flakiness Score -->
+<div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col justify-between group">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Flakiness Score</span>
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-secondary-container/20 text-secondary font-mono">STABLE</span>
+</div>
+<div class="my-space-sm flex items-baseline gap-space-xs">
+<span class="font-metric-display text-metric-display text-secondary tracking-tight">0.04%</span>
+<span class="font-label-md text-label-md text-on-surface-variant">(Highly Stable)</span>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>False Positives (24h)</span>
+<span class="text-secondary font-mono">0 Anomalies</span>
+</div>
+</div>
+</div>
+<!-- Operational Filter / Search Bar -->
+<div class="w-full px-space-lg py-space-md bg-surface-container-low flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+<!-- Search and Journey Tabs -->
+<div class="flex flex-col md:flex-row items-stretch md:items-center gap-space-sm flex-1">
+<!-- Search Input -->
+<div class="relative min-w-[280px] max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-outline">search</span>
+<input class="w-full pl-9 pr-space-md py-1.5 rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary shadow-inner" id="testSearchInput" placeholder="Search by test ID, name, or failure signature..." type="text"/>
+</div>
+<!-- Journey Pills -->
+<div class="flex items-center gap-1 overflow-x-auto py-1 scrollbar-none" id="journeyFilterGroup">
+<button class="journey-tab px-space-sm py-1 rounded-md text-on-primary bg-primary-container font-label-sm text-label-sm transition-all whitespace-nowrap" data-filter="all">
+          All (32)
+        </button>
+<button class="journey-tab px-space-sm py-1 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-sm text-label-sm transition-all whitespace-nowrap" data-filter="upi">
+          UPI Payment (18)
+        </button>
+<button class="journey-tab px-space-sm py-1 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-sm text-label-sm transition-all whitespace-nowrap" data-filter="imps">
+          Fund Transfer (7)
+        </button>
+<button class="journey-tab px-space-sm py-1 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-sm text-label-sm transition-all whitespace-nowrap" data-filter="login">
+          Login (4)
+        </button>
+<button class="journey-tab px-space-sm py-1 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-sm text-label-sm transition-all whitespace-nowrap" data-filter="confirm">
+          Confirmation (3)
+        </button>
+</div>
+</div>
+<!-- Status Dropdown & View Mode -->
+<div class="flex items-center gap-space-sm shrink-0">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span>Status:</span>
+<select class="bg-surface-container-lowest text-on-surface rounded-md px-space-sm py-1.5 focus:outline-none focus:ring-1 focus:ring-primary font-label-sm text-label-sm cursor-pointer" id="statusFilterSelect">
+<option value="all">All States</option>
+<option selected="" value="active">Active Only (32)</option>
+<option value="dormant">Dormant (0)</option>
+<option value="recalibrating">Recalibrating (0)</option>
+</select>
+</div>
+<div class="h-4 w-px bg-surface-container-high mx-space-xs hidden sm:block"></div>
+<div class="flex items-center rounded-lg bg-surface-container-lowest p-0.5">
+<button class="p-1 rounded bg-surface-container text-primary" title="Compact List View">
+<span class="material-symbols-outlined text-[16px]">view_agenda</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface" title="Matrix View">
+<span class="material-symbols-outlined text-[16px]">grid_view</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Primary Work Surface: Test Suites List + Telemetry Drawer Shell -->
+<div class="w-full px-space-lg py-space-lg grid grid-cols-1 2xl:grid-cols-12 gap-space-lg">
+<!-- Test Suites Column (Spans 8 columns on 2xl, 12 on smaller) -->
+<div class="2xl:col-span-8 flex flex-col gap-space-md" id="testsCardContainer">
+<!-- Test 1: AUTOTEST-UPI-089 -->
+<div class="test-item-card p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col gap-space-md relative overflow-hidden group shadow-sm" data-journey="upi" data-testid="AUTOTEST-UPI-089">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="font-mono font-label-md text-label-md text-primary font-semibold tracking-wide">AUTOTEST-UPI-089</span>
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-tertiary-container/15 text-tertiary font-mono">
+<span class="material-symbols-outlined text-[13px]">smart_toy</span>
+<span>Auto-created from Incident #INC-2024-0891</span>
+</span>
+</div>
+<div class="flex items-center gap-space-xs self-start sm:self-auto">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-secondary-container/20 text-secondary font-label-sm text-label-sm font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>Active</span>
+</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">Success 98.4%</span>
+</div>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors cursor-pointer" onclick="openInspector('AUTOTEST-UPI-089')">
+            UPI High-Value (&gt;₹50k) Route Timeout Probe
+          </h2>
+<div class="mt-1 flex flex-wrap items-center gap-x-space-md gap-y-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="text-outline-variant font-mono">Journey:</span>
+<strong class="text-on-surface font-medium">UPI Payment</strong>
+</span>
+<span class="text-outline-variant">·</span>
+<span class="flex items-center gap-1">
+<span class="text-outline-variant font-mono">Target Step:</span>
+<span class="text-on-surface font-mono">Receiver Bank Auth</span>
+</span>
+<span class="text-outline-variant">·</span>
+<span class="flex items-center gap-1">
+<span class="text-outline-variant font-mono">Condition:</span>
+<span class="text-primary-fixed-dim">Amount &gt; ₹50,000 to Bank X gateway</span>
+</span>
+</div>
+</div>
+<!-- Telemetry Execution Bar & Actions -->
+<div class="pt-space-xs flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-lowest/60 p-space-sm rounded-lg">
+<div class="flex flex-wrap items-center gap-space-md font-label-sm text-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-outline">timelapse</span>
+<span>Cadence: <strong class="text-on-surface font-mono">Every 30s</strong></span>
+</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span>
+<span>Last: <strong class="text-secondary font-mono">12s ago · Passed (240ms)</strong></span>
+</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-sm text-label-sm transition-all flex items-center gap-1" onclick="openInspector('AUTOTEST-UPI-089')">
+<span class="material-symbols-outlined text-[14px]">code</span>
+<span>View Test Script</span>
+</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-bright text-primary font-label-sm text-label-sm transition-all flex items-center gap-1" onclick="runProbe(this, 'AUTOTEST-UPI-089')">
+<span class="material-symbols-outlined text-[14px]">play_arrow</span>
+<span>Run Now</span>
+</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-bright text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all flex items-center gap-1" onclick="openInspector('AUTOTEST-UPI-089')">
+<span class="material-symbols-outlined text-[14px]">edit_note</span>
+<span>Edit Payload</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Test 2: AUTOTEST-IMPS-042 -->
+<div class="test-item-card p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col gap-space-md relative overflow-hidden group shadow-sm" data-journey="imps" data-testid="AUTOTEST-IMPS-042">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="font-mono font-label-md text-label-md text-primary font-semibold tracking-wide">AUTOTEST-IMPS-042</span>
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-tertiary-container/15 text-tertiary font-mono">
+<span class="material-symbols-outlined text-[13px]">smart_toy</span>
+<span>Auto-created from Incident #INC-2024-0715</span>
+</span>
+</div>
+<div class="flex items-center gap-space-xs self-start sm:self-auto">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-secondary-container/20 text-secondary font-label-sm text-label-sm font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>Active</span>
+</span>
+<span class="font-label-sm text-label-sm text-secondary font-mono font-semibold">Success 99.9%</span>
+</div>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors cursor-pointer" onclick="openInspector('AUTOTEST-IMPS-042')">
+            Late Night Core Banking CBS Balance Sync Probe
+          </h2>
+<div class="mt-1 flex flex-wrap items-center gap-x-space-md gap-y-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="text-outline-variant font-mono">Journey:</span>
+<strong class="text-on-surface font-medium">Fund Transfer (IMPS)</strong>
+</span>
+<span class="text-outline-variant">·</span>
+<span class="flex items-center gap-1">
+<span class="text-outline-variant font-mono">Target Step:</span>
+<span class="text-on-surface font-mono">Core Debit</span>
+</span>
+<span class="text-outline-variant">·</span>
+<span class="flex items-center gap-1">
+<span class="text-outline-variant font-mono">Condition:</span>
+<span class="text-primary-fixed-dim">Batch ledger lock simulation</span>
+</span>
+</div>
+</div>
+<div class="pt-space-xs flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-lowest/60 p-space-sm rounded-lg">
+<div class="flex flex-wrap items-center gap-space-md font-label-sm text-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-outline">timelapse</span>
+<span>Cadence: <strong class="text-on-surface font-mono">Every 60s</strong></span>
+</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span>
+<span>Last: <strong class="text-secondary font-mono">34s ago · Passed (380ms)</strong></span>
+</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-sm text-label-sm transition-all flex items-center gap-1" onclick="openInspector('AUTOTEST-IMPS-042')">
+<span class="material-symbols-outlined text-[14px]">code</span>
+<span>View Test Script</span>
+</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-bright text-primary font-label-sm text-label-sm transition-all flex items-center gap-1" onclick="runProbe(this, 'AUTOTEST-IMPS-042')">
+<span class="material-symbols-outlined text-[14px]">play_arrow</span>
+<span>Run Now</span>
+</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-bright text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all flex items-center gap-1" onclick="openInspector('AUTOTEST-IMPS-042')">
+<span class="material-symbols-outlined text-[14px]">edit_note</span>
+<span>Edit Payload</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Test 3: AUTOTEST-UPI-077 -->
+<div class="test-item-card p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col gap-space-md relative overflow-hidden group shadow-sm" data-journey="upi" data-testid="AUTOTEST-UPI-077">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="font-mono font-label-md text-label-md text-primary font-semibold tracking-wide">AUTOTEST-UPI-077</span>
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-tertiary-container/15 text-tertiary font-mono">
+<span class="material-symbols-outlined text-[13px]">smart_toy</span>
+<span>Auto-created from Incident #INC-2024-0680</span>
+</span>
+</div>
+<div class="flex items-center gap-space-xs self-start sm:self-auto">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-secondary-container/20 text-secondary font-label-sm text-label-sm font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>Active</span>
+</span>
+<span class="font-label-sm text-label-sm text-secondary font-mono font-semibold">Success 100%</span>
+</div>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors cursor-pointer" onclick="openInspector('AUTOTEST-UPI-077')">
+            NPCI VPA Handle Special Characters Check
+          </h2>
+<div class="mt-1 flex flex-wrap items-center gap-x-space-md gap-y-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="text-outline-variant font-mono">Journey:</span>
+<strong class="text-on-surface font-medium">UPI Payment</strong>
+</span>
+<span class="text-outline-variant">·</span>
+<span class="flex items-center gap-1">
+<span class="text-outline-variant font-mono">Target Step:</span>
+<span class="text-on-surface font-mono">VPA Resolution</span>
+</span>
+<span class="text-outline-variant">·</span>
+<span class="flex items-center gap-1">
+<span class="text-outline-variant font-mono">Condition:</span>
+<span class="text-primary-fixed-dim">VPA with hyphen and period format</span>
+</span>
+</div>
+</div>
+<div class="pt-space-xs flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-lowest/60 p-space-sm rounded-lg">
+<div class="flex flex-wrap items-center gap-space-md font-label-sm text-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-outline">timelapse</span>
+<span>Cadence: <strong class="text-on-surface font-mono">Every 45s</strong></span>
+</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span>
+<span>Last: <strong class="text-secondary font-mono">21s ago · Passed (190ms)</strong></span>
+</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-sm text-label-sm transition-all flex items-center gap-1" onclick="openInspector('AUTOTEST-UPI-077')">
+<span class="material-symbols-outlined text-[14px]">code</span>
+<span>View Test Script</span>
+</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-bright text-primary font-label-sm text-label-sm transition-all flex items-center gap-1" onclick="runProbe(this, 'AUTOTEST-UPI-077')">
+<span class="material-symbols-outlined text-[14px]">play_arrow</span>
+<span>Run Now</span>
+</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-bright text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all flex items-center gap-1" onclick="openInspector('AUTOTEST-UPI-077')">
+<span class="material-symbols-outlined text-[14px]">edit_note</span>
+<span>Edit Payload</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Test 4: AUTOTEST-LOG-019 -->
+<div class="test-item-card p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col gap-space-md relative overflow-hidden group shadow-sm" data-journey="login" data-testid="AUTOTEST-LOG-019">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="font-mono font-label-md text-label-md text-primary font-semibold tracking-wide">AUTOTEST-LOG-019</span>
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-tertiary-container/15 text-tertiary font-mono">
+<span class="material-symbols-outlined text-[13px]">smart_toy</span>
+<span>Auto-created from Incident #INC-2024-0544</span>
+</span>
+</div>
+<div class="flex items-center gap-space-xs self-start sm:self-auto">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-secondary-container/20 text-secondary font-label-sm text-label-sm font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>Active</span>
+</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">Success 99.1%</span>
+</div>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors cursor-pointer" onclick="openInspector('AUTOTEST-LOG-019')">
+            SMS OTP Gateway Throttle Under High Load
+          </h2>
+<div class="mt-1 flex flex-wrap items-center gap-x-space-md gap-y-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="text-outline-variant font-mono">Journey:</span>
+<strong class="text-on-surface font-medium">Login</strong>
+</span>
+<span class="text-outline-variant">·</span>
+<span class="flex items-center gap-1">
+<span class="text-outline-variant font-mono">Target Step:</span>
+<span class="text-on-surface font-mono">OTP Dispatch</span>
+</span>
+<span class="text-outline-variant">·</span>
+<span class="flex items-center gap-1">
+<span class="text-outline-variant font-mono">Condition:</span>
+<span class="text-primary-fixed-dim">Simultaneous 20 OTP requests</span>
+</span>
+</div>
+</div>
+<div class="pt-space-xs flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-lowest/60 p-space-sm rounded-lg">
+<div class="flex flex-wrap items-center gap-space-md font-label-sm text-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-outline">timelapse</span>
+<span>Cadence: <strong class="text-on-surface font-mono">Every 15s</strong></span>
+</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span>
+<span>Last: <strong class="text-secondary font-mono">6s ago · Passed (310ms)</strong></span>
+</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-sm text-label-sm transition-all flex items-center gap-1" onclick="openInspector('AUTOTEST-LOG-019')">
+<span class="material-symbols-outlined text-[14px]">code</span>
+<span>View Test Script</span>
+</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-bright text-primary font-label-sm text-label-sm transition-all flex items-center gap-1" onclick="runProbe(this, 'AUTOTEST-LOG-019')">
+<span class="material-symbols-outlined text-[14px]">play_arrow</span>
+<span>Run Now</span>
+</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-bright text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all flex items-center gap-1" onclick="openInspector('AUTOTEST-LOG-019')">
+<span class="material-symbols-outlined text-[14px]">edit_note</span>
+<span>Edit Payload</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Test 5: AUTOTEST-REV-094 -->
+<div class="test-item-card p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col gap-space-md relative overflow-hidden group shadow-sm" data-journey="confirm" data-testid="AUTOTEST-REV-094">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="font-mono font-label-md text-label-md text-primary font-semibold tracking-wide">AUTOTEST-REV-094</span>
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-tertiary-container/15 text-tertiary font-mono">
+<span class="material-symbols-outlined text-[13px]">smart_toy</span>
+<span>Auto-created from Incident #INC-2024-0822</span>
+</span>
+</div>
+<div class="flex items-center gap-space-xs self-start sm:self-auto">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-secondary-container/20 text-secondary font-label-sm text-label-sm font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>Active</span>
+</span>
+<span class="font-label-sm text-label-sm text-secondary font-mono font-semibold">Success 99.7%</span>
+</div>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors cursor-pointer" onclick="openInspector('AUTOTEST-REV-094')">
+            RBI T+1 Harmonisation Reversal Pipeline Probe
+          </h2>
+<div class="mt-1 flex flex-wrap items-center gap-x-space-md gap-y-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="text-outline-variant font-mono">Journey:</span>
+<strong class="text-on-surface font-medium">Payment Confirmation</strong>
+</span>
+<span class="text-outline-variant">·</span>
+<span class="flex items-center gap-1">
+<span class="text-outline-variant font-mono">Target Step:</span>
+<span class="text-on-surface font-mono">Ledger Receipt</span>
+</span>
+<span class="text-outline-variant">·</span>
+<span class="flex items-center gap-1">
+<span class="text-outline-variant font-mono">Condition:</span>
+<span class="text-primary-fixed-dim">Auto-reversal API handshake response validation</span>
+</span>
+</div>
+</div>
+<div class="pt-space-xs flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-lowest/60 p-space-sm rounded-lg">
+<div class="flex flex-wrap items-center gap-space-md font-label-sm text-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-outline">timelapse</span>
+<span>Cadence: <strong class="text-on-surface font-mono">Every 20s</strong></span>
+</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span>
+<span>Last: <strong class="text-secondary font-mono">9s ago · Passed (220ms)</strong></span>
+</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-sm text-label-sm transition-all flex items-center gap-1" onclick="openInspector('AUTOTEST-REV-094')">
+<span class="material-symbols-outlined text-[14px]">code</span>
+<span>View Test Script</span>
+</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-bright text-primary font-label-sm text-label-sm transition-all flex items-center gap-1" onclick="runProbe(this, 'AUTOTEST-REV-094')">
+<span class="material-symbols-outlined text-[14px]">play_arrow</span>
+<span>Run Now</span>
+</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-bright text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all flex items-center gap-1" onclick="openInspector('AUTOTEST-REV-094')">
+<span class="material-symbols-outlined text-[14px]">edit_note</span>
+<span>Edit Payload</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side Inspector / Configuration Console (Spans 4 columns on 2xl) -->
+<div class="2xl:col-span-4 flex flex-col gap-space-md">
+<!-- Interactive Inspector Panel -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-md sticky top-20 shadow-md" id="inspectorPanel">
+<!-- Inspector Header -->
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">terminal</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Configuration Inspector</span>
+</div>
+<span class="font-mono font-label-sm text-label-sm text-secondary bg-surface-container px-space-xs py-0.5 rounded" id="inspectorTargetId">
+            AUTOTEST-UPI-089
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Live synthetic execution payload and dynamic retry triggers compiled from real failure signature telemetry.
+        </p>
+<!-- Simulated Probe Execution Visualizer -->
+<div class="p-space-sm rounded-lg bg-surface-container-lowest flex flex-col gap-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Latency Distribution (Last 10 Runs)</span>
+<span class="text-secondary font-mono">Avg 248ms</span>
+</div>
+<!-- Sparkline Bars -->
+<div class="h-10 w-full flex items-end gap-1.5 pt-1">
+<div class="flex-1 bg-primary/40 rounded-t h-[60%] hover:bg-primary transition-colors" title="Run 1: 210ms"></div>
+<div class="flex-1 bg-primary/40 rounded-t h-[75%] hover:bg-primary transition-colors" title="Run 2: 245ms"></div>
+<div class="flex-1 bg-primary/40 rounded-t h-[55%] hover:bg-primary transition-colors" title="Run 3: 198ms"></div>
+<div class="flex-1 bg-primary/40 rounded-t h-[65%] hover:bg-primary transition-colors" title="Run 4: 220ms"></div>
+<div class="flex-1 bg-primary/40 rounded-t h-[90%] hover:bg-primary transition-colors" title="Run 5: 290ms"></div>
+<div class="flex-1 bg-primary/40 rounded-t h-[70%] hover:bg-primary transition-colors" title="Run 6: 235ms"></div>
+<div class="flex-1 bg-primary/40 rounded-t h-[80%] hover:bg-primary transition-colors" title="Run 7: 260ms"></div>
+<div class="flex-1 bg-primary/40 rounded-t h-[60%] hover:bg-primary transition-colors" title="Run 8: 215ms"></div>
+<div class="flex-1 bg-primary/40 rounded-t h-[72%] hover:bg-primary transition-colors" title="Run 9: 240ms"></div>
+<div class="flex-1 bg-secondary rounded-t h-[74%] shadow-[0_0_8px_rgba(79,219,200,0.5)]" title="Latest: 242ms"></div>
+</div>
+</div>
+<!-- JSON Payload Snippet Inspector -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span class="font-mono text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">data_object</span>
+<span>SYNTHETIC_REQUEST_PAYLOAD.json</span>
+</span>
+<button class="hover:text-on-surface flex items-center gap-1 transition-colors" onclick="copyPayload()" title="Copy to clipboard">
+<span class="material-symbols-outlined text-[13px]">content_copy</span>
+<span>Copy</span>
+</button>
+</div>
+<div 90="" backdrop-blur-md="" bg-surface-container-lowest="" bottom-0="" class="rounded-lg bg-surface-container-lowest p-space-&lt;/main&gt;&lt;footer class=" fixed="" left-0="" shadow-[0_-1px_6px_rgba(0,0,0,0.4)]"="" w-full="" z-40=""><div class="h-8 w-full px-space-lg flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm"><div class="flex items-center gap-space-md"><div class="flex items-center gap-1.5 text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span><span>CLUSTER UPTIME: 99.98%</span></div><span class="text-outline-variant">|</span><div class="flex items-center gap-1.5 text-on-surface-variant"><span>PROBE HEARTBEAT:</span><span class="text-primary font-mono">STABLE (1,240/1,240 OK)</span></div><span class="text-outline-variant hidden sm:inline">|</span><div class="hidden sm:flex items-center gap-1.5 text-on-surface-variant"><span>ACTIVE QUEUE:</span><span class="text-on-surface font-mono">4,192 TPS</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-1 text-on-surface-variant hidden md:flex"><span class="material-symbols-outlined text-[14px] text-secondary">shield</span><span>RBI CIRCULAR DPSS.CO.OD AUDIT: COMPLIANT</span></div><span class="text-on-surface-variant font-mono">UTC+05:30 IST</span></div></div></div></div></div></div></div></div></main></body></html>

@@ -1,0 +1,24 @@
+html, body { margin: 0; padding: 0; }
+body { overscroll-behavior: none; font-feature-settings: "tnum"; }
+.material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; user-select: none; }
+.icon-fill { font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24; }
+.font-mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: #2d3449; border-radius: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+.sp-toast { animation: sp-in .25s ease-out; }
+@keyframes sp-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.sp-fade { animation: sp-in .2s ease-out; }
+.sp-spin { animation: sp-rot 1s linear infinite; }
+@keyframes sp-rot { to { transform: rotate(360deg); } }
+.row-hover:hover { background: #1E293B; box-shadow: inset 2px 0 0 #06B6D4; }
+.skeleton { background: linear-gradient(90deg, #171f33 0%, #222a3d 50%, #171f33 100%); background-size: 200% 100%; animation: sk 1.4s infinite; border-radius: 4px; }
+@keyframes sk { to { background-position: -200% 0; } }
+pre.md { white-space: pre-wrap; word-break: break-word; }
+.md-view h1 { font-size: 1.25rem; font-weight: 600; margin: 0 0 .75rem; color: #dae2fd; }
+.md-view h2 { font-size: .95rem; font-weight: 600; margin: 1rem 0 .4rem; color: #4cd7f6; text-transform: uppercase; letter-spacing: .04em; }
+.md-view p, .md-view li { font-size: .875rem; line-height: 1.4rem; color: #bcc9cd; }
+.md-view ul { padding-left: 1.1rem; list-style: disc; }
+.md-view code { font-family: "JetBrains Mono", monospace; font-size: .78rem; background: #060e20; padding: 1px 4px; border-radius: 3px; color: #dae2fd; }
+.md-view hr { border-color: #2d3449; margin: 1rem 0; }
+.md-view strong { color: #dae2fd; }

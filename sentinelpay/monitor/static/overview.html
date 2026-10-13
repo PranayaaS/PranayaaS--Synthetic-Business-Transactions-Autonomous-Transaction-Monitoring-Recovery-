@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SentinelPay – Overview &amp; Journeys</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="/static/vendor/fonts.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<!-- Local copies first (python vendor_assets.py), CDN fallback -->
+<script src="/static/vendor/tailwind.js"></script>
+<script>window.tailwind || document.write('<script src="https://cdn.tailwindcss.com"><\/script>')</script>
+<script src="/static/tw.js"></script>
+<script src="/static/vendor/chart.umd.min.js"></script>
+<script>window.Chart || document.write('<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"><\/script>')</script>
+<link rel="stylesheet" href="/static/app.css">
+<script src="/static/app.js"></script>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased selection:bg-primary selection:text-on-primary min-h-screen">
+<div id="sp-header"></div>
+<main class="w-full pt-16 pb-12 bg-background min-h-screen">
+<div class="w-full px-space-lg py-space-md flex flex-col gap-space-lg">
+
+<!-- Live control & telemetry bar -->
+<section class="w-full bg-surface-container-low rounded-xl p-space-md shadow-md flex flex-wrap items-center justify-between gap-space-md">
+  <div class="flex flex-wrap items-center gap-space-lg min-w-0">
+    <div class="flex items-center gap-space-sm bg-surface-container-lowest px-space-md py-1.5 rounded-lg shadow-sm">
+      <span class="relative flex h-2.5 w-2.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span></span>
+      <span class="font-label-md text-label-md text-primary font-semibold tracking-wider uppercase">Live monitoring</span>
+      <span class="text-outline-variant font-label-md text-label-md">·</span>
+      <span id="cb-probes" class="font-label-md text-label-md text-on-surface-variant font-mono">— PROBES</span>
+    </div>
+    <div class="flex items-center gap-space-xs text-on-surface-variant">
+      <span class="material-symbols-outlined text-[16px] text-secondary">update</span>
+      <span class="font-body-sm text-body-sm">Last checked:</span>
+      <span id="cb-last" class="font-label-sm text-label-sm text-on-surface font-semibold font-mono">—</span>
+    </div>
+    <a href="/chaos" class="hidden xl:flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant bg-surface-container-high px-space-sm py-1 rounded hover:text-on-surface">
+      <span class="material-symbols-outlined text-[14px] text-primary">lan</span><span>CHAOS MODE:</span><span id="cb-chaos" class="font-mono text-secondary">—</span>
+      <span class="text-outline-variant">|</span><span id="cb-success" class="text-secondary font-mono">SUCCESS: —</span>
+    </a>
+  </div>
+  <div class="flex flex-wrap items-center gap-space-sm">
+    <div class="flex items-center gap-2 bg-surface-container px-space-sm py-1 rounded-lg">
+      <span class="font-label-sm text-label-sm text-on-surface-variant">Auto-sync (3s)</span>
+      <button id="toggle-sync" aria-label="Toggle auto sync" class="w-8 h-4 rounded-full bg-primary relative transition-colors cursor-pointer"><div class="w-3 h-3 rounded-full bg-surface-container-lowest absolute top-0.5 transition-all"></div></button>
+    </div>
+    <button id="manual-refresh" class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-bright text-on-surface text-body-sm font-medium transition-all shadow-sm group">
+      <span class="material-symbols-outlined text-[16px] text-primary group-hover:rotate-180 transition-transform duration-500">sync</span><span class="font-body-sm text-body-sm">Run probe now</span>
+    </button>
+    <a id="cb-incidents" href="/incidents" class="flex items-center gap-1 px-space-md py-1.5 rounded-lg bg-surface-container-high text-secondary font-body-sm text-body-sm font-semibold shadow-sm hover:brightness-110 transition-all">
+      <span class="material-symbols-outlined text-[16px]">verified</span><span>All journeys healthy</span>
+    </a>
+  </div>
+</section>
+
+<!-- KPI cards -->
+<section class="w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-space-md">
+  <div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between shadow-sm relative overflow-hidden hover:bg-surface-container transition-colors">
+    <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-xl pointer-events-none"></div>
+    <div class="flex items-start justify-between mb-2"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Journeys Healthy</span><span id="k-j-badge"></span></div>
+    <div class="flex items-baseline gap-space-sm mb-1"><span id="k-j" class="font-metric-display text-metric-display text-on-surface font-mono">— / —</span><span class="font-label-md text-label-md text-on-surface-variant font-mono">ACTIVE</span></div>
+    <div class="flex items-center justify-between text-on-surface-variant gap-2"><span id="k-j-sub" class="font-body-sm text-body-sm">—</span><div class="w-16 h-1.5 bg-surface-container-highest rounded-full overflow-hidden flex"><div id="k-j-ok" class="bg-secondary h-full" style="width:0"></div><div id="k-j-bad" class="bg-error h-full" style="width:0"></div></div></div>
+  </div>
+  <div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between shadow-sm hover:bg-surface-container transition-colors">
+    <div class="flex items-start justify-between mb-2"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Mean Time To Detect</span><span class="material-symbols-outlined text-[16px] text-secondary">radar</span></div>
+    <div class="flex items-baseline gap-space-sm mb-1"><span id="k-mttd" class="font-metric-display text-metric-display text-secondary font-mono">—</span><span class="font-label-sm text-label-sm text-on-surface-variant">MTTD avg</span></div>
+    <div class="text-on-surface-variant"><span id="k-mttd-sub" class="font-body-sm text-body-sm">—</span></div>
+  </div>
+  <div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between shadow-sm hover:bg-surface-container transition-colors">
+    <div class="flex items-start justify-between mb-2"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Mean Time To Recovery</span><span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-label-sm font-medium bg-surface-container-high text-primary">Target &lt; 5 min</span></div>
+    <div class="flex items-baseline gap-space-sm mb-1"><span id="k-mttr" class="font-metric-display text-metric-display text-on-surface font-mono">—</span><span id="k-mttr-tag" class="font-label-sm text-label-sm text-secondary">m:ss</span></div>
+    <div class="flex items-center justify-between text-on-surface-variant"><span id="k-mttr-sub" class="font-body-sm text-body-sm">Human-approved recovery</span><span class="material-symbols-outlined text-[16px] text-primary">bolt</span></div>
+  </div>
+  <a href="/incidents" id="k-impact-card" class="xl:col-span-2 bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between shadow-sm relative overflow-hidden hover:bg-surface-container transition-colors">
+    <div id="k-impact-glow" class="absolute -right-6 -bottom-6 w-32 h-32 bg-secondary/10 rounded-full blur-xl pointer-events-none"></div>
+    <div class="flex items-start justify-between mb-2"><span id="k-impact-label" class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Active Business Impact</span><span id="k-impact-badge"></span></div>
+    <div class="flex items-baseline gap-space-sm mb-1 flex-wrap"><span id="k-impact" class="font-metric-display text-[2.1rem] leading-[2.4rem] text-on-surface font-mono font-semibold">₹0</span><span class="font-label-sm text-label-sm text-on-surface-variant font-mono">FAILED VALUE (OPEN INCIDENTS)</span></div>
+    <div class="flex items-center justify-between text-on-surface-variant"><span id="k-impact-sub" class="font-body-sm text-body-sm">—</span><span class="material-symbols-outlined text-[16px] text-error">gavel</span></div>
+  </a>
+</section>
+
+<!-- Journey health grid -->
+<section class="w-full flex flex-col gap-space-sm">
+  <div class="flex items-center justify-between px-space-xs flex-wrap gap-2">
+    <div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">Synthetic E2E Payment Journeys</span><span id="j-count" class="font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant px-space-xs py-0.5 rounded font-mono">—</span></div>
+    <span id="j-cycle" class="font-label-sm text-label-sm text-on-surface-variant font-mono">AUTOMATED CYCLE: 30s INTERVAL</span>
+  </div>
+  <div id="journeys" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
+    <div class="skeleton h-48"></div><div class="skeleton h-48"></div><div class="skeleton h-48"></div><div class="skeleton h-48"></div>
+  </div>
+</section>
+
+<section class="w-full grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+  <div class="lg:col-span-8 flex flex-col gap-space-lg min-w-0">
+    <!-- Latency chart -->
+    <div class="bg-surface-container-low rounded-xl p-space-md shadow-md flex flex-col gap-space-md relative overflow-hidden">
+      <div class="flex flex-wrap items-center justify-between gap-space-sm">
+        <div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Synthetic Probe Step Latency</span><span class="font-body-sm text-body-sm text-on-surface-variant">Last 30 minutes · one line per journey step · dashed line = slow threshold</span></div>
+        <div id="lat-legend" class="flex flex-wrap items-center gap-space-md text-label-sm font-label-sm"></div>
+      </div>
+      <div class="w-full h-64 bg-surface-container-lowest rounded-lg p-2.5 relative shadow-inner"><canvas id="lat-chart"></canvas></div>
+      <div class="flex flex-wrap items-center justify-between text-body-sm text-on-surface-variant bg-surface-container px-space-md py-2 rounded-lg gap-2">
+        <div class="flex items-center gap-space-sm"><span class="font-label-sm text-label-sm uppercase text-secondary">Synthetic probe engine:</span><span>Playwright headless Chromium → mock bank (login → transfer → pay → receipt)</span></div>
+        <div class="flex items-center gap-space-sm font-mono text-label-sm"><span>Avg E2E: <strong id="lat-avg" class="text-on-surface">—</strong></span><span class="text-outline-variant">|</span><span>P99 step: <strong id="lat-p99" class="text-error">—</strong></span></div>
+      </div>
+    </div>
+
+    <!-- Failure layer diagnostics -->
+    <div class="bg-surface-container-low rounded-xl p-space-md shadow-md flex flex-col gap-space-md">
+      <div class="flex items-center justify-between flex-wrap gap-2">
+        <div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-primary text-[20px]">layers</span><span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Failure Layer Diagnostics</span></div>
+        <span class="font-label-sm text-label-sm text-on-surface-variant">Real customer transactions · last 60 min · <strong id="ly-total" class="text-primary font-mono">—</strong> txns</span>
+      </div>
+      <div id="rc-banner"></div>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-space-md items-stretch">
+        <div id="layers" class="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-space-md"></div>
+        <div class="md:col-span-2 bg-surface-container rounded-lg p-space-sm min-h-[180px]"><canvas id="layer-chart"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Recent incidents -->
+    <div class="bg-surface-container-low rounded-xl p-space-md shadow-md flex flex-col gap-space-sm">
+      <div class="flex items-center justify-between"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-error text-[20px]">crisis_alert</span><span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Incidents</span></div><a href="/incidents" class="font-label-sm text-label-sm text-primary hover:underline">View all →</a></div>
+      <div class="overflow-x-auto"><table class="w-full text-left text-body-sm">
+        <thead><tr class="bg-surface-container-lowest text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider"><th class="px-2 py-2">Severity</th><th class="px-2 py-2">Incident</th><th class="px-2 py-2">Layer</th><th class="px-2 py-2 text-right">Impact</th><th class="px-2 py-2">Status</th><th class="px-2 py-2 text-right">Age</th></tr></thead>
+        <tbody id="inc-rows"></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- Right column -->
+  <div class="lg:col-span-4 flex flex-col gap-space-md">
+    <div class="bg-surface-container-low rounded-xl p-space-md shadow-md flex flex-col gap-space-md relative overflow-hidden">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-[22px]">verified_user</span>
+          <div><span class="font-headline-sm text-headline-sm text-on-surface font-semibold block leading-tight">RBI Watchdog</span><span class="font-label-sm text-label-sm text-on-surface-variant font-mono">Debited-not-credited reversal clock</span></div></div>
+        <span id="wd-rule" class="px-2 py-0.5 rounded-full text-[10px] font-label-sm bg-secondary-container/20 text-secondary font-mono font-bold">T+1 CLOCK</span>
+      </div>
+      <div class="bg-surface-container rounded-lg p-space-sm flex items-start gap-space-sm">
+        <span class="material-symbols-outlined text-error text-[18px] shrink-0 mt-0.5">notification_important</span>
+        <div class="flex flex-col"><span id="wd-head" class="font-body-sm text-body-sm font-semibold text-on-surface">—</span><span id="wd-sub" class="font-label-sm text-label-sm text-on-surface-variant">—</span></div>
+      </div>
+      <div class="flex items-center justify-between px-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Highest urgency queue</span><span id="wd-breach" class="font-label-sm text-label-sm text-error font-mono"></span></div>
+      <div id="wd-list" class="flex flex-col gap-space-sm"></div>
+      <div class="bg-surface-container-lowest p-space-sm rounded-lg flex items-center justify-between gap-2">
+        <div><span class="font-label-sm text-label-sm text-on-surface-variant uppercase block">Regulatory risk</span><span id="wd-value" class="font-headline-sm text-headline-sm text-on-surface font-mono font-bold">—</span></div>
+        <div class="text-right"><span class="font-label-sm text-label-sm text-error uppercase block font-semibold">Penalty exposure</span><span id="wd-pen" class="font-mono text-error font-semibold">—</span></div>
+      </div>
+      <div class="grid grid-cols-2 gap-space-sm">
+        <button id="wd-reverse-all" class="py-2 rounded-lg bg-error/10 border border-error text-error hover:bg-error hover:text-on-error font-label-md text-label-md font-semibold flex items-center justify-center gap-1"><span class="material-symbols-outlined text-[16px]">undo</span>Reverse all at risk</button>
+        <a href="/watchdog" class="py-2 rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md flex items-center justify-center gap-1"><span class="material-symbols-outlined text-[16px]">table_view</span>Full watchdog</a>
+      </div>
+      <p class="text-[10px] text-outline leading-snug">Deadlines and compensation amounts are configurable and based on RBI TAT guidelines for failed transactions; verify against current RBI circulars. Not legal advice.</p>
+    </div>
+
+    <div class="bg-surface-container-low rounded-xl p-space-md shadow-md flex flex-col gap-space-sm">
+      <div class="flex items-center justify-between"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-warn text-[20px]">campaign</span><span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Customer Notices</span></div><a id="bank-link" target="_blank" rel="noopener" class="font-label-sm text-label-sm text-primary hover:underline flex items-center gap-0.5">Bank site <span class="material-symbols-outlined text-[13px]">open_in_new</span></a></div>
+      <p class="font-body-sm text-body-sm text-on-surface-variant">Auto-drafted banners for open incidents. Approved notices appear on the mock bank site until the incident resolves.</p>
+      <div id="notices" class="flex flex-col gap-space-sm"></div>
+    </div>
+  </div>
+</section>
+</div>
+</main>
+<div id="sp-footer"></div>
+
+<script>
+const STEP_COLORS = { login: "#7bd0ff", open_transfer: "#a78bfa", submit_transfer: "#4fdbc8", gateway_pay: "#4cd7f6", verify_receipt: "#F5B841" };
+let latChart = null, layerChart = null, wd = null, wdAt = 0;
+document.getElementById("bank-link").href = `${location.protocol}//${location.hostname}:8001/dashboard`;
+
+// ---- control bar
+function paintSync() {
+  const on = SP.autoSync(), b = document.getElementById("toggle-sync");
+  b.className = `w-8 h-4 rounded-full ${on ? "bg-primary" : "bg-surface-variant"} relative transition-colors cursor-pointer`;
+  b.firstElementChild.style.left = on ? "18px" : "2px";
+  b.title = on ? "Auto-sync on – click to pause live updates" : "Auto-sync paused – click to resume";
+}
+document.getElementById("toggle-sync").onclick = () => { SP.setAutoSync(!SP.autoSync()); paintSync(); SP.toast("Auto-sync " + (SP.autoSync() ? "resumed" : "paused"), SP.autoSync() ? "Dashboard refreshes every 3 seconds." : "Live updates paused. Use Run probe now or re-enable.", "info"); if (SP.autoSync()) SP.refresh(); };
+document.getElementById("manual-refresh").onclick = (e) => SP.runProbe(e.currentTarget);
+paintSync();
+
+function stepIcon(st) {
+  return { pass: ["check_circle", "text-secondary"], slow: ["speed", "text-warn"], fail: ["error", "text-error"], skipped: ["block", "text-outline"] }[st] || ["schedule", "text-outline"];
+}
+
+function renderStatus(s) {
+  const k = s.kpis, p = s.probe;
+  document.getElementById("cb-probes").textContent = `${s.journeys.length} PROBES ${p.running ? "RUNNING" : "ARMED"}`;
+  document.getElementById("cb-last").textContent = p.last_cycle_at ? `${SP.ago(p.last_cycle_at)} (${SP.ist(p.last_cycle_at)} IST)` : "first cycle starting…";
+  const mode = (s.chaos && s.chaos.mode) || (s.bank_reachable ? "?" : "bank offline");
+  const cc = document.getElementById("cb-chaos"); cc.textContent = mode.toUpperCase(); cc.className = "font-mono " + (mode === "none" ? "text-secondary" : "text-error");
+  document.getElementById("cb-success").textContent = `SUCCESS: ${s.traffic.success_rate ?? "—"}%`;
+  const ci = document.getElementById("cb-incidents");
+  if (k.open_incidents) {
+    ci.className = "flex items-center gap-1 px-space-md py-1.5 rounded-lg bg-error-container text-on-error-container font-body-sm text-body-sm font-semibold shadow-sm hover:brightness-110 transition-all";
+    ci.innerHTML = `<span class="material-symbols-outlined text-[16px]">crisis_alert</span><span>${k.open_incidents} Open Incident${k.open_incidents > 1 ? "s" : ""}${k.critical_open ? ` · ${k.critical_open} Critical` : ""}</span>`;
+    ci.href = s.top_incident ? "/incident?id=" + s.top_incident.id : "/incidents";
+  } else {
+    ci.className = "flex items-center gap-1 px-space-md py-1.5 rounded-lg bg-surface-container-high text-secondary font-body-sm text-body-sm font-semibold shadow-sm hover:brightness-110 transition-all";
+    ci.innerHTML = `<span class="material-symbols-outlined text-[16px]">verified</span><span>All journeys healthy</span>`; ci.href = "/incidents";
+  }
+  // KPIs
+  const tot = k.journeys_total || 0, ok = k.journeys_healthy || 0;
+  document.getElementById("k-j").textContent = `${ok} / ${tot}`;
+  document.getElementById("k-j-ok").style.width = (tot ? 100 * ok / tot : 0) + "%";
+  document.getElementById("k-j-bad").style.width = (tot ? 100 * (tot - ok) / tot : 0) + "%";
+  const bad = s.journeys.filter((j) => j.health !== "green");
+  document.getElementById("k-j-badge").innerHTML = bad.length
+    ? `<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-label-sm font-medium ${bad.some((j) => j.health === "red") ? "bg-error-container/40 text-error" : "bg-warn/15 text-warn"}">${SP.esc(bad[0].name)} ${bad[0].health === "red" ? "degraded" : "watch"}</span>`
+    : `<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-label-sm font-medium bg-secondary-container/20 text-secondary">All nominal</span>`;
+  document.getElementById("k-j-sub").textContent = tot ? `${Math.round(100 * ok / tot)}% journeys green` : "—";
+  document.getElementById("k-mttd").textContent = k.mttd_avg_sec !== null ? k.mttd_avg_sec + " sec" : "—";
+  document.getElementById("k-mttd-sub").textContent = `Across ${k.mttd_n} incidents · probe every ${p.interval_sec}s`;
+  document.getElementById("k-mttr").textContent = SP.mss(k.mttr_avg_sec);
+  document.getElementById("k-mttr-tag").textContent = k.mttr_avg_sec !== null && k.mttr_avg_sec < 300 ? "Within target" : "m:ss";
+  document.getElementById("k-mttr-sub").textContent = `Human-approved recovery · ${k.mttr_n} resolved`;
+  const hasImpact = k.impact_amount > 0 || k.open_incidents > 0;
+  document.getElementById("k-impact").textContent = SP.lakh(k.impact_amount);
+  document.getElementById("k-impact").className = `font-metric-display text-[2.1rem] leading-[2.4rem] font-mono font-semibold ${k.impact_amount > 0 ? "text-error" : "text-on-surface"}`;
+  document.getElementById("k-impact-label").className = `font-label-sm text-label-sm uppercase tracking-wider font-semibold ${hasImpact ? "text-error" : "text-on-surface-variant"}`;
+  document.getElementById("k-impact-glow").className = `absolute -right-6 -bottom-6 w-32 h-32 ${hasImpact ? "bg-error/10" : "bg-secondary/10"} rounded-full blur-xl pointer-events-none`;
+  document.getElementById("k-impact-badge").innerHTML = k.critical_open
+    ? `<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-label-sm font-semibold bg-error/20 text-error animate-pulse">CRITICAL</span>`
+    : k.open_incidents ? `<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-label-sm font-semibold bg-warn/15 text-warn">OPEN</span>`
+    : `<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-label-sm font-semibold bg-secondary-container/20 text-secondary">NO IMPACT</span>`;
+  document.getElementById("k-impact-sub").textContent = `${k.impact_customers.toLocaleString("en-IN")} customers affected · ${k.pending_reversals} pending reversals (${SP.lakh(k.pending_reversal_value)})`;
+  // Journeys
+  document.getElementById("j-count").textContent = `${s.journeys.length} ACTIVE SCENARIOS`;
+  document.getElementById("j-cycle").textContent = `AUTOMATED CYCLE: ${p.interval_sec}s INTERVAL · NEXT IN ${p.running ? "—" : (p.next_cycle_in ?? "—") + "s"}`;
+  const jkey = s.journeys.map((j) => [j.id, j.name, j.health, j.steps, j.pass_rate, j.e2e_ms, j.open_incident && j.open_incident.id]);
+  if (SP.changed("journeys", jkey)) document.getElementById("journeys").innerHTML = s.journeys.map(journeyCard).join("");
+  const t = s.top_incident;
+  if (SP.changed("rc", t && [t.id, t.status, t.cause, t.fix])) renderRootCause(t);
+}
+
+function journeyCard(j) {
+  const red = j.health === "red", amber = j.health === "amber";
+  const label = red ? "CRITICAL" : amber ? (j.steps.some((x) => x.status === "skipped") ? "BLOCKED" : "WATCH") : "HEALTHY";
+  const pill = red ? "bg-error text-on-error shadow-sm" : amber ? "bg-warn/15 text-warn" : "bg-secondary-container/20 text-secondary";
+  const dot = red ? "bg-error" : amber ? "bg-warn" : "bg-secondary";
+  const href = j.open_incident ? `/incident?id=${j.open_incident.id}` : "/tests";
+  const steps = j.steps.map((st) => {
+    const [ic, col] = stepIcon(st.status);
+    const failed = st.status === "fail";
+    return `<div class="flex items-center justify-between text-body-sm ${failed ? "text-error bg-error-container/40 shadow-inner" : "text-on-surface-variant bg-surface-container-lowest"} px-2 py-1 rounded" title="${SP.esc(st.error || "")}">
+      <span class="flex items-center gap-1.5 truncate ${failed ? "font-medium" : ""}"><span class="material-symbols-outlined text-[14px] ${col}">${ic}</span>${SP.esc(SP.stepLabel(st.step))}</span>
+      <span class="font-mono ${failed ? "text-error font-semibold" : st.status === "slow" ? "text-warn font-semibold" : "text-on-surface font-medium"} whitespace-nowrap">${st.status === "skipped" ? "skipped" : SP.ms(st.latency_ms)}${failed ? " ⚠" : ""}</span></div>`;
+  }).join("");
+  return `<a href="${href}" class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between shadow-sm relative group hover:bg-surface-container transition-all ${red ? "bg-gradient-to-b from-surface-container-low via-surface-container-low to-error-container/20 shadow-lg" : ""}">
+    ${red ? `<div class="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-error animate-ping"></div>` : ""}
+    <div>
+      <div class="flex items-center justify-between mb-space-sm gap-2">
+        <div class="flex items-center gap-1.5 min-w-0"><span class="w-2 h-2 rounded-full ${dot} shrink-0"></span><span class="font-headline-sm text-headline-sm text-on-surface font-medium truncate">${SP.esc(j.name)}</span></div>
+        <span class="px-2 py-0.5 rounded text-[10px] font-label-sm font-semibold uppercase ${pill}">${label}</span>
+      </div>
+      ${j.auto_created ? `<div class="mb-2"><span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-label-sm font-semibold uppercase"><span class="material-symbols-outlined text-[12px]">smart_toy</span>Auto-created</span> <span class="text-[10px] font-mono text-outline">₹${Number(j.amount).toLocaleString("en-IN")} → ${SP.esc(j.receiver_bank)}</span></div>` : ""}
+      <div class="flex items-center justify-between mb-space-md text-on-surface-variant font-label-sm text-label-sm">
+        <span>Probe: <span data-ago="${j.last_run || ""}">${SP.ago(j.last_run)}</span></span>
+        <span class="${red ? "text-error font-semibold" : "text-secondary"} font-mono">${red ? "FAILING" : (j.pass_rate ?? "—") + "% ok (24h)"}</span>
+      </div>
+      <div class="space-y-1.5 mb-space-md">${steps}</div>
+    </div>
+    <div class="pt-space-sm ${red ? "bg-error-container/30" : "bg-surface-container-lowest"} px-2.5 py-1.5 rounded-lg flex items-center justify-between">
+      <span class="font-label-sm text-label-sm ${red ? "text-error font-semibold" : "text-on-surface-variant"} uppercase">E2E latency</span>
+      <span class="font-label-lg text-label-lg ${red ? "text-error font-bold" : "text-primary font-semibold"} font-mono">${red ? "FAILED" : j.steps.every((x) => x.status === "skipped") ? "NOT RUN" : SP.ms(j.e2e_ms)}</span>
+    </div></a>`;
+}
+
+function renderRootCause(top) {
+  const el = document.getElementById("rc-banner");
+  if (!top) {
+    el.innerHTML = `<div class="bg-secondary-container/10 rounded-lg p-space-sm flex items-center gap-space-sm"><span class="material-symbols-outlined text-secondary text-[20px]">task_alt</span>
+      <div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-secondary font-semibold">No open root cause</span><span class="font-body-sm text-body-sm text-on-surface-variant">All layers nominal. Individual customer network drops are treated as noise.</span></div></div>`;
+    return;
+  }
+  const fix = top.fix || {};
+  el.innerHTML = `<div class="bg-error-container/30 rounded-lg p-space-sm flex items-center justify-between gap-space-sm flex-wrap">
+    <div class="flex items-center gap-space-sm min-w-0"><span class="material-symbols-outlined text-error text-[20px]">error</span>
+      <div class="flex flex-col min-w-0"><span class="font-headline-sm text-headline-sm text-on-error-container font-semibold">Root cause isolated: ${SP.esc(top.layer_label)} – ${SP.esc(top.cause)}</span>
+      <span class="font-body-sm text-body-sm text-on-surface-variant">${SP.esc(top.pattern_summary || top.error || "")} · Suggested: ${SP.esc(fix.label || "—")} ${fix.total ? `(worked ${fix.worked}/${fix.total})` : ""}</span></div></div>
+    <a href="/incident?id=${top.id}" class="px-space-md py-1 rounded bg-error text-on-error font-body-sm text-body-sm font-semibold hover:brightness-110 whitespace-nowrap shadow-sm">${top.status === "recovering" ? "View recovery" : "Review &amp; approve"}</a></div>`;
+}
+
+function renderLatency(d) {
+  const labels = d.labels.map((t) => SP.ist(t).slice(0, 5));
+  const steps = Object.keys(d.series);
+  document.getElementById("lat-legend").innerHTML = steps.map((s) => `<div class="flex items-center gap-1.5"><span class="w-3 h-0.5" style="background:${STEP_COLORS[s]}"></span><span class="text-on-surface-variant">${SP.esc(SP.stepLabel(s))}</span></div>`).join("")
+    + `<div class="flex items-center gap-1.5"><span class="w-3 border-b border-dashed border-error"></span><span class="text-error font-medium">${(d.threshold_ms / 1000).toFixed(1)}s threshold</span></div>`;
+  document.getElementById("lat-avg").textContent = SP.ms(d.avg_ms);
+  document.getElementById("lat-p99").textContent = SP.ms(d.p99_ms);
+  const datasets = steps.map((s) => ({
+    label: SP.stepLabel(s), data: d.series[s], borderColor: STEP_COLORS[s], backgroundColor: STEP_COLORS[s] + "33",
+    borderWidth: s === "gateway_pay" ? 2.5 : 1.5, pointRadius: d.failures.map((f) => (f === s ? 4 : 0)), pointBackgroundColor: "#ffb4ab",
+    tension: 0.3, spanGaps: true, fill: s === "gateway_pay" ? "origin" : false,
+  }));
+  datasets.push({ label: "Slow threshold", data: labels.map(() => d.threshold_ms), borderColor: "#ffb4ab", borderDash: [5, 5], borderWidth: 1.2, pointRadius: 0, fill: false });
+  if (!latChart) {
+    latChart = new Chart(document.getElementById("lat-chart"), {
+      type: "line", data: { labels, datasets },
+      options: { responsive: true, maintainAspectRatio: false, animation: false, interaction: { mode: "index", intersect: false },
+        plugins: { legend: { display: false }, tooltip: { backgroundColor: "#0F172A", borderColor: "#06B6D4", borderWidth: 1, titleFont: { family: "JetBrains Mono" }, bodyFont: { family: "JetBrains Mono" },
+          callbacks: { label: (c) => `${c.dataset.label}: ${c.raw === null || c.raw === undefined ? "—" : c.raw + " ms"}` } } },
+        scales: { x: { ticks: { color: "#869397", font: { family: "JetBrains Mono", size: 10 }, maxTicksLimit: 8 }, grid: { color: "#1E293B" } },
+                  y: { beginAtZero: true, suggestedMax: d.threshold_ms * 1.2, ticks: { color: "#869397", font: { family: "JetBrains Mono", size: 10 }, callback: (v) => (v / 1000).toFixed(1) + "s" }, grid: { color: "#1E293B", borderDash: [2, 4] } } } },
+    });
+  } else { latChart.data.labels = labels; latChart.data.datasets = datasets; latChart.update("none"); }
+}
+
+function renderLayers(d) {
+  document.getElementById("ly-total").textContent = d.total_txns.toLocaleString("en-IN");
+  const order = ["customer_network", "server", "gateway", "receiver_bank"];
+  const max = Math.max(1, ...order.map((k) => d.layers[k].failures));
+  document.getElementById("layers").innerHTML = order.map((k, i) => {
+    const l = d.layers[k], crit = l.state === "critical", el = l.state === "elevated";
+    const pill = crit ? "bg-error text-on-error animate-pulse" : el ? "bg-surface-container-high text-primary" : "bg-secondary-container/20 text-secondary";
+    const bar = crit ? "bg-error" : el ? "bg-primary" : "bg-secondary";
+    return `<div class="${crit ? "bg-error-container/20" : "bg-surface-container"} rounded-lg p-space-sm flex flex-col justify-between shadow-sm">
+      <div class="flex items-center justify-between mb-1.5"><span class="font-label-md text-label-md ${crit ? "text-error font-bold" : "text-on-surface font-medium"} flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">${SP.layerIcon(k)}</span>${i + 1}. ${SP.esc(l.label)}</span>
+      <span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded uppercase font-semibold ${pill}">${crit ? "Critical" : el ? "Elevated" : "Nominal"}</span></div>
+      <div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden mb-2"><div class="${bar} h-full" style="width:${Math.max(2, 100 * l.failures / max)}%"></div></div>
+      <div class="flex items-center justify-between ${crit ? "text-error" : "text-on-surface-variant"} font-label-sm text-label-sm font-mono"><span>Failures: ${l.failures}</span><span>Rate: ${l.rate}%</span></div></div>`;
+  }).join("");
+  const data = order.map((k) => d.layers[k].failures);
+  const colors = order.map((k) => d.layers[k].state === "critical" ? "#FF6B6B" : d.layers[k].state === "elevated" ? "#4cd7f6" : "#4CC38A");
+  if (!layerChart) {
+    layerChart = new Chart(document.getElementById("layer-chart"), {
+      type: "bar", data: { labels: ["Customer net", "Bank server", "Gateway", "Receiver bank"], datasets: [{ data, backgroundColor: colors, borderRadius: 4 }] },
+      options: { responsive: true, maintainAspectRatio: false, animation: false, plugins: { legend: { display: false }, title: { display: true, text: "Failures by layer (60 min)", color: "#bcc9cd", font: { family: "JetBrains Mono", size: 11 } } },
+        scales: { x: { ticks: { color: "#869397", font: { size: 10 } }, grid: { display: false } }, y: { beginAtZero: true, ticks: { color: "#869397", precision: 0, font: { family: "JetBrains Mono", size: 10 } }, grid: { color: "#1E293B" } } } },
+    });
+  } else { layerChart.data.datasets[0].data = data; layerChart.data.datasets[0].backgroundColor = colors; layerChart.update("none"); }
+}
+
+function renderWatchdog() {
+  if (!wd) return;
+  const s = wd.summary, el = (Date.now() - wdAt) / 1000;
+  document.getElementById("wd-rule").textContent = wd.config.demo_mode ? `DEMO: ${wd.config.deadline_minutes} MIN CLOCK` : "T+1 CLOCK";
+  document.getElementById("wd-head").textContent = `${s.count} Debited-Not-Credited (DNC)`;
+  const next = s.next_deadline_sec === null ? null : s.next_deadline_sec - el;
+  document.getElementById("wd-sub").textContent = s.count ? `${SP.lakh(s.value)} at risk · next deadline in ${next === null ? "—" : SP.clock(Math.max(0, next))} · ₹${wd.config.penalty_per_day}/day late` : "No pending reversals. Customers are whole.";
+  document.getElementById("wd-breach").textContent = s.breached ? `${s.breached} PAST DEADLINE` : s.warning ? `${s.warning} NEAR DEADLINE` : "";
+  document.getElementById("wd-value").textContent = SP.lakh(s.value);
+  document.getElementById("wd-pen").textContent = SP.inr(s.penalty);
+  document.getElementById("wd-reverse-all").disabled = !s.count;
+  document.getElementById("wd-reverse-all").classList.toggle("opacity-40", !s.count);
+  const top = wd.rows.slice(0, 3);
+  if (SP.changed("wdlist", top.map((r) => [r.id, r.watch_status]))) document.getElementById("wd-list").innerHTML = top.map((r) => {
+    const rem = r.remaining_sec - el, breached = rem < 0, warn = !breached && rem < wd.config.warn_window_sec;
+    const c = breached ? "error" : warn ? "warn" : "primary";
+    return `<div class="bg-surface-container rounded-lg p-space-sm shadow-sm flex flex-col gap-2 relative overflow-hidden">
+      <div class="absolute left-0 top-0 bottom-0 w-1 bg-${c}"></div>
+      <div class="flex items-center justify-between pl-1"><span class="font-label-sm text-label-sm text-on-surface font-mono font-bold">${SP.esc(r.txn_ref)}</span><span class="font-metric-sub text-metric-sub ${breached ? "text-error font-bold" : "text-on-surface font-semibold"} font-mono">${SP.inr(r.amount)}</span></div>
+      <div class="flex items-center justify-between text-body-sm text-on-surface-variant pl-1"><span class="truncate">Customer: <strong class="text-on-surface">${SP.esc(r.customer_id)}</strong> → ${SP.esc(r.receiver_bank)}</span>
+        <button data-rev="${r.id}" class="font-label-sm text-label-sm text-${c} bg-${c}/10 px-1.5 py-0.5 rounded font-mono hover:brightness-125">REVERSE</button></div>
+      <div class="bg-surface-container-lowest rounded px-space-sm py-1 flex items-center justify-between pl-2">
+        <div class="flex items-center gap-1 text-on-surface-variant text-label-sm font-label-sm"><span class="material-symbols-outlined text-[14px] text-${c}">${breached ? "alarm" : "schedule"}</span><span>${breached ? "Overdue by:" : "Time left:"}</span></div>
+        <span data-cd="${r.id}" class="font-label-md text-label-md text-${c} font-mono font-bold tracking-wider ${breached || warn ? "animate-pulse" : ""}"></span></div></div>`;
+  }).join("") || `<div class="text-body-sm text-outline text-center py-3">Queue empty</div>`;
+  top.forEach((r) => {
+    const span = document.querySelector(`[data-cd="${r.id}"]`); if (!span) return;
+    const rem = r.remaining_sec - el;
+    span.textContent = SP.clock(Math.abs(rem)) + (rem < 0 ? ` · ${SP.inr(r.penalty)}` : "");
+  });
+}
+document.getElementById("wd-list").addEventListener("click", async (e) => {
+  const b = e.target.closest("[data-rev]"); if (!b) return;
+  try { await SP.post(`/api/watchdog/${b.dataset.rev}/reverse`); SP.toast("Reversal posted", "Customer account credited back (simulated).", "ok"); loadWatchdog(); } catch (err) { SP.toast("Reverse failed", err.message, "crit"); }
+});
+document.getElementById("wd-reverse-all").onclick = async () => {
+  if (!wd || !wd.summary.count) return;
+  const ok = await SP.confirm("Reverse all at-risk transactions?", `This posts reversals for <b class="text-on-surface">${wd.summary.count}</b> debited-not-credited transactions worth <b class="text-on-surface">${SP.inr(wd.summary.value)}</b> (simulated).`, "Reverse all", { icon: "undo" });
+  if (!ok) return;
+  try { const r = await SP.post("/api/watchdog/reverse-all"); SP.toast("Bulk reversal complete", `${r.reversed} transactions reversed.`, "ok"); loadWatchdog(); } catch (err) { SP.toast("Bulk reversal failed", err.message, "crit"); }
+};
+async function loadWatchdog() { wd = await SP.api("/api/watchdog"); wdAt = Date.now(); renderWatchdog(); }
+setInterval(renderWatchdog, 1000);
+
+function renderNotices(rows) {
+  const live = rows.filter((n) => n.status === "approved"), drafts = rows.filter((n) => n.status === "draft");
+  const el = document.getElementById("notices");
+  el.innerHTML = [...drafts.map((n) => `<div class="bg-surface-container rounded-lg p-space-sm flex flex-col gap-2 border-l-2 border-warn">
+      <div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-warn uppercase font-semibold">Draft · Incident #${n.incident_id ?? "—"}</span><span class="text-[10px] font-mono text-outline">${SP.ago(n.ts)}</span></div>
+      <textarea data-text="${n.id}" rows="3" class="w-full bg-surface-container-lowest rounded p-2 text-body-sm text-on-surface border border-surface-variant focus:outline-none focus:border-primary-container">${SP.esc(n.text)}</textarea>
+      <div class="flex gap-2"><button data-approve="${n.id}" class="flex-1 py-1.5 rounded bg-primary-container text-on-primary-container font-semibold text-body-sm hover:bg-primary">Approve &amp; publish</button><button data-dismiss="${n.id}" class="px-3 py-1.5 rounded bg-surface-container-high text-on-surface-variant text-body-sm hover:text-on-surface">Dismiss</button></div></div>`),
+    ...live.map((n) => `<div class="bg-secondary-container/10 rounded-lg p-space-sm flex flex-col gap-1 border-l-2 border-secondary">
+      <div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-secondary uppercase font-semibold flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>Live on bank site</span><button data-dismiss="${n.id}" class="text-[11px] text-outline hover:text-error">Take down</button></div>
+      <p class="text-body-sm text-on-surface">${SP.esc(n.text)}</p></div>`)].join("") || `<div class="text-body-sm text-outline text-center py-3">No customer notices</div>`;
+}
+document.getElementById("notices").addEventListener("click", async (e) => {
+  const a = e.target.closest("[data-approve]"), d = e.target.closest("[data-dismiss]");
+  try {
+    if (a) {
+      const text = document.querySelector(`[data-text="${a.dataset.approve}"]`).value;
+      await SP.post(`/api/notices/${a.dataset.approve}/approve`, { text });
+      SP.toast("Notice published", "The banner is now visible on the mock bank dashboard.", "ok");
+    } else if (d) { await SP.post(`/api/notices/${d.dataset.dismiss}/dismiss`); SP.toast("Notice removed", "The banner will not be shown to customers.", "info"); }
+    else return;
+    const n = await SP.api("/api/notices"); SP.changed("notices", n); renderNotices(n);
+  } catch (err) { SP.toast("Notice action failed", err.message, "crit"); }
+});
+
+function renderIncidents(rows) {
+  document.getElementById("inc-rows").innerHTML = rows.map((i) => `<tr class="row-hover border-b border-surface-variant/40 cursor-pointer" onclick="location.href='/incident?id=${i.id}'">
+    <td class="px-2 py-2">${SP.sevPill(i.severity)}</td>
+    <td class="px-2 py-2"><div class="text-on-surface font-medium">#${i.id} ${SP.esc(i.cause)}</div><div class="text-[11px] text-on-surface-variant">${SP.esc(i.journey)} · ${SP.esc(SP.stepLabel(i.failed_step))}</div></td>
+    <td class="px-2 py-2 text-on-surface-variant whitespace-nowrap"><span class="material-symbols-outlined text-[14px] align-middle">${SP.layerIcon(i.layer)}</span> ${SP.esc(i.layer_label)}</td>
+    <td class="px-2 py-2 text-right font-mono ${i.impact_amount ? "text-error" : "text-on-surface-variant"}">${SP.lakh(i.impact_amount)}<div class="text-[10px] text-outline">${i.impact_customers} cust.</div></td>
+    <td class="px-2 py-2">${SP.statusPill(i.status)}</td>
+    <td class="px-2 py-2 text-right font-mono text-on-surface-variant whitespace-nowrap"><span data-ago="${i.detected_at}">${SP.ago(i.detected_at)}</span></td></tr>`).join("")
+    || `<tr><td colspan="6" class="text-center text-outline py-4">No incidents</td></tr>`;
+}
+
+SP.poll(async () => renderStatus(await SP.api("/api/status")), 3000);
+SP.poll(async () => renderLatency(await SP.api("/api/latency?minutes=30")), 5000);
+SP.poll(async () => renderLayers(await SP.api("/api/layers?minutes=60")), 5000);
+SP.poll(loadWatchdog, 5000);
+SP.poll(async () => { const n = await SP.api("/api/notices"); if (SP.changed("notices", n) && !(document.activeElement && document.activeElement.matches("textarea"))) renderNotices(n); }, 4000);
+SP.poll(async () => { const r = await SP.api("/api/incidents?limit=8"); if (SP.changed("inc", r)) renderIncidents(r); }, 4000);
+</script>
+</body></html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SentinelPay – Incident</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="/static/vendor/fonts.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<!-- Local copies first (python vendor_assets.py), CDN fallback -->
+<script src="/static/vendor/tailwind.js"></script>
+<script>window.tailwind || document.write('<script src="https://cdn.tailwindcss.com"><\/script>')</script>
+<script src="/static/tw.js"></script>
+<link rel="stylesheet" href="/static/app.css">
+<script src="/static/app.js"></script>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen">
+<div id="sp-header"></div>
+<main class="w-full pt-16 pb-12 bg-background min-h-screen"><div class="flex flex-col w-full">
+  <!-- Triage bar -->
+  <div class="w-full bg-surface-container-lowest px-space-lg py-space-md shadow-md">
+    <div class="max-w-[1720px] mx-auto flex flex-col xl:flex-row xl:items-center justify-between gap-space-md">
+      <div class="flex flex-col gap-1.5 min-w-0">
+        <div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant flex-wrap">
+          <a class="hover:text-primary transition-colors" href="/incidents">Incidents</a><span class="text-outline-variant">/</span>
+          <span id="crumb" class="text-primary font-mono font-medium">INC-—</span><span class="text-outline-variant">•</span><span id="crumb-journey">—</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-space-md">
+          <h1 id="title" class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">Loading incident…</h1>
+          <div id="pills" class="flex flex-wrap items-center gap-space-xs"></div>
+        </div>
+      </div>
+      <div class="flex items-center gap-space-md shrink-0 bg-surface-container-low px-space-md py-2 rounded-xl">
+        <div class="flex flex-col items-end"><span id="clock-label" class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Time open</span><span id="clock" class="font-metric-sub text-metric-sub text-error font-mono tracking-tight font-semibold">--:--:--</span></div>
+        <div class="h-8 w-px bg-surface-variant"></div>
+        <div class="flex flex-col items-start"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">MTTD</span><span id="mttd" class="font-label-lg text-label-lg text-on-surface font-mono font-medium">—</span></div>
+        <div class="h-8 w-px bg-surface-variant"></div>
+        <div class="flex flex-col items-start"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">MTTR</span><span id="mttr" class="font-label-lg text-label-lg text-on-surface font-mono font-medium">—</span></div>
+      </div>
+    </div>
+  </div>
+  <!-- Metadata ribbon -->
+  <div class="w-full bg-surface-container-low px-space-lg py-space-sm shadow-sm">
+    <div class="max-w-[1720px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-space-md text-left">
+      <div class="flex flex-col py-1"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Detected</span><div class="flex items-center gap-1.5 mt-0.5"><span class="material-symbols-outlined text-[15px] text-primary">schedule</span><span id="meta-detected" class="font-label-md text-label-md text-on-surface font-mono">—</span></div></div>
+      <div class="flex flex-col py-1"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Affected journey</span><div class="flex items-center gap-1.5 mt-0.5"><span class="material-symbols-outlined text-[15px] text-secondary">account_balance_wallet</span><span id="meta-journey" class="font-label-md text-label-md text-on-surface font-semibold">—</span></div></div>
+      <div class="flex flex-col py-1"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Failed step · layer</span><div class="flex items-center gap-1.5 mt-0.5"><span class="material-symbols-outlined text-[15px] text-error">error</span><span id="meta-step" class="font-label-md text-label-md text-error font-medium truncate">—</span></div></div>
+      <div class="flex flex-col py-1"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Business impact</span><div class="flex items-center gap-1.5 mt-0.5"><span class="material-symbols-outlined text-[15px] text-primary">currency_rupee</span><span id="meta-impact" class="font-metric-sub text-metric-sub text-on-surface font-mono font-semibold">—</span></div></div>
+    </div>
+  </div>
+
+  <div class="w-full px-space-lg py-space-lg">
+    <div class="max-w-[1720px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+      <!-- LEFT -->
+      <div class="lg:col-span-7 flex flex-col gap-space-lg min-w-0">
+        <div class="bg-surface-container rounded-xl p-space-md shadow-md flex flex-col gap-space-md relative overflow-hidden">
+          <div class="flex items-center justify-between flex-wrap gap-2">
+            <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[20px]">troubleshoot</span><h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Synthetic Test Trace &amp; Evidence</h2></div>
+            <div id="ev-chips" class="flex items-center gap-2 font-label-sm text-label-sm text-on-surface-variant"></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-space-md bg-surface-container-lowest p-space-md rounded-lg">
+            <div id="shot" class="md:col-span-5 flex flex-col items-center justify-center p-3 rounded-lg bg-surface-container-high/60 relative min-h-[220px]"></div>
+            <div class="md:col-span-7 flex flex-col justify-between font-mono text-[11px] gap-2 min-w-0">
+              <div class="flex items-center justify-between pb-1"><span class="text-secondary font-medium tracking-wider text-label-sm">TELEMETRY WATERFALL</span><span id="wf-total" class="text-error font-semibold text-label-sm"></span></div>
+              <div id="waterfall" class="space-y-1.5 py-1"></div>
+              <div class="flex items-center justify-between pt-1"><span class="text-secondary font-medium tracking-wider text-label-sm">BANK LOGS (FAILURE WINDOW)</span><span class="text-outline text-[10px]">logs/bank.log</span></div>
+              <div id="logs" class="bg-surface-container-lowest p-2 rounded text-[10px] leading-tight text-on-surface-variant space-y-0.5 overflow-auto max-h-44 border border-surface-variant/40"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative rounded-xl p-space-md bg-surface-container-low shadow-xl overflow-hidden">
+          <div class="absolute -top-12 -right-12 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute -bottom-12 -left-12 w-64 h-64 bg-tertiary-container/15 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="relative flex flex-col gap-space-sm">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+              <div class="flex items-center gap-2">
+                <div class="w-7 h-7 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center shadow-[0_0_12px_rgba(6,182,212,0.4)]"><span class="material-symbols-outlined text-[18px]">auto_awesome</span></div>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-2">Root Cause Diagnostic Engine <span id="rca-src" class="font-label-sm text-label-sm text-primary px-2 py-0.5 rounded-full bg-primary/10 font-mono">RULE-BASED</span></h3>
+              </div>
+              <div id="rca-sim-badge"></div>
+            </div>
+            <div class="p-3 bg-surface-container rounded-lg">
+              <div class="text-label-sm font-mono text-primary font-medium uppercase tracking-wider mb-1">Synthesized root cause</div>
+              <div id="rca-statement" class="font-body-lg text-body-lg text-on-surface font-medium leading-snug">—</div>
+              <p id="rca-expl" class="font-body-md text-body-md text-on-surface-variant mt-2 leading-relaxed"></p>
+            </div>
+            <div id="rca-tiles" class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm mt-1"></div>
+          </div>
+        </div>
+
+        <div class="bg-surface-container rounded-xl p-space-md shadow-md flex flex-col gap-space-md">
+          <div class="flex items-center justify-between flex-wrap gap-2">
+            <div class="flex items-center gap-2"><div class="w-7 h-7 rounded-lg bg-error-container text-error flex items-center justify-center"><span class="material-symbols-outlined text-[18px]">query_stats</span></div><h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Pattern Insight – Real Customer Transactions</h3></div>
+            <span id="pat-sig" class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-mono">—</span>
+          </div>
+          <div class="p-3 bg-surface-container-lowest rounded-lg"><p id="pat-text" class="font-body-md text-body-md text-on-surface leading-relaxed">—</p></div>
+          <div id="pat-tiles" class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm font-mono"></div>
+          <div class="p-3 bg-surface-container-lowest rounded-lg flex flex-col gap-2">
+            <div class="flex items-center justify-between text-label-sm font-mono text-on-surface-variant"><span>Failed real transactions per minute in this layer (10 min)</span><span id="spark-peak" class="text-error font-medium"></span></div>
+            <div id="spark" class="h-16 w-full flex items-end gap-1.5 pt-2"></div>
+            <div id="spark-axis" class="flex justify-between text-[10px] font-mono text-on-surface-variant"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="lg:col-span-5 flex flex-col gap-space-lg min-w-0">
+        <div class="bg-surface-container rounded-xl p-space-md shadow-xl flex flex-col gap-space-md relative overflow-hidden">
+          <div class="flex items-center justify-between pb-1">
+            <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center"><span class="material-symbols-outlined text-[20px]">bolt</span></div>
+              <div><h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Recommended Recovery Action</h3><span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider font-semibold">Human-in-the-loop · no auto-approval</span></div></div>
+            <span id="rec-state" class="px-2 py-0.5 rounded text-[10px] font-mono bg-secondary-container/20 text-secondary font-medium">—</span>
+          </div>
+          <div id="rec-body" class="flex flex-col gap-space-md"></div>
+        </div>
+
+        <div class="bg-surface-container rounded-xl p-space-md shadow-md flex flex-col gap-space-md">
+          <div class="flex items-center justify-between pb-1 flex-wrap gap-2"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[20px]">history_toggle_off</span><h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Incident Lifecycle Trace</h3></div><span id="tl-mttd" class="font-label-sm text-label-sm text-on-surface-variant font-mono"></span></div>
+          <div id="timeline" class="relative pl-6 space-y-5 before:absolute before:left-2.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-surface-variant"></div>
+        </div>
+
+        <div class="bg-surface-container rounded-xl p-space-md shadow-md flex flex-col gap-space-sm">
+          <div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-warn">campaign</span>Customer notice</span><a id="bank-link" target="_blank" rel="noopener" class="text-primary hover:underline flex items-center gap-0.5 text-[11px] font-mono">View bank site <span class="material-symbols-outlined text-[13px]">open_in_new</span></a></div>
+          <div id="notice"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></main>
+<div id="sp-footer"></div>
+<script>
+const id = new URLSearchParams(location.search).get("id");
+let inc = null, busy = false;
+document.getElementById("bank-link").href = `${location.protocol}//${location.hostname}:8001/dashboard`;
+if (!id) location.href = "/incidents";
+
+function tick() {
+  if (!inc) return;
+  const start = new Date(inc.detected_at).getTime();
+  const end = inc.resolved_at ? new Date(inc.resolved_at).getTime() : Date.now();
+  const c = document.getElementById("clock");
+  c.textContent = SP.clock((end - start) / 1000);
+  c.className = `font-metric-sub text-metric-sub font-mono tracking-tight font-semibold ${inc.resolved_at ? "text-secondary" : "text-error"}`;
+  document.getElementById("clock-label").textContent = inc.resolved_at ? "Detected → resolved" : "Time open";
+}
+setInterval(tick, 1000);
+
+function render(d) {
+  inc = d;
+  document.title = `SentinelPay – Incident #${d.id}`;
+  document.getElementById("crumb").textContent = `INC-${String(d.id).padStart(4, "0")}`;
+  document.getElementById("crumb-journey").textContent = `Layer: ${d.layer_label}`;
+  document.getElementById("title").textContent = d.cause;
+  const viaPattern = d.failed_step === "real transactions" || !d.run_group;
+  document.getElementById("pills").innerHTML = `${SP.sevPill(d.severity)} ${SP.statusPill(d.status)}
+    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm text-secondary bg-surface-container-high"><span class="material-symbols-outlined text-[13px]">${viaPattern ? "query_stats" : "smart_toy"}</span>${viaPattern ? "Detected from real-transaction pattern" : "Auto-detected by synthetic probe"}</span>`;
+  document.getElementById("mttd").textContent = SP.dur(d.mttd_sec);
+  document.getElementById("mttr").textContent = d.mttr_sec !== null ? SP.mss(d.mttr_sec) : "—";
+  document.getElementById("meta-detected").innerHTML = `${SP.ist(d.detected_at, true)} IST <span class="text-on-surface-variant text-[11px] font-sans">(${SP.ago(d.detected_at)})</span>`;
+  document.getElementById("meta-journey").innerHTML = `${SP.esc(d.journey)}${d.journey_auto ? ' <span class="text-[10px] text-primary font-mono">AUTO-TEST</span>' : ""}`;
+  document.getElementById("meta-step").textContent = `${SP.stepLabel(d.failed_step)} · ${d.layer_label}`;
+  document.getElementById("meta-impact").innerHTML = `${SP.lakh(d.impact_amount)} <span class="text-on-surface-variant text-body-sm font-sans font-normal">(${d.impact_customers} customers)</span>`;
+  tick();
+
+  // Evidence
+  document.getElementById("ev-chips").innerHTML = `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-mono">${viaPattern && !d.screenshot ? "Real traffic" : "Playwright probe · Chromium"}</span>${d.http_status ? `<span class="font-mono ${d.http_status >= 400 ? "text-error" : "text-warn"} font-semibold">HTTP ${d.http_status}</span>` : ""}`;
+  document.getElementById("shot").innerHTML = d.screenshot_url
+    ? `<div class="w-full flex items-center justify-between pb-2 text-[10px] text-on-surface-variant font-mono"><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-error"></span>CAPTURE-${String(d.id).padStart(4, "0")}</span><span>${SP.ist(d.last_seen || d.detected_at)}</span></div>
+       <button id="shot-btn" class="w-full rounded-lg overflow-hidden shadow-2xl border border-surface-variant hover:border-primary-container transition-colors group relative">
+         <img src="${d.screenshot_url}" alt="Probe failure screenshot" class="w-full max-h-64 object-cover object-top">
+         <span class="absolute bottom-1 right-1 px-1.5 py-0.5 bg-surface-container-lowest/90 text-[9px] font-mono text-secondary rounded flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">zoom_in</span>Click to enlarge</span></button>`
+    : `<span class="material-symbols-outlined text-outline text-[36px]">hide_image</span><p class="text-body-sm text-on-surface-variant text-center mt-2">No probe screenshot yet.<br>Detected from real customer transactions; the next confirming probe failure will attach one.</p>`;
+  const sb = document.getElementById("shot-btn"); if (sb) sb.onclick = () => SP.showImage(d.screenshot_url, `Incident #${d.id} – probe screenshot`);
+  const wf = d.waterfall.filter((w) => w.status !== "skipped" || true);
+  const max = Math.max(1, ...wf.map((w) => w.latency_ms || 0));
+  document.getElementById("wf-total").textContent = wf.length ? `Total: ${SP.ms(wf.reduce((a, w) => a + (w.latency_ms || 0), 0))}` : "";
+  document.getElementById("waterfall").innerHTML = wf.length ? wf.map((w, i) => {
+    const bad = w.status === "fail", skip = w.status === "skipped", slow = w.status === "slow";
+    return `<div class="space-y-0.5"><div class="flex justify-between text-[10px] ${bad ? "text-error font-medium" : "text-on-surface-variant"}"><span>${i + 1}. ${SP.esc(SP.stepLabel(w.step))}</span>
+      <span class="font-mono ${bad ? "text-error font-bold" : slow ? "text-warn" : skip ? "text-outline" : "text-secondary"}">${skip ? "NOT RUN" : SP.ms(w.latency_ms) + (bad ? " (FAILED)" : "")}</span></div>
+      <div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden"><div class="${bad ? "bg-error" : slow ? "bg-warn" : skip ? "bg-outline-variant" : "bg-secondary"} h-full rounded-full" style="width:${skip ? 0 : Math.max(3, 100 * (w.latency_ms || 0) / max)}%"></div></div>
+      ${bad && w.error ? `<div class="text-[10px] text-error/90 break-words">↳ ${SP.esc(w.error)}</div>` : ""}</div>`;
+  }).join("") : `<div class="text-on-surface-variant text-[11px]">${SP.esc(d.error || "No probe trace for this incident.")}</div>`;
+  document.getElementById("logs").innerHTML = d.logs.length ? d.logs.slice().reverse().map((l) => {
+    const err = l.http_status >= 400;
+    return `<p class="${err ? "text-error" : ""}"><span class="text-outline">${SP.ist(l.ts)}</span> ${SP.esc(l.method)} ${SP.esc(l.endpoint)} <b>${l.http_status}</b> ${l.duration_ms}ms <span class="text-primary">${SP.esc(l.layer_hint)}</span> ${SP.esc(l.message || "")}</p>`;
+  }).join("") : `<p>No bank log lines in the failure window.</p>`;
+
+  // RCA
+  document.getElementById("rca-src").textContent = d.explanation_source === "Gemini" ? "GEMINI AI" : "RULE-BASED RCA";
+  document.getElementById("rca-sim-badge").innerHTML = d.similar
+    ? `<a href="/incident?id=${d.similar.id}" class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-primary font-mono text-label-sm font-semibold hover:brightness-125"><span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>Matches incident #${d.similar.id}</a>` : "";
+  document.getElementById("rca-statement").innerHTML = `${SP.esc(d.cause)} – failing layer: <span class="text-primary">${SP.esc(d.layer_label)}</span>.` +
+    (d.similar ? ` <a class="text-primary underline hover:text-primary-fixed" href="/incident?id=${d.similar.id}">${SP.esc(d.similar.text)}</a>.` : " No similar past incident on record.");
+  document.getElementById("rca-expl").textContent = d.explanation;
+  const tile = (label, val, sub, cls = "text-on-surface") => `<div class="p-2.5 rounded-lg bg-surface-container-high flex flex-col min-w-0"><span class="font-label-sm text-label-sm text-on-surface-variant">${label}</span><span class="font-metric-sub text-metric-sub ${cls} font-mono font-semibold mt-0.5 truncate" title="${SP.esc(val)}">${SP.esc(val)}</span><span class="text-[10px] text-on-surface-variant font-mono truncate" title="${SP.esc(sub)}">${SP.esc(sub)}</span></div>`;
+  const code = (d.error || "").match(/\[([A-Z_]+)\]/);
+  document.getElementById("rca-tiles").innerHTML =
+    tile("Failing layer", d.layer_label, `Step: ${SP.stepLabel(d.failed_step)}`, "text-error") +
+    tile("Error signature", d.http_status ? `HTTP ${d.http_status}` : (code ? code[1] : "Timeout / assertion"), code ? code[1] : (d.error || "").slice(0, 60), "text-error") +
+    tile("Precedent resolution", d.similar ? d.similar.fix : "None on record", d.similar ? `Cleared in ${SP.dur(d.similar.mttr_sec)}` : "First occurrence", "text-secondary");
+
+  // Pattern
+  document.getElementById("pat-sig").textContent = d.pattern_signature ? `SIGNATURE: ${d.pattern_signature}` : "NO PATTERN YET";
+  document.getElementById("pat-text").innerHTML = d.pattern_summary
+    ? `<span class="font-semibold text-primary">Pattern detected:</span> ${SP.esc(d.pattern_summary)}.`
+    : `No real-transaction failure pattern linked to this incident${d.layer === "server" ? " (customers were not failing at the payment layer)" : " yet"}.`;
+  const ps = d.pattern_stats;
+  document.getElementById("pat-tiles").innerHTML = `
+    <div class="p-space-sm bg-surface-container-high rounded-lg flex flex-col"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-sans">Failed real txns</span><span class="font-metric-display text-metric-display text-error font-semibold mt-1">${ps.failed}</span><span class="text-[10px] text-on-surface-variant font-sans">since failure started</span></div>
+    <div class="p-space-sm bg-surface-container-high rounded-lg flex flex-col"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-sans">Avg ticket size</span><span class="font-metric-display text-metric-display text-on-surface font-semibold mt-1">${SP.inr(ps.avg_ticket)}</span><span class="text-[10px] text-on-surface-variant font-sans">Max: ${SP.inr(ps.max_ticket)}</span></div>
+    <div class="p-space-sm bg-surface-container-high rounded-lg flex flex-col"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-sans">Customers affected</span><span class="font-metric-display text-metric-display text-on-surface font-semibold mt-1">${d.impact_customers}</span><span class="text-[10px] text-on-surface-variant font-sans">${SP.lakh(d.impact_amount)} failed value</span></div>`;
+  const fs = d.failure_series, fmax = Math.max(1, ...fs.map((b) => b.n));
+  document.getElementById("spark").innerHTML = fs.map((b) => `<div class="flex-1 ${b.n ? (b.n / fmax > 0.5 ? "bg-error" : "bg-error/50") : "bg-secondary/30"} rounded-t hover:brightness-125 transition-all" style="height:${Math.max(6, 100 * b.n / fmax)}%" title="${SP.ist(b.t).slice(0, 5)} – ${b.n} failures"></div>`).join("");
+  document.getElementById("spark-peak").textContent = fmax > 1 ? `Peak ${fmax}/min` : "";
+  document.getElementById("spark-axis").innerHTML = `<span>${SP.ist(fs[0].t).slice(0, 5)} IST</span><span>${SP.ist(fs[fs.length - 1].t).slice(0, 5)} IST</span>`;
+
+  if (SP.changed("rec", [d.status, d.fix, d.resolution_note, d.approved_by, d.approved_at])) renderRecovery(d);
+  renderTimeline(d);
+  if (SP.changed("notice", d.notices)) renderNotice(d);
+}
+
+function renderRecovery(d) {
+  const f = d.fix || {}, el = document.getElementById("rec-body"), st = document.getElementById("rec-state");
+  const hist = (f.history || []).map((h) => `<div class="flex items-center justify-between text-[11px] font-mono"><span class="text-on-surface-variant">${SP.esc(h.label)}</span><span class="${h.worked / Math.max(1, h.total) >= 0.75 ? "text-secondary" : "text-warn"}">${h.worked}/${h.total} worked</span></div>`).join("");
+  const desc = `<div class="p-3 bg-surface-container-lowest rounded-lg flex flex-col gap-2">
+      <div class="font-label-sm text-label-sm text-on-surface-variant uppercase font-mono tracking-wider">Target intervention</div>
+      <div class="font-headline-sm text-[1.05rem] text-on-surface font-semibold leading-snug">${SP.esc(f.label || "—")}</div>
+      <div class="flex items-center gap-2 text-label-sm font-mono text-on-surface-variant mt-1"><span class="material-symbols-outlined text-[15px] text-secondary">verified</span><span>Success history: <strong class="text-on-surface">${SP.esc(f.history_text || "—")}</strong>${f.total ? ` (${Math.round(100 * f.worked / f.total)}% for this cause)` : ""}</span></div>
+      ${hist ? `<div class="mt-1 pt-2 border-t border-surface-variant/50 flex flex-col gap-1"><span class="text-[10px] uppercase tracking-wider text-outline font-mono">Learned outcomes for this cause</span>${hist}</div>` : ""}
+    </div>`;
+  if (d.status === "resolved") {
+    st.textContent = "RESOLVED"; st.className = "px-2 py-0.5 rounded text-[10px] font-mono bg-secondary-container/20 text-secondary font-medium";
+    el.innerHTML = `<div class="p-3 rounded-lg bg-secondary-container/20 text-secondary text-label-md font-mono flex items-start gap-2"><span class="material-symbols-outlined text-[18px]">check_circle</span><span>${SP.esc(d.resolution_note || "Resolved")}${d.recovery_action ? ` · Approved by ${SP.esc(d.approved_by || "—")}` : ""}</span></div>
+      <div class="grid grid-cols-2 gap-space-sm"><button id="btn-report" class="py-2.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary-container font-semibold flex items-center justify-center gap-1.5"><span class="material-symbols-outlined text-[18px]">description</span>View report</button>
+      <a href="/api/incidents/${d.id}/report?download=1" class="py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface flex items-center justify-center gap-1.5"><span class="material-symbols-outlined text-[18px]">download</span>Download .md</a></div>`;
+    document.getElementById("btn-report").onclick = () => SP.showReport(d.id);
+    return;
+  }
+  if (d.status === "recovering") {
+    st.textContent = "VERIFYING"; st.className = "px-2 py-0.5 rounded text-[10px] font-mono bg-primary/15 text-primary font-medium";
+    el.innerHTML = desc + `<div class="p-3 rounded-lg bg-primary/10 text-primary text-label-md font-mono flex items-center gap-2"><span class="material-symbols-outlined text-[18px] sp-spin">autorenew</span>
+      Approved by ${SP.esc(d.approved_by)} at ${SP.ist(d.approved_at)}. Action executed – waiting for the next synthetic probe to confirm recovery.</div>`;
+    return;
+  }
+  st.textContent = f.manual ? "MANUAL REVIEW" : "READY TO EXECUTE";
+  st.className = `px-2 py-0.5 rounded text-[10px] font-mono font-medium ${f.manual ? "bg-warn/15 text-warn" : "bg-secondary-container/20 text-secondary"}`;
+  const reopened = d.resolution_note && d.resolution_note.startsWith("Approved fix did not work");
+  el.innerHTML = desc + (reopened ? `<div class="p-2 rounded bg-error/10 text-error text-[11px] font-mono">${SP.esc(d.resolution_note)} – outcome recorded in fix history.</div>` : "") + `
+    <div class="flex flex-col gap-space-sm pt-1">
+      ${f.manual ? `<div class="p-3 rounded-lg bg-warn/10 text-warn text-body-sm">No automatic fix is defined for this cause. Review the limit/risk rule with operations, or approve the optional action below.</div>` : ""}
+      <button id="approve-btn" class="w-full py-3.5 px-space-md rounded-lg ${f.manual ? "bg-surface-container-high text-on-surface hover:bg-surface-variant" : "bg-primary-container hover:bg-primary text-on-primary-container shadow-[0_0_16px_rgba(6,182,212,0.35)] hover:shadow-[0_0_24px_rgba(6,182,212,0.6)]"} font-headline-sm text-[1rem] font-bold tracking-tight uppercase transition-all flex items-center justify-center gap-2 group active:scale-[0.99]">
+        <span class="material-symbols-outlined group-hover:rotate-12 transition-transform">bolt</span><span>${f.manual ? `Approve optional: ${SP.esc(f.optional ? f.optional.label : "—")}` : "Approve recovery action"}</span><span class="font-label-sm text-[10px] opacity-80 font-mono">(human approval)</span></button>
+      <div class="grid grid-cols-2 gap-space-sm">
+        <button id="realert-btn" class="py-2 px-space-sm rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md font-medium transition-colors flex items-center justify-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-tertiary">send</span>Re-send alert</button>
+        <button id="dismiss-btn" class="py-2 px-space-sm rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface-variant hover:text-on-surface font-label-md text-label-md font-medium transition-colors flex items-center justify-center gap-1.5"><span class="material-symbols-outlined text-[16px]">notifications_off</span>Dismiss (false positive)</button>
+      </div>
+    </div>`;
+  document.getElementById("approve-btn").onclick = approve;
+  document.getElementById("realert-btn").onclick = async () => {
+    try { const r = await SP.post(`/api/incidents/${d.id}/realert`); SP.toast("Alert re-sent", r.channel === "slack" ? "Posted to Slack and the in-app feed." : "Logged in-app (Slack not configured).", "info"); } catch (e) { SP.toast("Re-send failed", e.message, "crit"); }
+  };
+  document.getElementById("dismiss-btn").onclick = async () => {
+    const ok = await SP.confirm("Dismiss as false positive?", "The incident is closed without running any recovery action. No fix outcome is recorded.", "Dismiss incident", { icon: "notifications_off" });
+    if (!ok) return;
+    try { await SP.post(`/api/incidents/${d.id}/dismiss`, { by: SP.operator() }); SP.toast("Incident dismissed", "Marked as false positive.", "info"); load(); } catch (e) { SP.toast("Dismiss failed", e.message, "crit"); }
+  };
+}
+
+async function approve() {
+  if (busy || !inc) return;
+  const f = inc.fix || {};
+  const action = f.manual ? (f.optional && f.optional.action) : f.action;
+  const label = f.manual ? (f.optional && f.optional.label) : f.label;
+  const ok = await SP.confirm("Human approval required",
+    `<p class="mb-2">You are approving <b class="text-on-surface">${SP.esc(label)}</b> for incident #${inc.id} (${SP.esc(inc.cause)}).</p>
+     <p class="mb-2">SentinelPay never runs a recovery action on its own. This action will be executed against the bank now and verified by the next synthetic probe.</p>
+     <p class="text-[12px] font-mono text-secondary">Learned history: ${SP.esc(f.history_text || "—")}</p>
+     <p class="text-[12px] font-mono text-on-surface-variant mt-2">Approver: ${SP.esc(SP.operator())}</p>`, "Approve & execute", { okIcon: "bolt" });
+  if (!ok) return;
+  busy = true;
+  const btn = document.getElementById("approve-btn");
+  if (btn) { btn.disabled = true; btn.innerHTML = `<span class="material-symbols-outlined sp-spin">autorenew</span> EXECUTING…`; }
+  try {
+    const r = await SP.post(`/api/incidents/${inc.id}/approve`, { approved_by: SP.operator(), action });
+    SP.toast("Recovery approved", `${label}: ${r.message}. Waiting for probe verification…`, "ok");
+  } catch (e) { SP.toast("Approval failed", e.message, "crit"); }
+  busy = false; SP.changed("rec", null); load();
+}
+
+function renderTimeline(d) {
+  document.getElementById("tl-mttd").textContent = `MTTD: ${SP.dur(d.mttd_sec)} · MTTR: ${d.mttr_sec !== null ? SP.dur(d.mttr_sec) : "—"}`;
+  const notes = {
+    failure_started: "First failing signal (chaos activation / first failed run).",
+    detected: d.failed_step === "real transactions" ? "Pattern engine flagged real customer failures." : `Synthetic probe confirmed failure on ${SP.stepLabel(d.failed_step)} (2 of 3 attempts).`,
+    alerted: "Alert raised to the NOC feed" + (SP.status && SP.status.config.slack ? " and Slack." : " (Slack not configured)."),
+    approved: d.approved_by ? `${d.approved_by} approved: ${(d.fix && d.fix.label) || d.recovery_action}.` : "Awaiting human approval of the suggested fix.",
+    resolved: d.resolution_note || "Next passing probe verifies recovery.",
+  };
+  const current = d.timeline.findIndex((t) => !t.ts);
+  document.getElementById("timeline").innerHTML = d.timeline.map((t, i) => {
+    const done = !!t.ts, active = i === current && d.status !== "resolved";
+    const dot = done ? `<div class="absolute -left-6 top-0 w-5 h-5 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container"><span class="material-symbols-outlined text-[14px]">check</span></div>`
+      : active ? `<div class="absolute -left-6 top-0 w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center text-primary shadow-[0_0_8px_rgba(6,182,212,0.6)]"><span class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></span></div>`
+      : `<div class="absolute -left-6 top-0 w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant"><span class="material-symbols-outlined text-[13px]">radio_button_unchecked</span></div>`;
+    return `<div class="relative ${!done && !active ? "opacity-50" : ""}">${dot}<div class="flex flex-col"><div class="flex items-center justify-between">
+      <span class="font-label-md text-label-md ${active ? "text-primary font-bold" : done ? "text-on-surface font-semibold" : "text-on-surface-variant font-semibold"}">${t.label}${active ? " (pending)" : ""}</span>
+      <span class="font-label-sm text-label-sm ${done ? "text-secondary" : "text-on-surface-variant"} font-mono">${done ? SP.ist(t.ts) + " IST" : "PENDING"}</span></div>
+      <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">${SP.esc(notes[t.key] || "")}</p></div></div>`;
+  }).join("");
+}
+
+function renderNotice(d) {
+  const el = document.getElementById("notice");
+  const n = d.notices[0];
+  if (!n) { el.innerHTML = `<p class="text-body-sm text-on-surface-variant">${["gateway", "receiver_bank"].includes(d.layer) ? "No notice drafted." : "Customer notices are drafted for payment-gateway and receiver-bank incidents."}</p>`; return; }
+  if (n.status === "draft") {
+    el.innerHTML = `<textarea id="notice-text" rows="3" class="w-full bg-surface-container-lowest rounded p-2 text-body-sm text-on-surface border border-surface-variant focus:outline-none focus:border-primary-container">${SP.esc(n.text)}</textarea>
+      <div class="flex gap-2 mt-2"><button id="n-approve" class="flex-1 py-1.5 rounded bg-primary-container text-on-primary-container font-semibold text-body-sm hover:bg-primary">Approve &amp; publish banner</button><button id="n-dismiss" class="px-3 py-1.5 rounded bg-surface-container-high text-on-surface-variant text-body-sm hover:text-on-surface">Dismiss</button></div>`;
+    document.getElementById("n-approve").onclick = async () => { try { await SP.post(`/api/notices/${n.id}/approve`, { text: document.getElementById("notice-text").value }); SP.toast("Notice published", "Banner is live on the mock bank site.", "ok"); document.activeElement.blur(); load(); } catch (e) { SP.toast("Publish failed", e.message, "crit"); } };
+    document.getElementById("n-dismiss").onclick = async () => { try { await SP.post(`/api/notices/${n.id}/dismiss`); SP.toast("Notice dismissed", "No banner will be shown.", "info"); load(); } catch (e) { SP.toast("Dismiss failed", e.message, "crit"); } };
+  } else {
+    const live = n.status === "approved";
+    el.innerHTML = `<div class="p-2 rounded ${live ? "bg-secondary-container/10 border-l-2 border-secondary" : "bg-surface-container-high"}"><div class="text-[10px] font-mono uppercase ${live ? "text-secondary" : "text-outline"} mb-1">${live ? "● Live on bank site" : SP.esc(n.status)}</div><p class="text-body-sm ${live ? "text-on-surface" : "text-on-surface-variant"}">${SP.esc(n.text)}</p></div>`;
+  }
+}
+
+async function load() {
+  try { render(await SP.api(`/api/incidents/${id}`)); }
+  catch (e) { document.getElementById("title").textContent = e.status === 404 ? "Incident not found" : "Could not load incident"; }
+}
+SP.poll(load, 3000);
+</script>
+</body></html>

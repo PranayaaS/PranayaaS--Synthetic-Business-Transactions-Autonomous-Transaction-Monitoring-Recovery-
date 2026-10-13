@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SentinelPay – RBI Watchdog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="/static/vendor/fonts.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<!-- Local copies first (python vendor_assets.py), CDN fallback -->
+<script src="/static/vendor/tailwind.js"></script>
+<script>window.tailwind || document.write('<script src="https://cdn.tailwindcss.com"><\/script>')</script>
+<script src="/static/tw.js"></script>
+<link rel="stylesheet" href="/static/app.css">
+<script src="/static/app.js"></script>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen">
+<div id="sp-header"></div>
+<main class="w-full pt-16 pb-12 bg-background min-h-screen">
+  <div class="w-full bg-surface-container-lowest px-space-lg py-space-md shadow-md">
+    <div class="max-w-[1720px] mx-auto flex flex-col xl:flex-row xl:items-center justify-between gap-space-md">
+      <div class="flex flex-col gap-1.5">
+        <div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant"><a href="/" class="hover:text-primary">Overview</a><span class="text-outline-variant">/</span><span class="text-primary font-mono">RBI Watchdog</span></div>
+        <div class="flex items-center gap-space-sm flex-wrap"><span class="material-symbols-outlined text-secondary text-[28px]">verified_user</span><h1 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">RBI Deadline Watchdog</h1><span id="rule" class="px-2 py-0.5 rounded-full text-[10px] font-label-sm bg-secondary-container/20 text-secondary font-mono font-bold">—</span></div>
+        <p id="summary-line" class="font-body-md text-body-md text-on-surface-variant">—</p>
+      </div>
+      <button id="reverse-all" class="px-space-lg py-2.5 rounded-lg bg-error/10 border border-error text-error hover:bg-error hover:text-on-error font-semibold flex items-center gap-2 shrink-0"><span class="material-symbols-outlined text-[18px]">undo</span>Reverse all at risk</button>
+    </div>
+  </div>
+  <div class="px-space-lg py-space-lg max-w-[1720px] mx-auto flex flex-col gap-space-lg">
+    <div class="grid grid-cols-2 lg:grid-cols-5 gap-space-md">
+      <div class="bg-surface-container-low rounded-xl p-space-md"><div class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Debited-not-credited</div><div id="c-count" class="font-metric-display text-metric-display font-mono text-on-surface mt-1">—</div></div>
+      <div class="bg-surface-container-low rounded-xl p-space-md"><div class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Value at risk</div><div id="c-value" class="font-metric-display text-metric-display font-mono text-on-surface mt-1">—</div></div>
+      <div class="bg-surface-container-low rounded-xl p-space-md"><div class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Next deadline in</div><div id="c-next" class="font-metric-display text-metric-display font-mono text-warn mt-1">—</div></div>
+      <div class="bg-surface-container-low rounded-xl p-space-md"><div class="font-label-sm text-label-sm text-error uppercase tracking-wider">Penalty exposure</div><div id="c-pen" class="font-metric-display text-metric-display font-mono text-error mt-1">—</div><div id="c-breach" class="text-[11px] font-mono text-on-surface-variant"></div></div>
+      <div class="bg-surface-container-low rounded-xl p-space-md col-span-2 lg:col-span-1"><div class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Reversed (24h)</div><div id="c-rev" class="font-metric-display text-metric-display font-mono text-secondary mt-1">—</div></div>
+    </div>
+    <div class="bg-surface-container-low rounded-xl shadow-md overflow-x-auto">
+      <table class="w-full text-left text-body-sm">
+        <thead><tr class="bg-surface-container-lowest text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+          <th class="px-3 py-2">Txn ref</th><th class="px-3 py-2">Customer</th><th class="px-3 py-2 text-right">Amount</th><th class="px-3 py-2">Receiver bank</th><th class="px-3 py-2">Debited at</th>
+          <th class="px-3 py-2">Countdown</th><th class="px-3 py-2">Status</th><th class="px-3 py-2 text-right">Penalty exposure</th><th class="px-3 py-2 text-right">Action</th></tr></thead>
+        <tbody id="rows"><tr><td colspan="9" class="p-6"><div class="skeleton h-6"></div></td></tr></tbody>
+      </table>
+    </div>
+    <div class="bg-surface-container-low rounded-xl p-space-md flex items-start gap-space-sm">
+      <span class="material-symbols-outlined text-warn">info</span>
+      <div class="text-body-sm text-on-surface-variant leading-relaxed">
+        <p><b class="text-on-surface">How it works.</b> Every transaction that was debited from the customer but not credited to the receiver gets a reversal deadline (default T+1 day for UPI-style transfers). Rows turn amber when less than 3 hours remain (3 minutes in demo mode) and red once the deadline passes, when compensation of ₹<span id="pen-rate">100</span> per day of delay accrues.</p>
+        <p id="demo-note" class="mt-1"></p>
+        <p class="mt-1 text-outline">Deadlines and compensation amounts are configurable and based on RBI TAT guidelines for failed transactions; verify against current RBI circulars. This is not legal advice.</p>
+      </div>
+    </div>
+  </div>
+</main>
+<div id="sp-footer"></div>
+<script>
+let wd = null, at = 0;
+function rowsHtml() {
+  return wd.rows.map((r) => `<tr class="row-hover border-b border-surface-variant/40" data-row="${r.id}">
+    <td class="px-3 py-2 font-mono text-on-surface">${SP.esc(r.txn_ref)}</td>
+    <td class="px-3 py-2 font-mono text-on-surface-variant">${SP.esc(r.customer_id)}</td>
+    <td class="px-3 py-2 text-right font-mono text-on-surface">${SP.inr(r.amount)}</td>
+    <td class="px-3 py-2 text-on-surface-variant">${SP.esc(r.receiver_bank)}</td>
+    <td class="px-3 py-2 font-mono text-on-surface-variant whitespace-nowrap">${SP.ist(r.ts, true)}</td>
+    <td class="px-3 py-2 font-mono font-bold whitespace-nowrap" data-cd></td>
+    <td class="px-3 py-2" data-st></td>
+    <td class="px-3 py-2 text-right font-mono" data-pen></td>
+    <td class="px-3 py-2 text-right"><button data-rev="${r.id}" class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface text-[11px] font-mono font-semibold">REVERSE NOW</button></td></tr>`).join("")
+    || `<tr><td colspan="9" class="text-center text-outline py-10"><span class="material-symbols-outlined text-secondary align-middle">task_alt</span> No debited-not-credited transactions. Inject <a href="/chaos" class="text-primary underline">Gateway Timeout</a> to see the watchdog in action.</td></tr>`;
+}
+function tick() {
+  if (!wd) return;
+  const el = (Date.now() - at) / 1000, s = wd.summary, warnWin = wd.config.warn_window_sec, unit = wd.config.demo_mode ? 60 : 86400;
+  let pen = 0, breached = 0, warn = 0;
+  wd.rows.forEach((r) => {
+    const tr = document.querySelector(`[data-row="${r.id}"]`); if (!tr) return;
+    const rem = r.remaining_sec - el, b = rem < 0, w = !b && rem < warnWin;
+    const p = b ? Math.ceil(-rem / unit) * wd.config.penalty_per_day : 0;
+    pen += p; breached += b; warn += w;
+    const cd = tr.querySelector("[data-cd]");
+    cd.textContent = (b ? "-" : "") + SP.clock(Math.abs(rem)); cd.className = `px-3 py-2 font-mono font-bold whitespace-nowrap ${b ? "text-error" : w ? "text-warn animate-pulse" : "text-primary"}`;
+    tr.querySelector("[data-st]").innerHTML = `<span class="inline-flex px-2 py-0.5 rounded-full text-[10px] font-label-sm font-semibold uppercase ${b ? "bg-error text-on-error" : w ? "bg-warn/20 text-warn" : "bg-secondary-container/20 text-secondary"}">${b ? "Breached" : w ? "Warning" : "OK"}</span>`;
+    const pc = tr.querySelector("[data-pen]"); pc.textContent = p ? SP.inr(p) + ` (${Math.ceil(-rem / unit)} ${wd.config.demo_mode ? "demo-day" : "day"}${Math.ceil(-rem / unit) > 1 ? "s" : ""})` : "₹0"; pc.className = `px-3 py-2 text-right font-mono ${p ? "text-error" : "text-on-surface-variant"}`;
+  });
+  const next = s.next_deadline_sec === null ? null : Math.max(0, s.next_deadline_sec - el);
+  document.getElementById("c-next").textContent = next === null ? "—" : SP.clock(next);
+  document.getElementById("c-pen").textContent = SP.inr(pen);
+  document.getElementById("c-breach").textContent = `${breached} breached · ${warn} near deadline`;
+  document.getElementById("summary-line").textContent = s.count
+    ? `${s.count} transactions at risk · ${SP.lakh(s.value)} · next deadline in ${next === null ? "—" : SP.clock(next)}`
+    : "No transactions at risk. All debits have been credited or reversed.";
+}
+async function load() {
+  wd = await SP.api("/api/watchdog"); at = Date.now();
+  const s = wd.summary, c = wd.config;
+  document.getElementById("rule").textContent = c.demo_mode ? `DEMO MODE · ${c.deadline_minutes}-MIN DEADLINE` : "T+1 DAY DEADLINE";
+  document.getElementById("c-count").textContent = s.count;
+  document.getElementById("c-value").textContent = SP.lakh(s.value);
+  document.getElementById("c-rev").textContent = s.reversed_today;
+  document.getElementById("pen-rate").textContent = c.penalty_per_day;
+  document.getElementById("demo-note").textContent = c.demo_mode ? `Demo mode is on: deadlines are ${c.deadline_minutes} minutes after debit and one demo-minute late counts as one day of delay. Set DEMO_MODE=false in .env for real T+1 timing.` : "";
+  document.getElementById("reverse-all").disabled = !s.count; document.getElementById("reverse-all").classList.toggle("opacity-40", !s.count);
+  if (SP.changed("wdrows", wd.rows.map((r) => r.id))) document.getElementById("rows").innerHTML = rowsHtml();
+  tick();
+}
+document.getElementById("rows").addEventListener("click", async (e) => {
+  const b = e.target.closest("[data-rev]"); if (!b) return;
+  b.disabled = true;
+  try { await SP.post(`/api/watchdog/${b.dataset.rev}/reverse`); SP.toast("Reversal posted", "Customer credited back (simulated).", "ok"); load(); }
+  catch (err) { SP.toast("Reverse failed", err.message, "crit"); b.disabled = false; }
+});
+document.getElementById("reverse-all").onclick = async () => {
+  if (!wd || !wd.summary.count) return;
+  const ok = await SP.confirm("Reverse all at-risk transactions?", `Posts reversals for <b class="text-on-surface">${wd.summary.count}</b> transactions worth <b class="text-on-surface">${SP.inr(wd.summary.value)}</b> (simulated).`, "Reverse all", { icon: "undo" });
+  if (!ok) return;
+  try { const r = await SP.post("/api/watchdog/reverse-all"); SP.toast("Bulk reversal complete", `${r.reversed} transactions reversed.`, "ok"); load(); }
+  catch (err) { SP.toast("Bulk reversal failed", err.message, "crit"); }
+};
+setInterval(tick, 1000);
+SP.poll(load, 5000);
+</script>
+</body></html>

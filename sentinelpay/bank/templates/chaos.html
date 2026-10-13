@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bank Chaos Panel</title>
+<style>
+  body{margin:0;padding:24px;background:#0f172a;color:#e2e8f0;font-family:"Segoe UI",system-ui,sans-serif}
+  .tag{font-size:11px;background:#f59e0b;color:#000;border-radius:4px;padding:2px 6px;margin-left:8px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;max-width:760px;margin-top:16px}
+  button{background:#334155;color:#e2e8f0;border:0;border-radius:6px;padding:10px;text-align:left;cursor:pointer;font-size:14px}
+  button:hover{background:#475569} button.on{background:#047857}
+  .muted{color:#94a3b8;font-size:13px}
+</style></head>
+<body>
+<h2 style="margin:0">Mock bank chaos panel <span class="tag">DEMO ONLY</span></h2>
+<p class="muted">Current mode: <b id="mode">{{ state.mode }}</b> &mdash; <span id="desc">{{ state.description }}</span></p>
+<div class="grid">
+{% for m, d in state.modes.items() %}
+  <button data-mode="{{ m }}" title="{{ d }}" class="chaos-btn {{ 'on' if m == state.mode else '' }}">{{ m }}</button>
+{% endfor %}
+</div>
+<p class="muted">The SentinelPay Chaos Control Deck (port 8000, /chaos) controls the same state.</p>
+<script>
+document.querySelectorAll('.chaos-btn').forEach(b => b.onclick = async () => {
+  const r = await fetch('/api/chaos/' + b.dataset.mode, {method: 'POST'}); const j = await r.json();
+  document.getElementById('mode').textContent = j.mode; document.getElementById('desc').textContent = j.description;
+  document.querySelectorAll('.chaos-btn').forEach(x => x.classList.toggle('on', x.dataset.mode === j.mode));
+});
+</script>
+</body></html>
